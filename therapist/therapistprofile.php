@@ -211,18 +211,16 @@ $row = mysqli_fetch_assoc($result);
 $therapistId = $row['tid'];
 
 // Retrieve the therapist's schedule from the sessions table
-$query = "SELECT dayy, Time1,Time2,Time3 , status FROM sessions WHERE tid = $therapistId";
+$query = "SELECT dayy, Time1, status FROM sessions WHERE tid = $therapistId";
 $result = mysqli_query($conn, $query);
 
 // Display the schedule in a table format
 if (mysqli_num_rows($result) > 0) {
     echo "<table>";
-    echo "<tr><th>Day</th><th>session 1</th><th>session 2</th><th>session 3</th><th>status</th></tr>";
+    echo "<tr><th>Day</th><th>session 1</th><th>status</th></tr>";
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<td>" . $row['dayy'] . "</td>";
         echo "<td>" . $row['Time1'] . "</td>";
-        echo "<td>" . $row['Time2'] . "</td>"; 
-        echo "<td>" . $row['Time3'] . "</td>";
         echo "<td><span class='session-status " . ($row['status'] == 'booked' ? 'booked' : 'unbooked') . "'></span></td>";
 
         echo "</tr>";

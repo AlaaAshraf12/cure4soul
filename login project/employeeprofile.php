@@ -123,74 +123,43 @@
                 <img src="docc.jpg">
             </div>
             <div class="test-right">
-                <h3>Alex Du</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.<br>
-                    Ut quod temporibus ad repudiandae
-                    veniam optio<br>
-                    eos asperiores! Sapiente, natus dicta?</p>
+            <?php
+// Assuming you have a MySQL database connection established
+
+// Start the session and retrieve the logged-in therapist's email from the session
+
+$email = $_SESSION['name']; // Modify this according to your authentication system
+
+// Retrieve the employee's ID based on their email
+$query = "SELECT eid, tid FROM employee WHERE email = '$email'";
+$result = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($result);
+$emid = $row['eid'];
+$thid = $row['tid'];
+
+// Retrieve the therapist's schedule from the sessions table
+$quer = "SELECT name,email,qualif FROM therapist WHERE tid = '$thid'";
+$resul = mysqli_query($conn, $quer);
+
+// Display the schedule in a table format
+if (mysqli_num_rows($resul) > 0) {
+   
+    while ($row = mysqli_fetch_assoc($resul)) {
+        echo "<h3>" . $row['name'] . "</h3><br>";
+        echo "<p>" . $row['email'] . "</p><br>"; 
+        echo "<p>" . $row['qualif'] . "</p><br>";
+    }
+} else {
+    echo "No schedule found.";
+}
+
+?>
             </div>
 
         </div>
     </div>
 </section>
-	<!--div class="container">
-		<h1 class="text-center">Doctor Schedule</h1>
-		<p class="text-center">Select a date and session time to book an appointment:</p>
-		<table class="table schedule-table">
-			<thead>
-				<tr>
-					<th>Date</th>
-					<th>Session 1</th>
-					<th>Session 2</th>
-					<th>Session 3</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Monday, May 16</td>
-					<td><button class="btn btn-primary book-btn">Book Session 1</button></td>
-					<td><button class="btn btn-primary book-btn">Book Session 2</button></td>
-					<td><button class="btn btn-primary book-btn">Book Session 3</button></td>
-				</tr>
-				<tr>
-					<td>Tuesday, May 17</td>
-					<td><button class="btn btn-primary book-btn">Book Session 1</button></td>
-					<td><button class="btn btn-primary book-btn">Book Session 2</button></td>
-					<td><button class="btn btn-primary book-btn">Book Session 3</button></td>
-				</tr>
-				<tr>
-					<td>Wednesday, May 18</td>
-					<td><button class="btn btn-primary book-btn">Book Session 1</button></td>
-					<td><button class="btn btn-primary book-btn">Book Session 2</button></td>
-					<td><button class="btn btn-primary book-btn">Book Session 3</button></td>
-				</tr>
-				<tr>
-					<td>Thursday, May 19</td>
-					<td><button class="btn btn-primary book-btn">Book Session 1</button></td>
-					<td><button class="btn btn-primary book-btn">Book Session 2</button></td>
-					<td><button class="btn btn-primary book-btn">Book Session 3</button></td>
-				</tr>
-				<tr>
-					<td>Friday, May 20</td>
-					<td><button class="btn btn-primary book-btn">Book Session 1</button></td>
-					<td><button class="btn btn-primary book-btn">Book Session 2</button></td>
-					<td><button class="btn btn-primary book-btn">Book Session 3</button></td>
-				</tr>
-                <tr>
-                    <td>Saturday, May 21</td>
-                    <td><button class="btn btn-primary book-btn">Book Session 1</button></td>
-                    <td><button class="btn btn-primary book-btn">Book Session 2</button></td>
-                    <td><button class="btn btn-primary book-btn">Book Session 3</button></td>
-                </tr>
-                <tr>
-                    <td>Sunday, May 22</td>
-                    <td><button class="btn btn-primary book-btn">Book Session 1</button></td>
-                    <td><button class="btn btn-primary book-btn">Book Session 2</button></td>
-                    <td><button class="btn btn-primary book-btn">Book Session 3</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </div-->
+	
     
     <!-- Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -198,37 +167,69 @@
     
             </body>
 			</html>
-			<?php
+		
+<?php
 // Assuming you have a MySQL database connection established
 
-// Start the session and retrieve the logged-in therapist's email from the session
+// Start the session and retrieve the logged-in employee's email from the session
 
-$n = $_SESSION['name']; // Modify this according to your authentication system
+$email = $_SESSION['name']; // Modify this according to your authentication system
 
-// Retrieve the therapist's ID based on their email
-$query = "SELECT eid FROM employee WHERE email = '$n'";
+// Retrieve the employee's ID based on their email
+$query = "SELECT eid, tid FROM employee WHERE email = '$email'";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
-$n = $row['eid'];
+$eid = $row['eid'];
+$tid = $row['tid'];
 
 // Retrieve the therapist's schedule from the sessions table
-$query = "SELECT dayy, Time1,Time2,Time3 , status, eid, employee.tid,sessions.tid FROM sessions inner join employee on sessions.tid = employee.tid WHERE eid='$n' and employee.tid=sessions.tid;";
+$query = "SELECT sid, dayy, Time1 , status FROM sessions WHERE tid = '$tid'";
 $result = mysqli_query($conn, $query);
 
 // Display the schedule in a table format
 if (mysqli_num_rows($result) > 0) {
-    echo "<table>";
-    echo "<tr><th>Day</th><th>session 1</th><th>session 2</th><th>session 3</th><th></th></tr>";
+    echo '<form method="POST" action="">';
+    echo '<table>';
+    echo '<tr><th>Day</th><th>Time 1</th><th></th></tr>';
+    
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<td>" . $row['dayy'] . "</td>";
-        echo "<td><button value=>" . $row['Time1'] . "</button></td>";
-        echo "<td><button value=>" . $row['Time2'] . "</button></td>"; 
-        echo "<td><button value=>" . $row['Time3'] . "</button></td>";
-        echo "</tr>";
+        echo '<tr>';
+        echo '<td>' . $row['dayy'] . '</td>';
+        echo '<td>' . $row['Time1'] . '</td>';
+        if ($row['status'] == 'booked') {
+            echo '<td>Booked</td>';
+        } else {
+            echo '<td><button type="submit" name="book" value="' . $row['sid'] . '">Book Session</button></td>';
+        }
+        echo '</tr>';
     }
-    echo "</table>";
+    
+    echo '</table>';
+    echo '</form>';
 } else {
-    echo "No schedule found.";
+    echo 'No schedule found.';
 }
 
+// Handle the form submission when booking a session
+if (isset($_POST['book'])) {
+    $selectedSid = $_POST['book'];
+    
+    // Check if the selected session is available (not already booked)
+    $checkQuery = "SELECT status FROM sessions WHERE sid = '$selectedSid' AND status = 'unbooked'";
+    $checkResult = mysqli_query($conn, $checkQuery);
+    
+    if (mysqli_num_rows($checkResult) > 0) {
+        // Update the sessions table to mark the selected session as booked
+        $updateQuery = "UPDATE sessions SET status = 'booked' WHERE sid = '$selectedSid'";
+        mysqli_query($conn, $updateQuery);
+        
+        // Insert the booking into the booking table
+        $insertQuery = "INSERT INTO booking (eid, sid) VALUES ('$eid', '$selectedSid')";
+        mysqli_query($conn, $insertQuery);
+        
+        echo 'Session booked successfully!';
+    } else {
+        echo 'Session already booked or unavailable.';
+    }
+}
 ?>
