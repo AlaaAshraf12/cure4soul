@@ -68,6 +68,9 @@ color: white;}
                 <li><a href="#contact">Contact</a></li>
                 
             </ul>
+            <div>
+<a href="logintherapist.php? logout='1'">log out </a>
+</div>
     
             <div class="nav-buttons" style="display: flex; justify-content: flex-end;">
                 <div class="btn1" style="padding-right: 10px;"><button><a href="">Member Login</a></button></div>
