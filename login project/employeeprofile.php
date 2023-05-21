@@ -105,8 +105,8 @@
                 
             </ul>
             <div>
-<a href="login.php? logout='1'">log out </a>
-</div>
+             <a href="login.php? logout='1'">log out </a>
+             </div>
             <div class="nav-buttons" style="display: flex; justify-content: flex-end;">
                 <div class="btn1" style="padding-right: 10px;"><button><a href="">Member Login</a></button></div>
                 <div class="btn1"><button><a href="">Request a Seminar</a></button></div>
