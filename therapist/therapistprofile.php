@@ -55,7 +55,7 @@ color: white;}
     <body>
            
       <section class="nav" >
-        <div class="navbar"style="background-color:#1e6091;">
+        <div class="navbar"style="background-color:green;">
             <h2 style="color: white; font-weight: bold; padding-left: 40px;">cure4soul<span class="dot" style="color: #00c3da;">.</span></h2>
     
             <ul>
