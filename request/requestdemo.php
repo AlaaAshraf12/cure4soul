@@ -29,7 +29,6 @@ if(isset($_POST['submit'])){
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
-        
         <form method='post'>
             
           <div class="container">
@@ -217,8 +216,8 @@ if(isset($_POST['submit'])){
                           </span>
                         </div>
                       </div>
-                      I agree to the defined
-                      <a href="#"> terms, conditions, and policies</a>
+                      I agree 
+                      <a href="#">By submitting this form, you are agreeing Privacy Policy and Terms of Use.</a>
                     </label>
                   </div>
             
