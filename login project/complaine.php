@@ -1,10 +1,6 @@
-<?php include('connection.php');?>
-<?php include('logformemp.php');?>
 <?php
-
-// Assuming you have already included the necessary files (connection.php and logformemp.php)
-
-// Assuming you have already established a database connection
+include('connection.php');
+include ('logformemp.php');// Assuming you have already established a database connection
 
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
@@ -14,25 +10,36 @@ if (isset($_POST['submit'])) {
         
         // Retrieve the employee's ID based on their email
         $email = $_SESSION['name']; // Modify this according to your authentication system
-        $quer = "SELECT eid, tid FROM employee WHERE email = '$email'";
-        $result = mysqli_query($conn, $quer);
+        $query = "SELECT eid, tid FROM employee WHERE email = '$email'";
+        $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($result);
         $emid = $row['eid'];
         $thid = $row['tid'];
-
+        $d = "SELECT details FROM complain";
+        $r= mysqli_query($conn, $query);
+        $b=$row['details'];
+        
         // Insert the selected problems into the complain table
         foreach ($selectedProblems as $problem) {
             if ($problem == "Therapist") {
                 // Save $tid in the tid column in the complain table
-                $que = "INSERT INTO complain (problem, eid, tid) VALUES ('$problem', '$emid', '$thid')";
-                $q = mysqli_query($conn, $que);
+                $query = "INSERT INTO complain (problem,details, eid, tid) VALUES ('$problem','$b', '$emid', '$thid')";
             } else {
                 // Save other problems in the problem column in the complain table
-                $query = "INSERT INTO complain (problem, eid) VALUES ('$problem', '$emid')";
-                $q2 = mysqli_query($conn, $query);
+                $query = "INSERT INTO complain (problem,details, eid) VALUES ('$problem','$b', '$emid')";
+            }
+            
+            $result = mysqli_query($conn, $query);
+            if (!$result) {
+                echo mysqli_error($conn);
             }
         }
         
+        // Redirect to a success page or perform any other desired action
+        header("location: success.php");
+        
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +54,7 @@ if (isset($_POST['submit'])) {
     </style>
 </head>
 <body>
-    <form method="POST">
+    <form method="POST">    
         <h2>Complain Form</h2>
         <label>
             <input type="checkbox" name="problems[]" value="Therapist">
@@ -61,14 +68,11 @@ if (isset($_POST['submit'])) {
             <input type="checkbox" name="problems[]" value="Session Duration">
             Session Duration
         </label>
+        <label>
+            <textarea name="details"></textarea>
+            details
+        </label>
         <input type="submit" name="submit" value="Submit">
     </form>
 </body>
 </html>
-<?php
-  echo '<p>Complaint submitted successfully!</p>';
-} else {
-    echo '<p>Error: No problems selected.</p>';
-}
-}
-?>
