@@ -1,27 +1,6 @@
 <?php include('connection.php');?>
-<?PHP 
-if(! isset($_SESSION)){
-  session_start();
-}
-if (isset($_POST['login'])){
-
-    $l=mysqli_real_escape_string($conn,$_POST['email']);
-    $p=mysqli_real_escape_string($conn,$_POST['password']);
-
-    $t="SELECT * FROM reqther where email='$l' And passwordd='$p' ";
-    $r=mysqli_query($conn,$t);
-
-if(mysqli_num_rows($r)==1)
-       {
-        $_SESSION['email']=$l;
-        header('location:therapistprofile.php');
-        exit;
-       }
-       else{$error='Invalid email or password';
-           }
-}
-?>
-<html>
+ 
+ <html>
 
 <head>
     
@@ -362,9 +341,7 @@ if(mysqli_num_rows($r)==1)
     </h4>
     <div class="frame">
 
-        <form >
-
-        <form method='POST' action='therapistprofile.php'>
+        <form method="POST" action="logform.php">
 
             <br><br>
             
@@ -381,7 +358,7 @@ if(mysqli_num_rows($r)==1)
              <?php } ?>
 
             <a href="forgot.html" style="padding-left: 20px;">forgot your password?</a>
-            
+            </form>
     </div>
  
 </div>

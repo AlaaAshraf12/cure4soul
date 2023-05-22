@@ -1,29 +1,4 @@
 <?php include("connection.php"); ?>
-<?php
-if (isset(($_POST)['login'])) {
-    // Retrieve the email and password from the POST data
-    $company =mysqli_real_escape_string($conn,$_POST['company']);
-    $email =mysqli_real_escape_string($conn,$_POST['email']);
-    $password =mysqli_real_escape_string($conn,$_POST['password']); 
-
-    // Build the SQL query to check if the email and password match a row in the users table
-    $sql = "SELECT * FROM emp WHERE company='$company' AND email = '$email' AND password = '$password'";
-
-    // Execute the query and get the result
-    $result = mysqli_query($conn, $sql);
-
-    // Check if there is a row in the result (i.e., if the email and password matched a row in the table)
-    if (mysqli_num_rows($result) > 0) {
-        // Redirect the user to the home page
-        header('Location:requestdemo.php');
-        exit();
-    } else {
-        // Display an error message
-        echo "Invalid email or password";
-    }
-}
-
-?>
 <html>
 
 <head>
@@ -39,10 +14,7 @@ if (isset(($_POST)['login'])) {
         Login to CURE4SOUL
     </h4>
     <div class="frame">
-
-        <form >
-
-        <form method='post' action="requestdemo.php">
+        <form method="POST" action="logformemp.php">
 
             <br><br>
             <label for="company">Enter your company</label><br>
@@ -58,7 +30,7 @@ if (isset(($_POST)['login'])) {
             <button type="submit" name="login" class="submit1">Login</button><br><br>
 
             <a href="forgot.html">forgot your password?</a>
-            
+        </form> 
     </div>
  
 </div>
