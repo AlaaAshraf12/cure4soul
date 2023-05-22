@@ -30,7 +30,7 @@ if(isset($_POST['Submit'])){
                 <div class=" row py-5 g-3 "></div>
                 <div class="col-md-6 child py-4">
                     <div class="inner">
-                <img src="images/WhatsApp Image 2023-05-06 at 4.42.54 PM (1).jpeg" alt="profile">
+                <img src="images/pexels-photo-4065133.jpeg" alt="profile">
            </div>
                 <div class="layer"></div>
         

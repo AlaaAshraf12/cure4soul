@@ -25,6 +25,7 @@
 }
 .inner{
     width: 50%;
+   margin:15 15 0 0px ; 
     padding: 10px;
      position: relative;
      overflow: hidden;
