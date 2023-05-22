@@ -106,8 +106,8 @@
                 
             </ul>
             <div>
-<a href="login.php? logout='1'">log out </a>
-</div>
+             <a href="login.php? logout='1'">log out </a>
+             </div>
             <div class="nav-buttons" style="display: flex; justify-content: flex-end;">
                 <div class="btn1" style="padding-right: 10px;"><button><a href="">Member Login</a></button></div>
                 <div class="btn1"><button><a href="">Request a Seminar</a></button></div>
@@ -119,7 +119,7 @@
         </div>
     </section>
 	<!--testimonial-->
-<section class="test" style="margin-top: 120px;">
+<section class="test" style="margin-top: 10px;">
     <div class="container">
         <div class="test-details" style="display: flex;justify-content:center;">
             <div class="test-left">
@@ -236,3 +236,60 @@ if (isset($_POST['book'])) {
     }
 }
 ?>
+
+<style>
+  *{margin:0;
+  padding:0;}
+.data-one{background-color:#8fb8ca;
+  color:white;
+  
+}
+table{width:70%;
+  background-color:white;
+  margin:auto;
+  margin-top:20px
+  
+  
+}
+table, th, td {
+  border: 1px solid #8fb8ca;
+  
+}
+td{text-align:center;
+  color: rgba(0,0,0,.54);
+}
+
+tr:nth-child(even) {background-color:#edf2fb}
+tr{text-align:center;
+font-size:18px;
+}
+tr:hover {background-color:#ffe6cc}
+th{background-color:#8fb8ca;
+  height:40px;
+color:white;
+text-align:center}
+.session-status {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+   
+}
+
+.booked {
+    background-color: green;
+}
+
+.unbooked {
+    background-color: red;
+}
+
+button{background:orange;
+border:none;
+border-radius:5px;
+margin:5px;
+height:40px;
+width:150px;
+color:white}
+/* Add more CSS styles as needed */
+</style>

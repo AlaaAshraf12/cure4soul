@@ -55,7 +55,7 @@ color: white;}
     <body>
            
       <section class="nav" >
-        <div class="navbar"style="background-color:#1e6091;">
+        <div class="navbar"style="background-color:green;">
             <h2 style="color: white; font-weight: bold; padding-left: 40px;">cure4soul<span class="dot" style="color: #00c3da;">.</span></h2>
     
             <ul>
@@ -87,9 +87,9 @@ color: white;}
     <section class="profile">
         <div class="container-fluid">
             <div class="Profile-content" style="display: flex;justify-content: center;">
-               <div class="profile-left" style="width: 20%;height:700px;background-color: rgb(238, 237, 237);padding-top: 100px;">
+               <div class="profile-left" style="width: 30%;height:700px;background-color:#dedede;padding-top: 100px;">
                 <div class="section-img">
-                    <img src="doccc.jpg" style="border-radius: 50%; width: 70%;margin-left: 40px;margin-top: 20px;">
+                    <img src="doccc.jpg" style="border-radius: 50%; width: 60%;margin-left: 60px;margin-top: 20px;">
                     <?php
 // Assuming you have a MySQL database connection established
 
@@ -111,10 +111,10 @@ $result = mysqli_query($conn, $query);
 if (mysqli_num_rows($result) > 0) {
    
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<h2>" . $row['name'] . "</h2><br>";
-        echo "<h2>" . $row['email'] . "</h2><br>";
-        echo "<h2>" . $row['phone'] . "</h2><br>"; 
-        echo "<h2>" . $row['qualif'] . "</h2><br>";
+        echo "<h2>" . $row['name'] . "</h2>";
+        echo "<h2>" . $row['email'] . "</h2>";
+        echo "<h2>" . $row['phone'] . "</h2>"; 
+        echo "<h2>" . $row['qualif'] . "</h2>";
     }
 } else {
     echo "No schedule found.";
@@ -123,83 +123,9 @@ if (mysqli_num_rows($result) > 0) {
 ?>
                 </div>
             </div>
-               <div class="profile-right" style="width: 80%;height:500;padding-top: 100px;">
+               <div class="profile-right" style="width: 80%;height:720px;padding-top: 80px;padding-left:140px;background-color:#f4faff">
 
-                <div class="formbold-main-wrapper">
-                 
-                    <div class="formbold-form-wrapper">
-                      
-                     
-                  
-                      <form>
-                        
-                  
-                        <div class="formbold-input-flex">
-                          <div>
-                            <label for="firstname" class="formbold-form-label">
-                              Name
-                            </label>
-                            <input
-                              type="text"
-                              name="firstname"
-                              id="firstname"
-                              class="formbold-form-input"
-                            />
-                          </div>
-                          <div>
-                            <label for="email" class="formbold-form-label"> Email </label>
-                            <input
-                              type="email"
-                              name="email"
-                              id="email"
-                              class="formbold-form-input"
-                            />
-                          </div>
-                        </div>
-                  
-                        <div class="formbold-input-flex">
-                          <div>
-                            <label  class="formbold-form-label"> Nationality </label>
-                            <input
-                              type="text"
-                              name="nationality"
-                              id="nationality"
-                              class="formbold-form-input"
-                            />
-                          </div>
-                          <div>
-                            <label for="phone" class="formbold-form-label"> Phone number </label>
-                            <input
-                              type="text"
-                              name="phone"
-                              id="phone"
-                              class="formbold-form-input"
-                            />
-                          </div>
-                        </div>
-                  
-                        <div class="formbold-mb-3">
-                          <label for="address" class="formbold-form-label">
-                            Qualification
-                          </label>
-                          <input
-                            type="text"
-                            name="address"
-                            id="address"
-                            class="formbold-form-input"
-                          />
-                        </div>
-                        <button class="formbold-btn">Save</button>
-                      </form> 
-                    </div>
-                  </div>
-                     
-                </div>
-            </div>
-            </div>
-        </div>
-    </section>
-    
+                   
    <?php
 // Assuming you have a MySQL database connection established
 
@@ -222,10 +148,11 @@ if (mysqli_num_rows($result) > 0) {
     echo "<table>";
     echo "<tr><th>Day</th><th>session 1</th><th>status</th></tr>";
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<td>" . $row['dayy'] . "</td>";
+        echo "<td class='data-one'>" . $row['dayy'] . "</td>";
         echo "<td>" . $row['Time1'] . "</td>";
-        echo "<td><span class='session-status " . ($row['status'] == 'booked' ? 'booked' : 'unbooked') . "'></span></td>";
 
+        echo "<td><span class='session-status " . ($row['status'] == 'booked' ? 'booked' : 'unbooked') . "'></span></td>";
+        
         echo "</tr>";
     }
     echo "</table>";
@@ -234,12 +161,49 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 ?>
+            </div>
+            </div>
+        </div>
+    </section>
+
 <style>
+  *{margin:0;
+  padding:0;}
+.data-one{background-color:#8fb8ca;
+  color:white;
+  
+}
+table{width:80%;
+  background-color:white;
+
+}
+table, th, td {
+  
+  border: 1px  #8fb8ca;
+ 
+  
+}
+td{text-align:center;
+  color: rgba(0,0,0,.54);
+  padding:4px;
+
+}
+
+tr:nth-child(even) {background-color:#edf2fb}
+tr{text-align:center;
+font-size:18px;
+
+}
+tr:hover {background-color:#ffe6cc}
+th{background-color:#8fb8ca;
+  height:40px;
+color:white}
 .session-status {
     display: inline-block;
     width: 16px;
     height: 16px;
     border-radius: 50%;
+   
 }
 
 .booked {
@@ -250,6 +214,9 @@ if (mysqli_num_rows($result) > 0) {
     background-color: red;
 }
 
+h2{
+  padding:10px
+}
 /* Add more CSS styles as needed */
 </style>
 

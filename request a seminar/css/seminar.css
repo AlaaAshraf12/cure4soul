@@ -25,6 +25,7 @@
 }
 .inner{
     width: 50%;
+   margin:15 15 0 0px ; 
     padding: 10px;
      position: relative;
      overflow: hidden;
@@ -71,3 +72,14 @@ form{
     background-color: #feb777;
     
 }
+h2{margin-top: 10px;
+    margin-left: 20px;
+    color:#164277;
+    font-family: BerlingskeSerif, Georgia, "Times New Roman", Times, serif;
+    margin-top: 0.5rem;
+    font-weight: bold;}
+    
+    p {margin-top: 10px;
+        margin-left: 20px;
+    color:rgb(92, 87, 87);
+    font-size: 18px;}
