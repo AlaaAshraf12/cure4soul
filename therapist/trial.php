@@ -50,3 +50,6 @@ if (mysqli_num_rows($result) > 0) {
 
 /* Add more CSS styles as needed */
 </style>
+$b="SELECT details from complain";
+        $b2=mysqli_query($conn,$b);
+        $d=$row['details'];

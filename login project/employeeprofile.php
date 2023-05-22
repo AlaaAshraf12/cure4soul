@@ -1,5 +1,6 @@
 <?php include('connection.php');?>
 <?php include('logformemp.php');?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,7 +101,7 @@
                 <li><a href="#team">Team</a></li>
                 <li><a href="#service">Service</a></li>
                 <li><a href="#client">Works</a></li>
-                <li><a href="#prices">Pricing</a></li>
+                <li><a href="complaine.php">Add Complain</a></li>
                 <li><a href="#contact">Contact</a></li>
                 
             </ul>
