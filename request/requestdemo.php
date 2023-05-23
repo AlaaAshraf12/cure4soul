@@ -29,6 +29,67 @@ if(isset($_POST['submit'])){
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
+    <style>  .navbar{
+        display: flex;
+        justify-content: space-between;
+        
+        align-items: center;
+        position: fixed;
+        left:0px;
+        right: 0px;
+        }
+    .navbar ul{display: flex;
+        list-style: none;
+    justify-content: flex-end;
+    }
+    .navbar ul li{padding: 20px;
+    }
+    .navbar ul li a{text-decoration:none;
+    font-weight: 600;
+    margin:5px;
+    color: white;
+
+}
+.navbar ul li a:hover{color: gray;}
+.nav-buttons{margin-right: 40px; padding-bottom: 10px;}
+.btn1 button {
+    background-color: orange;
+    width: 140px;
+    height: 40px;
+    border-radius: 8px;
+    border-style: none;
+   
+    
+}
+.btn1 button:hover{background-color: #fad263;}
+.btn1 button a{text-decoration: none;
+color: white;}
+</style>
+      <section class="nav" >
+        <div class="navbar"style="background-color:#164277;;">
+            <h2 style="color: white; font-weight: bold; padding-left: 40px;">cure4soul<span class="dot" style="color: #00c3da;">.</span></h2>
+    
+            <ul>
+                <li><a href="#home" style="color:white ">HOME</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#service">Service</a></li>
+                <li><a href="#client">Works</a></li>
+                <li><a href="#prices">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+                
+            </ul>
+            <div>
+<a href="logintherapist.php? logout='1'">log out </a>
+</div>
+    
+            <div class="nav-buttons" style="display: flex; justify-content: flex-end;">
+                <div class="btn1" style="padding-right: 10px;"><button><a href="">Member Login</a></button></div>
+                <div class="btn1"><button><a href="">Request a Seminar</a></button></div>
+            <div> 
+             </div>
+    </section> 
+     
         <form method='post'>
             
           <div class="container">
