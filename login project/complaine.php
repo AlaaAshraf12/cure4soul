@@ -1,43 +1,55 @@
 <?php
 include('connection.php');
-include ('logformemp.php');// Assuming you have already established a database connection
+include('logformemp.php');
 
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
     // Retrieve the selected problems from the form
     if (isset($_POST['problems']) && is_array($_POST['problems'])) {
         $selectedProblems = $_POST['problems'];
-        
+
         // Retrieve the employee's ID based on their email
         $email = $_SESSION['name']; // Modify this according to your authentication system
         $query = "SELECT eid, tid FROM employee WHERE email = '$email'";
         $result = mysqli_query($conn, $query);
-        $row = mysqli_fetch_assoc($result);
-        $emid = $row['eid'];
-        $thid = $row['tid'];
-        $d = "SELECT details FROM complain";
-        $r= mysqli_query($conn, $query);
-        $b=$row['details'];
-        
-        // Insert the selected problems into the complain table
-        foreach ($selectedProblems as $problem) {
-            if ($problem == "Therapist") {
-                // Save $tid in the tid column in the complain table
-                $query = "INSERT INTO complain (problem,details, eid, tid) VALUES ('$problem','$b', '$emid', '$thid')";
-            } else {
-                // Save other problems in the problem column in the complain table
-                $query = "INSERT INTO complain (problem,details, eid) VALUES ('$problem','$b', '$emid')";
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $emid = $row['eid'];
+            $thid = $row['tid'];
+
+            // Retrieve the details from the form
+            $b = mysqli_real_escape_string($conn, $_POST['details']);
+
+            // Insert the selected problems into the complain table
+            foreach ($selectedProblems as $problem) {
+                if ($problem == "Therapist") {
+                    // Retrieve the therapist ID from the therapist table
+                    $query = "SELECT tid FROM therapist WHERE eid = '$emid'";
+                    $result = mysqli_query($conn, $query);
+
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        $therapistRow = mysqli_fetch_assoc($result);
+                        $thid = $therapistRow['tid'];
+                    } else {
+                        echo '<p>Error: Therapist ID not found.</p>';
+                        continue; // Skip this iteration and move to the next problem
+                    }
+                }
+
+                $co = "INSERT INTO complain (problem, details, eid, tid) VALUES ('$problem', '$b', '$emid', '$thid')";
+                $result1 = mysqli_query($conn, $co);
+                if (!$result1) {
+                    echo mysqli_error($conn);
+                }
             }
-            
-            $result = mysqli_query($conn, $query);
-            if (!$result) {
-                echo mysqli_error($conn);
-            }
+
+            echo '<p>Complaint submitted successfully!</p>';
+        } else {
+            echo '<p>Error: Employee ID not found.</p>';
         }
-        
-        // Redirect to a success page or perform any other desired action
-        header("location: success.php");
-        
+    } else {
+        echo '<p>Error: No problems selected.</p>';
     }
 }
 ?>
@@ -70,9 +82,10 @@ if (isset($_POST['submit'])) {
         </label>
         <label>
             <textarea name="details"></textarea>
-            details
+            Details
         </label>
         <input type="submit" name="submit" value="Submit">
     </form>
 </body>
 </html>
+

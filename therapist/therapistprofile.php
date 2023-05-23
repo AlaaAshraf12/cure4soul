@@ -64,7 +64,7 @@ color: white;}
                 <li><a href="#team">Team</a></li>
                 <li><a href="#service">Service</a></li>
                 <li><a href="#client">Works</a></li>
-                <li><a href="#prices">Pricing</a></li>
+                <li><a href="therapistsession.php">My Sessions</a></li>
                 <li><a href="#contact">Contact</a></li>
                 
             </ul>
