@@ -94,14 +94,10 @@
             xhr.open('POST', '');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function() {
-                if (xhr.status === 200) {
-                    if (xhr.responseText === 'success') {
-                        // Update the button text and disable the button
-                        button.textContent = 'Attended';
-                        button.disabled = true;
-                    } else {
-                        alert('Error updating attendstatus');
-                    }
+                if (xhr.status == 200) {
+                    button.textContent = 'Attended';
+                    button.disabled = true;
+                
                 } else {
                     alert('Request failed. Status: ' + xhr.status);
                 }

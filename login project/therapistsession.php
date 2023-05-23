@@ -48,11 +48,12 @@ if (isset($_POST['sid'])) {
         // Attendstatus updated successfully
         echo "Success";
         exit();
-    } else {
-        // Failed to update attendstatus
-        echo "Error updating attendstatus.";
-        exit();
     }
+    // } else {
+    //     // Failed to update attendstatus
+    //     echo "Error updating attendstatus.";
+    //     exit();
+    // }
 }
 ?>
 
@@ -104,7 +105,7 @@ if (isset($_POST['sid'])) {
             echo "<td>$day</td>";
             echo "<td>$sid</td>";
             echo "<td>$time</td>";
-            echo "<td><button class='button' onclick='updateAttendStatus($sid, this)'>Go Live</button></td>";
+            echo "<td><button id='go' class='button' onclick='updateAttendStatus($sid, this)'>Go Live</button></td>";
             echo "</tr>";
         }
         ?>
@@ -112,19 +113,20 @@ if (isset($_POST['sid'])) {
 
     <script>
         function updateAttendStatus(sid, button) {
+            debugger;
+           var button= document.getElementById('go');
             // Make an AJAX request to update the attendstatus in the sessions table
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function() {
+                console.log(xhr.status);
                 if (xhr.status === 200) {
-                    if (xhr.responseText === 'Success') {
-                        // Update the button text and disable the button
-                        button.textContent = 'Attended';
-                        button.disabled = true;
-                    } else {
-                        alert('Error updating attendstatus');
-                    }
+                    
+                    // Update the button text and disable the button
+                    button.textContent = 'Attended';
+                    button.disabled = true;
+                
                 } else {
                     alert('Request failed. Status: ' + xhr.status);
                 }
