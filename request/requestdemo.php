@@ -126,6 +126,7 @@ color: white;}
               </div>
               <button type="submit" name="submit"  class="btn btn-primary">Submit</button>
             </form>
+            
             <div class="formbold-main-wrapper">
               <!-- Author: FormBold Team -->
               <!-- Learn More: https://formbold.com -->
