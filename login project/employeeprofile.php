@@ -100,7 +100,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#team">Team</a></li>
                 <li><a href="#service">Service</a></li>
-                <li><a href="#client">Works</a></li>
+                <li><a href="employeesessions.php">My sessions</a></li>
                 <li><a href="complaine.php">Add Complain</a></li>
                 <li><a href="#contact">Contact</a></li>
                 
@@ -227,7 +227,7 @@ if (isset($_POST['book'])) {
         mysqli_query($conn, $updateQuery);
         
         // Insert the booking into the booking table
-        $insertQuery = "INSERT INTO booking (eid, sid) VALUES ('$eid', '$selectedSid')";
+        $insertQuery = "INSERT INTO booking (eid, sid ,attendancestatus) VALUES ('$eid', '$selectedSid','pending')";
         mysqli_query($conn, $insertQuery);
         
         echo 'Session booked successfully!';
