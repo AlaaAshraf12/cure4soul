@@ -97,7 +97,7 @@
                 if (xhr.status == 200) {
                     button.textContent = 'Attended';
                     button.disabled = true;
-                
+                    window.location.href = 'video.html';
                 } else {
                     alert('Request failed. Status: ' + xhr.status);
                 }

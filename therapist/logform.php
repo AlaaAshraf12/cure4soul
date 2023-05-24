@@ -8,7 +8,7 @@ if(isset($_POST['login'])){
 	$n=mysqli_real_escape_string($conn,$_POST['email']);
 	$p=mysqli_real_escape_string($conn,$_POST['password']);
 	
-    $t="SELECT * FROM therapist WHERE 'email'='$n'AND'passwordd'='$p'";
+    $t=" SELECT * FROM therapist WHERE email='$n' AND password='$p' ";
 
 	 $r=mysqli_query($conn,$t);
 	

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Video Conference</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+          }
+          
+          h1 {
+            color: #333;
+          }
+          
+          #videoContainer {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+          }
+          
+          video {
+            width: 320px;
+            height: 240px;
+            border: 1px solid #333;
+          }
+          
+          #controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+          }
+          
+          button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+          }
+          
+          button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+          
+          button:hover {
+            background-color: #555;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Video Conference</h1>
+        
+        <div id="videoContainer">
+          <video id="localVideo" autoplay muted></video>
+          <video id="remoteVideo" autoplay></video>
+        </div>
+        
+        <div id="controls">
+          <button id="startButton">Start</button>
+          <button id="callButton" disabled>Call</button>
+          <button id="hangupButton" disabled>Hang Up</button>
+        </div>
+        
+<body>
+  <script>
+    let localStream;
+    let remoteStream;
+    let localVideo = document.getElementById('localVideo');
+    let remoteVideo = document.getElementById('remoteVideo');
+    let startButton = document.getElementById('startButton');
+    let callButton = document.getElementById('callButton');
+    let hangupButton = document.getElementById('hangupButton');
+    let pc1, pc2;
+  
+    // Function to handle the start button click event
+    function start() {
+      startButton.disabled = true;
+      navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        .then(stream => {
+          localStream = stream;
+          localVideo.srcObject = localStream;
+          callButton.disabled = false;
+        })
+        .catch(error => {
+          console.error('Error accessing media devices:', error);
+        });
+    }
+  
+    // Function to handle the call button click event
+    function call() {
+      callButton.disabled = true;
+      hangupButton.disabled = false;
+  
+      pc1 = new RTCPeerConnection();
+      pc2 = new RTCPeerConnection();
+  
+      pc1.addEventListener('icecandidate', e => onIceCandidate(pc1, e));
+      pc2.addEventListener('icecandidate', e => onIceCandidate(pc2, e));
+  
+      pc2.addEventListener('track', gotRemoteStream);
+  
+      localStream.getTracks().forEach(track => pc1.addTrack(track, localStream));
+  
+      pc1.createOffer()
+        .then(offer => pc1.setLocalDescription(offer))
+        .then(() => pc2.setRemoteDescription(pc1.localDescription))
+        .then(() => pc2.createAnswer())
+        .then(answer => pc2.setLocalDescription(answer))
+        .then(() => pc1.setRemoteDescription(pc2.localDescription))
+        .catch(error => {
+          console.error('Error creating or setting up peer connection:', error);
+        });
+    }
+  
+    // Function to handle the hangup button click event
+    function hangup() {
+      hangupButton.disabled = true;
+      callButton.disabled = false;
+  
+      pc1.close();
+      pc2.close();
+      pc1 = null;
+      pc2 = null;
+  
+      localStream.getTracks().forEach(track => track.stop());
+      localVideo.srcObject = null;
+      remoteVideo.srcObject = null;
+    }
+  
+    // Function to handle ice candidate events
+    function onIceCandidate(pc, event) {
+      if (event.candidate) {
+        pc2.addIceCandidate(event.candidate)
+          .catch(error => {
+            console.error('Error adding ice candidate:', error);
+          });
+      }
+    }
+  
+    // Function to handle remote stream
+    function gotRemoteStream(event) {
+      remoteStream = event.streams[0];
+      remoteVideo.srcObject = remoteStream;
+    }
+  
+    // Event listeners for button clicks
+    startButton.addEventListener('click', start);
+    callButton.addEventListener('click', call);
+    hangupButton.addEventListener('click', hangup);
+  </script>
+</body>
+</html>
