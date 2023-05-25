@@ -186,7 +186,7 @@ $eid = $row['eid'];
 $tid = $row['tid'];
 
 // Retrieve the therapist's schedule from the sessions table
-$query = "SELECT sid, dayy, Time1 , status FROM sessions WHERE tid = '$tid'";
+$query = "SELECT sid, dayy, Time1 , status FROM sessions WHERE tid = '$tid' AND status='unbooked' ";
 $result = mysqli_query($conn, $query);
 
 // Display the schedule in a table format

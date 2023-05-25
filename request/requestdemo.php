@@ -90,7 +90,7 @@ color: white;}
              </div>
     </section> 
      
-        <form method='post'>
+        <!--form method='post'>
             
           <div class="container">
             <h2>  Request A Demo</h2>
@@ -125,7 +125,7 @@ color: white;}
                 <label><input type="checkbox" name="remember"> Remember me</label>
               </div>
               <button type="submit" name="submit"  class="btn btn-primary">Submit</button>
-            </form>
+            </form-->
             
             <div class="formbold-main-wrapper">
               <!-- Author: FormBold Team -->
@@ -134,7 +134,7 @@ color: white;}
                 
                 <img src="images/">
             
-                <form action="https://formbold.com/s/FORM_ID" method="POST">
+                <form method="POST">
                   <div class="formbold-form-title">
                     <h2 class="">Request a demo</h2>
                     <p>
@@ -146,29 +146,17 @@ color: white;}
                   <div class="formbold-input-flex">
                     <div>
                       <label for="firstname" class="formbold-form-label">
-                        First name
+                        Company name
                       </label>
                       <input
                         type="text"
-                        name="firstname"
+                        name="company"
                         id="firstname"
                         class="formbold-form-input"
                       />
                     </div>
                     <div>
-                      <label for="lastname" class="formbold-form-label"> Last name </label>
-                      <input
-                        type="text"
-                        name="lastname"
-                        id="lastname"
-                        class="formbold-form-input"
-                      />
-                    </div>
-                  </div>
-            
-                  <div class="formbold-input-flex">
-                    <div>
-                      <label for="email" class="formbold-form-label">work Email </label>
+                      <label for="email" class="formbold-form-label"> Email </label>
                       <input
                         type="email"
                         name="email"
@@ -176,48 +164,13 @@ color: white;}
                         class="formbold-form-input"
                       />
                     </div>
+                  </div>
                     <div>
                       <label for="phone" class="formbold-form-label"> Phone number </label>
                       <input
                         type="text"
-                        name="phone"
+                        name="mobile"
                         id="phone"
-                        class="formbold-form-input"
-                      />
-                    </div>
-                  </div>
-            
-                  <div class="formbold-mb-3">
-                    <label for="country" class="formbold-form-label">
-                      country
-                    </label>
-                    <input
-                      type="text"
-                      name="country"
-                      id="country"
-                      class="formbold-form-input"
-                    />
-                  </div>
-            
-                  <div class="formbold-mb-3">
-                    <label for="job title" class="formbold-form-label">
-                      job title
-                    </label>
-                    <input
-                      type="text"
-                      name="job title"
-                      id="job title"
-                      class="formbold-form-input"
-                    />
-                  </div>
-            
-                  <div class="formbold-input-flex">
-                    <div>
-                      <label for="company" class="formbold-form-label"> company</label>
-                      <input
-                        type="text"
-                        name="company"
-                        id="company"
                         class="formbold-form-input"
                       />
                     </div>
@@ -230,27 +183,26 @@ color: white;}
                         class="formbold-form-input"
                       />
                     </div>
-                  </div>
-            
-                  <div class="formbold-input-flex">
                     <div>
                       <label for="post" class="formbold-form-label"> No.of employees </label>
                       <input
                         type="text"
-                        name="No.of employees"
+                        name="employees"
                         id="No.of employees"
                         class="formbold-form-input"
                       />
                     </div>
+                  <div class="formbold-input-flex">
                     <div>
-                      <label for="area" class="formbold-form-label"> Website </label>
+                      <label for="company" class="formbold-form-label"> No of sessions</label>
                       <input
-                        type="website"
-                        name="website"
-                        id="website"
+                        type="number"
+                        name="sessions"
+                        id="company"
                         class="formbold-form-input"
                       />
                     </div>
+                    <div class="formbold-input-flex">
                   </div>
             
                   <div class="formbold-checkbox-wrapper">
@@ -283,10 +235,16 @@ color: white;}
                     </label>
                   </div>
             
-                  <button class="formbold-btn">Submit</button>
+                  <button name="submit" class="formbold-btn">Submit</button>
                 </form>
               </div>
             </div>
           </div>
+                  </div>
+                  </div>
+            
+                 
+            
+                 
     </body>
 </html>

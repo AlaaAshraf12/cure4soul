@@ -15,7 +15,7 @@ if(isset($_POST['sub'])){
                     if($passwordd != $conpassword){
                            echo "password doesnot match"; }
                     else{
-                          $sq="INSERT INTO therapist(name,email,passwordd,phone,qualif,nid,cv) Values('$name','$emai','$passwordd','$phon','$qua','$ni','$cvv')";
+                          $sq="INSERT INTO therapist(name,email,password,phone,qualif,nid,cv) Values('$name','$emai','$passwordd','$phon','$qua','$ni','$cvv')";
                           mysqli_query($conn,$sq); 
                      }
                 } 
