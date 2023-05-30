@@ -128,6 +128,7 @@ if (isset($_POST['bookingId'])) {
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                     // Handle the response here if needed
                     console.log(xhr.responseText);
+                    window.location.href = 'video.html'; 
                 }
             };
             xhr.send('bookingId=' + bookingId);

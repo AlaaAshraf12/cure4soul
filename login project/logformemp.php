@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('connection.php');
 
 if (!isset($_SESSION)) {
@@ -6,25 +6,43 @@ if (!isset($_SESSION)) {
 }
 
 if (isset($_POST['login'])) {
-    $n = mysqli_real_escape_string($conn, $_POST['email']);
-    $p = mysqli_real_escape_string($conn, $_POST['password']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    $t = "SELECT * FROM employee WHERE email ='$n' AND pass ='$p' ";
+    $query = "SELECT * FROM employee WHERE email = '$email' AND pass = '$password'";
+    $result = mysqli_query($conn, $query);
 
-    $r = mysqli_query($conn, $t);
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $employeeID = $row['eid'];
 
-    if (mysqli_num_rows($r) > 0) {
-        // Fetch all rows and check for a matching email and password
-        while ($row = mysqli_fetch_assoc($r)) {
-            if ($row['email'] == $n && $row['pass'] == $p) {
-                $_SESSION['name'] = $n;
-                $_SESSION['success'] = "Welcome dear";
-                header('location:employeeprofile.php');
-               
+        // Check if the employee's account should be marked as inactive
+        $sessionQuery = "SELECT COUNT(*) AS numSessions FROM booking WHERE eid = '$employeeID' AND attendancestatus = 'attended'";
+        $sessionResult = mysqli_query($conn, $sessionQuery);
+
+        if ($sessionResult) {
+            $sessionRow = mysqli_fetch_assoc($sessionResult);
+            $numSessions = $sessionRow['numSessions'];
+            $availableSessions = $row['numofsessions'];
+
+            if ($numSessions >= $availableSessions) {
+                // Mark the account as inactive
+                $updateQuery = "UPDATE employee SET accountstatus = 'inactive' WHERE eid = '$employeeID'";
+                mysqli_query($conn, $updateQuery);
+
+                // Redirect to an inactive account page
+                header('location: login.php');
+                
+                exit();
             }
+
+            $_SESSION['name'] = $email;
+            $_SESSION['success'] = "Welcome dear";
+            header('location: employeeprofile.php');
+            exit();
+        } else {
+            echo "Error: " . mysqli_error($conn);
         }
-        
-        echo "Wrong data!";
     } else {
         echo "Wrong data!";
     }
@@ -33,7 +51,7 @@ if (isset($_POST['login'])) {
 if (isset($_GET['logout'])) {
     session_destroy();
     unset($_SESSION['name']);
-    header('location:login.php');
-   
+    header('location: login.php');
+    exit();
 }
 ?>

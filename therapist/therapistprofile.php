@@ -140,7 +140,7 @@ $row = mysqli_fetch_assoc($result);
 $therapistId = $row['tid'];
 
 // Retrieve the therapist's schedule from the sessions table
-$query = "SELECT dayy, Time1, status FROM sessions WHERE tid = $therapistId";
+$query = "SELECT dayy, Time1, status FROM sessions WHERE tid = $therapistId AND status != 'booked' AND attendstatus != 'attended'";
 $result = mysqli_query($conn, $query);
 
 // Display the schedule in a table format
