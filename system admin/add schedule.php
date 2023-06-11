@@ -38,6 +38,9 @@
   <label for="therapist">Therapist:</label>
   <select name="therapist" id="therapist">
   <?php
+  // Retrieve therapist options from the database
+$sql = "SELECT tid, name FROM therapist";
+$result =mysqli_query($conn,$sql);
   while ($row = $result->fetch_assoc()) {
       echo '<option value="' . $row["tid"] . '"> ' . $row["name"] . '</option>';
   }
@@ -56,25 +59,25 @@
     </select>
     <label for="time">Time:</label>
     <input type="time" name="time" id="time">
-    <input type="submit" value="Save">
+    <label for="date">Date:</label>
+<input type="date" id="date" name="date" required>
+    <input type="submit" name='Submit' value="Save">
   </form>
 </body>
 </html>
 <?php
-// Retrieve therapist options from the database
-$sql = "SELECT tid, name FROM therapist";
-$result =mysqli_query($conn,$sql);
 // Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if(isset($_POST['Submit'])) {
     $therapistId = $_POST["therapist"];
     $day = $_POST["day"];
     $time = $_POST["time"];
+    $date = $_POST["date"];
     $status = "unbooked";
     $attendStatus = "pending";
 
     // Insert the schedule into the sessions table
     $sql = "INSERT INTO sessions (dayy, date, Time1, status, attendstatus, tid) 
-            VALUES ('$day', CURDATE(), '$time', '$status', '$attendStatus', '$therapistId')";
+            VALUES ('$day','$date', '$time', '$status', '$attendStatus', '$therapistId')";
 
     if ( mysqli_query($conn,$sql) === TRUE) {
         echo "Schedule added successfully.";
