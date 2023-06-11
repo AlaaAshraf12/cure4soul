@@ -36,24 +36,41 @@ if (!$bookingResult) {
     exit();
 }
 
-// Handle the attendance update when the button is clicked
-if (isset($_POST['bookingId'])) {
+// Handle the attendance update or cancellation when the button is clicked
+if (isset($_POST['bookingId']) && isset($_POST['action'])) {
     $bookingId = $_POST['bookingId'];
+    $action = $_POST['action'];
 
-    // Update the attendance status to "attended" in the booking table
-    $updateQuery = "UPDATE booking SET attendancestatus = 'attended' WHERE bid = '$bookingId' AND attendancestatus = 'pending'";
+    if ($action === 'markAttendance') {
+        // Update the attendance status to "attended" in the booking table
+        $updateQuery = "UPDATE booking SET attendancestatus = 'attended' WHERE bid = '$bookingId' AND attendancestatus = 'pending'";
+    } elseif ($action === 'cancelBooking') {
+        // Update the attendance status to "cancelled" in the booking table
+        $updateQuery = "UPDATE booking SET attendancestatus = 'cancelled' WHERE bid = '$bookingId' AND attendancestatus = 'pending'";
+        $updatesessiontable = "UPDATE sessions SET status='unbooked' WHERE bid = '$bookingId' AND attendancestatus = 'pending'";
+        $updateResult = mysqli_query($conn, $updatesessiontable);
+    } else {
+        echo "Error: Invalid action.";
+        exit();
+    }
+
     $updateResult = mysqli_query($conn, $updateQuery);
 
     if ($updateResult) {
         // Attendance status updated successfully
-        echo "Attendance marked as attended.";
+        if ($action === 'markAttendance') {
+            echo "Attendance marked as attended.";
+        } elseif ($action === 'cancelBooking') {
+            echo "Booking cancelled.";
+        }
         exit();
     } else {
         // Failed to update attendance status
-        echo "Error: Failed to update attendance.";
+        echo "Error: Failed to update attendance or cancel booking.";
         exit();
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +107,7 @@ if (isset($_POST['bookingId'])) {
     </style>
 </head>
 <body>
-    <h2>Booked Sessions</h2>
+<h2>Booked Sessions</h2>
     <table>
         <tr>
             <th>Day</th>
@@ -108,6 +125,7 @@ if (isset($_POST['bookingId'])) {
                 <td>
                     <?php if ($bookingRow['attendancestatus'] == 'pending') { ?>
                         <button class="btn" onclick="markAttendance(<?php echo $bookingRow['bid']; ?>)" id="btn-<?php echo $bookingRow['bid']; ?>">Go live</button>
+                        <button class="btn" onclick="cancelBooking(<?php echo $bookingRow['bid']; ?>)">Cancel</button>
                     <?php } else { ?>
                         <button class="btn" disabled>Attended</button>
                     <?php } ?>
@@ -131,8 +149,23 @@ if (isset($_POST['bookingId'])) {
                     window.location.href = 'video.html'; 
                 }
             };
-            xhr.send('bookingId=' + bookingId);
+            xhr.send('bookingId=' + bookingId + '&action=markAttendance');
+        }
+
+        function cancelBooking(bookingId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '<?php echo $_SERVER['PHP_SELF']; ?>', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    // Handle the response here if needed
+                    console.log(xhr.responseText);
+                    // Reload the page to update the booking list
+                    window.location.reload();
+                }
+            };
+            xhr.send('bookingId=' + bookingId + '&action=cancelBooking');
         }
     </script>
-</body>
+     </body>
 </html>
