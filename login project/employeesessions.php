@@ -11,17 +11,16 @@ if (!isset($_SESSION['name'])) {
 }
 
 $employeeEmail = $_SESSION['name'];
-
 // Retrieve employee's ID based on email
 $employeeQuery = "SELECT eid FROM employee WHERE email = '$employeeEmail'";
-$employeeResult = mysqli_query($conn, $employeeQuery);
+$employeeResult = sqlsrv_query($conn, $employeeQuery);
 
-if (!$employeeResult || mysqli_num_rows($employeeResult) == 0) {
+if (!$employeeResult || sqlsrv_num_rows($employeeResult) == 0) {
     echo "Error: Employee not found.";
     exit();
 }
 
-$employeeRow = mysqli_fetch_assoc($employeeResult);
+$employeeRow = sqlsrv_fetch_array($employeeResult, SQLSRV_FETCH_ASSOC);
 $employeeId = $employeeRow['eid'];
 
 // Retrieve booked sessions for the employee
@@ -29,7 +28,7 @@ $bookingQuery = "SELECT booking.bid, sessions.dayy, sessions.date, sessions.Time
                 FROM booking 
                 INNER JOIN sessions ON booking.sid = sessions.sid 
                 WHERE booking.eid = '$employeeId'";
-$bookingResult = mysqli_query($conn, $bookingQuery);
+$bookingResult = sqlsrv_query($conn, $bookingQuery);
 
 if (!$bookingResult) {
     echo "Error: Failed to fetch booked sessions.";
@@ -48,13 +47,13 @@ if (isset($_POST['bookingId']) && isset($_POST['action'])) {
         // Update the attendance status to "cancelled" in the booking table
         $updateQuery = "UPDATE booking SET attendancestatus = 'cancelled' WHERE bid = '$bookingId' AND attendancestatus = 'pending'";
         $updatesessiontable = "UPDATE sessions SET status='unbooked' WHERE bid = '$bookingId' AND attendancestatus = 'pending'";
-        $updateResult = mysqli_query($conn, $updatesessiontable);
+        $updateResult = sqlsrv_query($conn, $updatesessiontable);
     } else {
         echo "Error: Invalid action.";
         exit();
     }
 
-    $updateResult = mysqli_query($conn, $updateQuery);
+    $updateResult = sqlsrv_query($conn, $updateQuery);
 
     if ($updateResult) {
         // Attendance status updated successfully
@@ -116,7 +115,7 @@ if (isset($_POST['bookingId']) && isset($_POST['action'])) {
             <th>Attendance Status</th>
             <th>Action</th>
         </tr>
-        <?php while ($bookingRow = mysqli_fetch_assoc($bookingResult)) { ?>
+        <?php  while ($bookingRow = sqlsrv_fetch_array($bookingResult, SQLSRV_FETCH_ASSOC)) { ?>
             <tr>
                 <td><?php echo $bookingRow['dayy']; ?></td>
                 <td><?php echo $bookingRow['date']; ?></td>

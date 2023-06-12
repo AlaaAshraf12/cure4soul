@@ -6,19 +6,19 @@ if (!isset($_SESSION)) {
 }
 
 if (isset($_POST['login'])) {
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $email = sqlsrv_escape_string($conn, $_POST['email']);
+    $password = sqlsrv_escape_string($conn, $_POST['password']);
 
     $query = "SELECT * FROM employee WHERE email = '$email' AND pass = '$password'";
-    $result = mysqli_query($conn, $query);
+    $result =sqlsrv_query($conn, $query);
 
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
+    if (sqlsrv_has_rows($result) > 0) {
+        $row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC);
         $employeeID = $row['eid'];
 
         // Check if the employee's account should be marked as inactive
         $sessionQuery = "SELECT COUNT(*) AS numSessions FROM booking WHERE eid = '$employeeID' AND attendancestatus = 'attended'";
-        $sessionResult = mysqli_query($conn, $sessionQuery);
+        $sessionResult =sqlsrv_query($conn, $sessionQuery);
 
         if ($sessionResult) {
             $sessionRow = mysqli_fetch_assoc($sessionResult);
@@ -28,7 +28,7 @@ if (isset($_POST['login'])) {
             if ($numSessions >= $availableSessions) {
                 // Mark the account as inactive
                 $updateQuery = "UPDATE employee SET accountstatus = 'inactive' WHERE eid = '$employeeID'";
-                mysqli_query($conn, $updateQuery);
+                sqlsrv_query($conn, $updateQuery);
 
                 // Redirect to an inactive account page
                 header('location: login.php');
@@ -41,7 +41,7 @@ if (isset($_POST['login'])) {
             header('location: employeeprofile.php');
             exit();
         } else {
-            echo "Error: " . mysqli_error($conn);
+            echo "Error: " . sqlsrv_errors($conn);
         }
     } else {
         echo "Wrong data!";

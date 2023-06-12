@@ -11,36 +11,43 @@ if (isset($_POST['submit'])) {
         // Retrieve the employee's ID based on their email
         $email = $_SESSION['name']; // Modify this according to your authentication system
         $query = "SELECT eid, tid FROM employee WHERE email = '$email'";
-        $result = mysqli_query($conn, $query);
+        $result =  sqlsrv_query($conn, $query);
 
-        if ($result && mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
+        if ($result && sqlsrv_has_rows($result) > 0) {
+            $row = sqlsrv_fetch_array($result);
             $emid = $row['eid'];
             $thid = $row['tid'];
 
             // Retrieve the details from the form
-            $b = mysqli_real_escape_string($conn, $_POST['details']);
+            $b = sqlsrv_real_escape_string($conn, $_POST['details']);
 
             // Insert the selected problems into the complain table
             foreach ($selectedProblems as $problem) {
                 if ($problem == "Therapist") {
                     // Retrieve the therapist ID from the therapist table
                     $query = "SELECT tid FROM therapist WHERE eid = '$emid'";
-                    $result = mysqli_query($conn, $query);
-
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        $therapistRow = mysqli_fetch_assoc($result);
-                        $thid = $therapistRow['tid'];
+                    $result = sqlsrv_query($conn, $query);
+            
+                    if ($result !== false) {
+                        if (sqlsrv_has_rows($result)) {
+                            $therapistRow = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+                            $thid = $therapistRow['tid'];
+                        } else {
+                            echo '<p>Error: Therapist ID not found.</p>';
+                            continue; // Skip this iteration and move to the next problem
+                        }
                     } else {
-                        echo '<p>Error: Therapist ID not found.</p>';
+                        echo '<p>Error executing query: ' . sqlsrv_errors()[0]['message'] . '</p>';
                         continue; // Skip this iteration and move to the next problem
                     }
                 }
+            }
+            
 
                 $co = "INSERT INTO complain (problem, details, eid, tid) VALUES ('$problem', '$b', '$emid', '$thid')";
-                $result1 = mysqli_query($conn, $co);
+                $result1 =  sqlsrv_query($conn, $co);
                 if (!$result1) {
-                    echo mysqli_error($conn);
+                    echo sqlsrv_errors($conn);
                 }
             }
 
@@ -51,7 +58,7 @@ if (isset($_POST['submit'])) {
     } else {
         echo '<p>Error: No problems selected.</p>';
     }
-}
+    
 ?>
 
 <!DOCTYPE html>

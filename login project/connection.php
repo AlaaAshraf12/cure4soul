@@ -1,15 +1,13 @@
 <?php
-$servername = "localhost";
-
-$username ="root";
-
-$password ="";
-
-$dbname="curesoul";
-$conn= mysqli_connect ($servername,$username ,$password ,$dbname);
-if (!$conn)
+function OpenConnection()
 {
-	die ("connectionfailed:" .mysqli_connect_error());
-	}
-	
+	$serverName = "cure4soul.database.windows.net";
+	$connectionOptions = array("Database"=>"Cure4soul",
+		"Uid"=>"cur4soul", "PWD"=>"AdminAdmin123");
+	$conn = sqlsrv_connect($serverName, $connectionOptions);
+	if($conn == false)
+		die(FormatErrors(sqlsrv_errors()));
+
+	return $conn;
+}
 ?>
