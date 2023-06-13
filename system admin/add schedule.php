@@ -38,10 +38,9 @@
   <label for="therapist">Therapist:</label>
   <select name="therapist" id="therapist">
   <?php
-  // Retrieve therapist options from the database
+ // Retrieve therapist options from the database
  $sql = "SELECT tid, name FROM therapist";
-
- $result =($conn , $sql);
+ $result =sqlsrv_query($conn , $sql);
   while ($row = $result->fetch_assoc()) {
       echo '<option value="' . $row["tid"] . '"> ' . $row["name"] . '</option>';
   }
