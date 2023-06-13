@@ -5,7 +5,7 @@ if (!function_exists('OpenConnection')) {
         $serverName = "cure4soul.database.windows.net";
         $connectionOptions = array(
             "Database" => "Cure4soul",
-            "Uid" => "cur4soul",
+            "Uid" => "cure4soul",
             "PWD" => "AdminAdmin123"
         );
         $conn = sqlsrv_connect($serverName, $connectionOptions);

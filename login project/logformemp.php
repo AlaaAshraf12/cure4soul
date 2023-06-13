@@ -1,16 +1,17 @@
+<?php require_once "connection.php";
+?>
 <?php
-include('connection.php');
+$conn = OpenConnection();
 
 if (!isset($_SESSION)) {
     session_start();
 }
 
 if (isset($_POST['login'])) {
-    $email = sqlsrv_escape_string($conn, $_POST['email']);
-    $password = sqlsrv_escape_string($conn, $_POST['password']);
-
+    $email = $_POST["email"];
+    $password = $_POST["password"];
     $query = "SELECT * FROM employee WHERE email = '$email' AND pass = '$password'";
-    $result =sqlsrv_query($conn, $query);
+    $result = sqlsrv_query($conn, $query);
 
     if (sqlsrv_has_rows($result) > 0) {
         $row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC);
@@ -21,7 +22,7 @@ if (isset($_POST['login'])) {
         $sessionResult =sqlsrv_query($conn, $sessionQuery);
 
         if ($sessionResult) {
-            $sessionRow = mysqli_fetch_assoc($sessionResult);
+            $sessionRow = sqlsrv_fetch_array($sessionResult,SQLSRV_FETCH_ASSOC);
             $numSessions = $sessionRow['numSessions'];
             $availableSessions = $row['numofsessions'];
 

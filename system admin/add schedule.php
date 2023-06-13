@@ -1,4 +1,4 @@
-<?php include('connection.php');?>
+<?php require_once "connection.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,8 +39,9 @@
   <select name="therapist" id="therapist">
   <?php
   // Retrieve therapist options from the database
-$sql = "SELECT tid, name FROM therapist";
-$result =mysqli_query($conn,$sql);
+ $sql = "SELECT tid, name FROM therapist";
+
+ $result =($conn , $sql);
   while ($row = $result->fetch_assoc()) {
       echo '<option value="' . $row["tid"] . '"> ' . $row["name"] . '</option>';
   }
@@ -79,7 +80,7 @@ if(isset($_POST['Submit'])) {
     $sql = "INSERT INTO sessions (dayy, date, Time1, status, attendstatus, tid) 
             VALUES ('$day','$date', '$time', '$status', '$attendStatus', '$therapistId')";
 
-    if ( mysqli_query($conn,$sql) === TRUE) {
+    if ( sqlsrv_query($conn,$sql) === TRUE) {
         echo "Schedule added successfully.";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

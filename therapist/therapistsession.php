@@ -37,24 +37,25 @@
             <th>Action</th>
         </tr>
         <?php
-        include('connection.php');
-        include('logform.php');
-
+       
+        require_once "connection.php";
+        require_once "logform.php"; 
+        $conn = OpenConnection();
         // Check if the therapist is logged in
         if (isset($_SESSION['name'])) {
             $therapistEmail = $_SESSION['name'];
 
             // Retrieve the therapist's ID based on their email
             $therapistQuery = "SELECT tid FROM therapist WHERE email = '$therapistEmail'";
-            $therapistResult = mysqli_query($conn, $therapistQuery);
-            $therapistRow = mysqli_fetch_assoc($therapistResult);
+            $therapistResult = sqlsrv_query($conn, $therapistQuery);
+            $therapistRow = sqlsrv_fetch_array($therapistResult,SQLSRV_FETCH_ASSOC);
             $tid = $therapistRow['tid'];
 
             // Retrieve the booked sessions with pending attendstatus for the therapist
             $sessionQuery = "SELECT sid, dayy, Time1 FROM sessions WHERE tid = '$tid' AND status = 'booked' AND attendstatus = 'pending'";
-            $sessionResult = mysqli_query($conn, $sessionQuery);
+            $sessionResult = sqlsrv_query($conn, $sessionQuery);
 
-            while ($sessionRow = mysqli_fetch_assoc($sessionResult)) {
+            while ($sessionRow =sqlsrv_fetch_array($sessionResult,SQLSRV_FETCH_ASSOC)) {
                 $sid = $sessionRow['sid'];
                 $day = $sessionRow['dayy'];
                 $time = $sessionRow['Time1'];
@@ -74,7 +75,7 @@
 
             // Update the attendstatus column in the sessions table
             $updateQuery = "UPDATE sessions SET attendstatus = 'attended' WHERE sid = '$sid'";
-            $updateResult = mysqli_query($conn, $updateQuery);
+            $updateResult =sqlsrv_query($conn, $updateQuery);
 
             if ($updateResult) {
                 echo "success";

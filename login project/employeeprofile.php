@@ -1,5 +1,8 @@
-<?php include('connection.php');?>
-<?php include('logformemp.php');?>
+<?php
+require_once "connection.php";
+require_once "logformemp.php";
+$conn = OpenConnection();
+?>
 
 <!DOCTYPE html>
 <html>

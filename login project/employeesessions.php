@@ -1,6 +1,7 @@
 <?php
-include('connection.php');
-include('logformemp.php');
+require_once "connection.php";
+require_once "logformemp.php";
+$conn = OpenConnection();
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -15,10 +16,6 @@ $employeeEmail = $_SESSION['name'];
 $employeeQuery = "SELECT eid FROM employee WHERE email = '$employeeEmail'";
 $employeeResult = sqlsrv_query($conn, $employeeQuery);
 
-if (!$employeeResult || sqlsrv_num_rows($employeeResult) == 0) {
-    echo "Error: Employee not found.";
-    exit();
-}
 
 $employeeRow = sqlsrv_fetch_array($employeeResult, SQLSRV_FETCH_ASSOC);
 $employeeId = $employeeRow['eid'];

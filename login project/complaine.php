@@ -1,31 +1,34 @@
 <?php
-include('connection.php');
-include('logformemp.php');
+require_once "connection.php";
+require_once "logformemp.php";
+
+?>
+<?php
+$conn = OpenConnection();
 
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
     // Retrieve the selected problems from the form
     if (isset($_POST['problems']) && is_array($_POST['problems'])) {
         $selectedProblems = $_POST['problems'];
-
+        
         // Retrieve the employee's ID based on their email
         $email = $_SESSION['name']; // Modify this according to your authentication system
         $query = "SELECT eid, tid FROM employee WHERE email = '$email'";
         $result =  sqlsrv_query($conn, $query);
-
         if ($result && sqlsrv_has_rows($result) > 0) {
             $row = sqlsrv_fetch_array($result);
             $emid = $row['eid'];
             $thid = $row['tid'];
 
             // Retrieve the details from the form
-            $b = sqlsrv_real_escape_string($conn, $_POST['details']);
+            $b = $_POST['details'];
 
             // Insert the selected problems into the complain table
             foreach ($selectedProblems as $problem) {
                 if ($problem == "Therapist") {
                     // Retrieve the therapist ID from the therapist table
-                    $query = "SELECT tid FROM therapist WHERE eid = '$emid'";
+                    $query = "SELECT tid FROM therapist";
                     $result = sqlsrv_query($conn, $query);
             
                     if ($result !== false) {
@@ -46,9 +49,7 @@ if (isset($_POST['submit'])) {
 
                 $co = "INSERT INTO complain (problem, details, eid, tid) VALUES ('$problem', '$b', '$emid', '$thid')";
                 $result1 =  sqlsrv_query($conn, $co);
-                if (!$result1) {
-                    echo sqlsrv_errors($conn);
-                }
+                
             }
 
             echo '<p>Complaint submitted successfully!</p>';
