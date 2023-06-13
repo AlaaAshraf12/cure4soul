@@ -3,10 +3,15 @@ body{
 }
 form{
     margin: 100px;
+    margin: 10px;
+    border-radius: 5px;
 }
 .form-group{
   
     margin: auto;
+}
+img {
+  width: 100px;
 }
 h2{margin-top: 10px;
     margin-left: 20px;

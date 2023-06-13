@@ -132,7 +132,7 @@ color: white;}
               <!-- Learn More: https://formbold.com -->
               <div class="formbold-form-wrapper">
                 
-                <img src="images/">
+                <img src="images/imagery_eap_wellbeing.png">
             
                 <form method="POST">
                   <div class="formbold-form-title">
