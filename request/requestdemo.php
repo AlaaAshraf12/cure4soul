@@ -299,63 +299,82 @@ Demo</a></button></div>
                   </div>
                   </div>
                   <!--footer-->
-  <section class="footer" style="width:100% ;height:100%;padding-top:
-70px;background-color:#fda95f;">
-    <div class="container-fluid" style="background-color: #fda95f;">
-      <div class="row g-0" style="width:90%;margin-left: 40px;">
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-          <div class="footer-2">
-            <h3 style=" color:rgb(37, 37, 37);font-size: 28px;">CURE4SOUL</h3>
-                <h5>253 Degla Maadi, Egypt</h5>
-                <h5>Phone: +1 5589 55488 55
-                </h5>
-                <h5>Email: cure4soul@gmail.com</h5>
-
-
+  
+                  <section class="footer" style="width:100% ;height:100%;padding-top:
+  70px;background-color:#fda95f;">
+      <div class="container-fluid" style="background-color: #fda95f;">
+        <div class="row g-0" style="width:90%;margin-left: 40px;">
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="footer-2">
+              <h3 style=" color:rgb(37, 37, 37);font-size: 28px;">CURE4SOUL</h3>
+                  <h5>253 Degla Maadi, Egypt</h5>
+                  <h5>Phone: +1 5589 55488 55
+                  </h5>
+                  <h5>Email: cure4soul@gmail.com</h5>
+  
+  
+            </div>
           </div>
-        </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-          <div class="footer-2">
-
-             <h3>Company</h3>
-              <h5><a href="">Home</a></h5>
-              <h5><a href="">About us</a></h5>
-              <h5><a href="">Services</a></h5>
-              <h5><a href="">Terms & policices</a></h5>
-              <h5><a href="">Privacy policy</a></h5>
-
+  
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="footer-2">
+  
+               <h3>Company</h3>
+                <h5><a href="">Home</a></h5>
+                <h5><a href="">About us</a></h5>
+                <h5><a href="">Services</a></h5>
+                <h5><a href="">Terms & policices</a></h5>
+                <h5><a href="">Privacy policy</a></h5>
+  
+            </div>
           </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-          <div class="footer-2">
-
-             <h3>Partners</h3>
-             <h5><a href="">Employers/Corporate</a></h5>
-             <h5><a href="">Health Plans</a></h5>
-             <h5><a href="">Doctors/Providers</a></h5>
-             <h5><a href="">Therapists</a></h5>
-
-
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="footer-2">
+  
+               <h3>Partners</h3>
+               <h5><a href="">Employers/Corporate</a></h5>
+               <h5><a href="">Health Plans</a></h5>
+               <h5><a href="">Doctors/Providers</a></h5>
+               <h5><a href="">Therapists</a></h5>
+  
+  
+            </div>
           </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-          <div class="footer-2">
-            <h3>Want to join as a Doctor?</h3>
-            <button class="btn-footer">Sign In</button>
-            <button class="btn-footer">Sign Up</button>
-
-
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="footer-2">
+              <h3>Want to join as a Doctor?</h3>
+              <button class="btn-footer">Sign In</button>
+              <button class="btn-footer">Sign Up</button>
+  
+  
+            </div>
           </div>
         </div>
       </div>
+      <div class="row">
+  
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="footer-1" style="margin: 10px;">
+            <div class="line" style="background-color:gainsboro; width:
+  1000px;height:1px;margin:auto;"></div>
+  <div class="copyright" style="text-align: center;">
+        © Copyright Cure4soul. All Rights Reserved<br>
+        Designed by <span style="color:#1e6091">Cure4soul Team</span>
     </div>
-    <div class="row">
+        </div>
+      </div>
+    </div>
 
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-        <div class="footer-1" style="margin: 10px;">
-          <div class="line" style="background-color:gainsboro; width:
-1000px;height:1px;margin:auto;"></div>
+    </section>
+
+
+         
+
+       
+        
+       
+   
+       
             
                  
             
