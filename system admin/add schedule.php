@@ -71,24 +71,37 @@ while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 </html>
 <?php
 // Handle form submission
-if(isset($_POST['Submit'])) {
-    $therapistId = $_POST["therapist"];
-    $day = $_POST["day"];
-    $time = $_POST["time"];
-    $date = $_POST["date"];
-    $status = "unbooked";
-    $attendStatus = "pending";
 
-    // Insert the schedule into the sessions table
-    $sql = "INSERT INTO sessions (dayy, date, Time1, status, attendstatus, tid) 
-            VALUES ('$day','$date', '$time', '$status', '$attendStatus', '$therapistId')";
+if (isset($_POST['Submit'])) {
+  $therapistId = $_POST["therapist"];
+  $day = $_POST["day"];
+  $time = $_POST["time"];
+  $date = $_POST["date"];
+  $status = "unbooked";
+  $attendStatus = "pending";
+   
+  // Insert the schedule into the sessions table
+  $sql = "INSERT INTO sessions (dayy, date, Time1, status, attendstatus, tid) 
+          VALUES (?, ?, ?, ?, ?, ?)";
 
-    if ( sqlsrv_query($conn,$sql) === TRUE) {
-        echo "Schedule added successfully.";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+  $params = array($day, $date, $time, $status, $attendStatus, $therapistId);
+
+  $stmt = sqlsrv_prepare($conn, $sql, $params);
+
+  if ($stmt === false) {
+      die(print_r(sqlsrv_errors(), true));
+  }
+
+  if (sqlsrv_execute($stmt) === false) {
+      die(print_r(sqlsrv_errors(), true));
+  }
+
+  echo "Schedule added successfully.";
+
+  // Clean up resources
+  sqlsrv_free_stmt($stmt);
 }
+
 
 
 ?>
