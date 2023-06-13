@@ -1,0 +1,33 @@
+.test-content{
+    margin: 10%;
+    background-color: #feb777;
+    border-radius:5%;
+}
+.test-title{text-align: center;
+    padding: 20px;}
+    .line1{margin-right: 10px;
+         margin-top:20px ;}
+    .test-text p{font-style: italic;
+    font-size: 25px;
+    color: #4f4f5a;
+    margin: 20px;
+    margin-bottom: 10px;}
+    .test-text h3{font-size: 28px;
+    color: #000;
+     margin-left: 15px;}
+    .test-text h4{font-size: 25px;
+        color:#7f7f90;
+    margin-top: 6px;
+    margin-left: 15px;}
+    .test-img img{
+        border-radius: 50%;
+    width: 40%;
+    height: 100pv;
+    border-color:white;
+    border-style: solid;
+    margin:20px ;
+    }
+.test-img{
+   
+
+}
