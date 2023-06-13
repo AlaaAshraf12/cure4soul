@@ -1,4 +1,6 @@
-<?php require_once "connection.php"; ?>
+<?php require_once "connection.php"; 
+$conn = OpenConnection();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,13 +40,15 @@
   <label for="therapist">Therapist:</label>
   <select name="therapist" id="therapist">
   <?php
- // Retrieve therapist options from the database
- $sql = "SELECT tid, name FROM therapist";
- $result =sqlsrv_query($conn , $sql);
-  while ($row = $result->fetch_assoc()) {
-      echo '<option value="' . $row["tid"] . '"> ' . $row["name"] . '</option>';
-  }
-  ?>
+// Retrieve therapist options from the database
+$sql = "SELECT tid, name FROM therapist";
+$result = sqlsrv_query($conn, $sql);
+
+while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+    echo '<option value="' . $row["tid"] . '"> ' . $row["name"] . '</option>';
+}
+
+?>
    </select>
     <label for="day">Day:</label>
     <select name="day" id="day">
@@ -86,6 +90,5 @@ if(isset($_POST['Submit'])) {
     }
 }
 
-// Close the database connection
-$conn->close();
+
 ?>
