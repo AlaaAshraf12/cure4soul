@@ -1,20 +1,20 @@
 
-<?php include('connection.php');?>
+<?php require_once "connection.php" ?>
 <?PHP 
 if(! isset($_session)){
   session_start();
 }
 if(isset($_POST['Submit'])){
-    $comp=mysqli_real_escape_string($conn,$_POST['company']);
-    $emai=mysqli_real_escape_string($conn,$_POST['email']);
-    $pho= mysqli_real_escape_string($conn,$_POST['phone']);
-    $du=mysqli_real_escape_string($conn,$_POST['duration']);
-    $dt=mysqli_real_escape_string($conn,$_POST['dt']);
-    $top=mysqli_real_escape_string($conn,$_POST['topic']);
-    $numofp=mysqli_real_escape_string($conn,$_POST['numofpart']);
+    $comp=$_POST['company'];
+    $emai=$_POST['email'];
+    $pho= $_POST['phone'];
+    $du=$_POST['duration'];
+    $dt=$_POST['dt'];
+    $top=$_POST['topic'];
+    $numofp=$_POST['numofpart'];
 
     $a="INSERT INTO reqseminar(compname,email,phone,duration,dt,topic,numofpart) Values('$comp','$emai','$pho','$du','$dt','$top','$numofp')";
-    mysqli_query($conn,$a);
+    sqlsrv_query($conn,$a);
     }
 
 ?>

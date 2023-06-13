@@ -1,5 +1,5 @@
-<?php include('connection.php');?>
- 
+<?php require_once "connection.php"; $conn = OpenConnection();?>
+
  <html>
 
 <head>

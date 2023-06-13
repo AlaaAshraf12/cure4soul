@@ -5,7 +5,7 @@ $username ="root";
 
 $password ="";
 
-$dbname="cure";
+$dbname="curesoul";
 $conn= mysqli_connect ($servername,$username ,$password ,$dbname);
 if (!$conn)
 {

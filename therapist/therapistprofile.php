@@ -1,5 +1,5 @@
-<?php include('connection.php');?>
-<?php include('logform.php');?>
+<?php require_once "connection.php";?>
+<?php require_once "logform.php"; ?>
 
 
 
@@ -91,6 +91,7 @@ color: white;}
                 <div class="section-img">
                     <img src="doccc.jpg" style="border-radius: 50%; width: 60%;margin-left: 60px;margin-top: 20px;">
                     <?php
+                    $conn = OpenConnection();
 // Assuming you have a MySQL database connection established
 
 // Start the session and retrieve the logged-in therapist's email from the session
@@ -99,18 +100,18 @@ $therapistEmail = $_SESSION['name']; // Modify this according to your authentica
 
 // Retrieve the therapist's ID based on their email
 $query = "SELECT tid FROM therapist WHERE email = '$therapistEmail'";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($result);
+$result = sqlsrv_query($conn, $query);
+$row =sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC);
 $therapistId = $row['tid'];
 
 // Retrieve the therapist's schedule from the sessions table
 $query = "SELECT name,email,phone,qualif FROM therapist WHERE tid = $therapistId";
-$result = mysqli_query($conn, $query);
+$result = sqlsrv_query($conn, $query);
 
 // Display the schedule in a table format
-if (mysqli_num_rows($result) > 0) {
+if (sqlsrv_has_rows($result) > 0) {
    
-    while ($row = mysqli_fetch_assoc($result)) {
+    while ($row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC)) {
         echo "<h2>" . $row['name'] . "</h2>";
         echo "<h2>" . $row['email'] . "</h2>";
         echo "<h2>" . $row['phone'] . "</h2>"; 
@@ -127,6 +128,7 @@ if (mysqli_num_rows($result) > 0) {
 
                    
    <?php
+   $conn = OpenConnection();
 // Assuming you have a MySQL database connection established
 
 // Start the session and retrieve the logged-in therapist's email from the session
@@ -135,19 +137,19 @@ $therapistEmail = $_SESSION['name']; // Modify this according to your authentica
 
 // Retrieve the therapist's ID based on their email
 $query = "SELECT tid FROM therapist WHERE email = '$therapistEmail'";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($result);
+$result = sqlsrv_query($conn, $query);
+$row =sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC);
 $therapistId = $row['tid'];
 
 // Retrieve the therapist's schedule from the sessions table
 $query = "SELECT dayy, Time1, status FROM sessions WHERE tid = $therapistId AND status != 'booked' AND attendstatus != 'attended'";
-$result = mysqli_query($conn, $query);
+$result = sqlsrv_query($conn, $query);
 
 // Display the schedule in a table format
-if (mysqli_num_rows($result) > 0) {
+if (sqlsrv_has_rows($result) > 0) {
     echo "<table>";
     echo "<tr><th>Day</th><th>session 1</th><th>status</th></tr>";
-    while ($row = mysqli_fetch_assoc($result)) {
+    while ($row =sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC)) {
         echo "<td class='data-one'>" . $row['dayy'] . "</td>";
         echo "<td>" . $row['Time1'] . "</td>";
 

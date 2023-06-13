@@ -1,20 +1,21 @@
-<?php include('connection.php');?>
+<?php require_once "connection.php";
+$conn = OpenConnection();?>
 <?PHP 
 if(! isset($_session)){
   session_start();
 }
 if(isset($_POST['submit'])){
-    $n=mysqli_real_escape_string($conn,$_POST['company']);
-    $e=mysqli_real_escape_string($conn,$_POST['email']);
-    $phone= mysqli_real_escape_string($conn,$_POST['mobile']);
-    $industry=mysqli_real_escape_string($conn,$_POST['industry']);
-    $numofemp=mysqli_real_escape_string($conn,$_POST['employees']);
-    $numofsession=mysqli_real_escape_string($conn,$_POST['sessions']);
+    $n=$_POST['company'];
+    $e=$_POST['email'];
+    $phone=$_POST['mobile'];
+    $industry=$_POST['industry'];
+    $numofemp=$_POST['employees'];
+    $numofsession=$_POST['sessions'];
   
     $sql="INSERT INTO company(name,email,phone,industry) Values('$n','$e','$phone','$industry')";
-     $d="INSERT INTO demo(numofemp,numofses,status,cid) Values('$numofemp','$numofsession','NULL',1)";
-    mysqli_query($conn,$sql);
-    mysqli_query($conn,$d);
+    $d="INSERT INTO demo(numofemp,numofses,status,cid) Values('$numofemp','$numofsession','NULL',1)";
+     sqlsrv_query($conn,$sql);
+     sqlsrv_query($conn,$d);
     }
 
 ?>

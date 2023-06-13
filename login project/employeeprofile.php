@@ -1,5 +1,8 @@
-<?php include('connection.php');?>
-<?php include('logformemp.php');?>
+<?php
+require_once "connection.php";
+require_once "logformemp.php";
+$conn = OpenConnection();
+?>
 
 <!DOCTYPE html>
 <html>
@@ -135,23 +138,23 @@ $email = $_SESSION['name']; // Modify this according to your authentication syst
 
 // Retrieve the employee's ID based on their email
 $query = "SELECT eid, tid FROM employee WHERE email = '$email'";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($result);
+$result = sqlsrv_query($conn, $query);
+$row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 $emid = $row['eid'];
 $thid = $row['tid'];
 
 // Retrieve the therapist's schedule from the sessions table
-$quer = "SELECT name,email,qualif FROM therapist WHERE tid = '$thid'";
-$resul = mysqli_query($conn, $quer);
+$quer = "SELECT name, email, qualif FROM therapist WHERE tid = '$thid'";
+$resul = sqlsrv_query($conn, $quer);
 
 // Display the schedule in a table format
-if (mysqli_num_rows($resul) > 0) {
-   
-    while ($row = mysqli_fetch_assoc($resul)) {
+if (sqlsrv_has_rows($resul)) {
+    while ($row = sqlsrv_fetch_array($resul, SQLSRV_FETCH_ASSOC)) {
         echo "<h3>" . $row['name'] . "</h3><br>";
         echo "<p>" . $row['email'] . "</p><br>"; 
         echo "<p>" . $row['qualif'] . "</p><br>";
     }
+
 } else {
     echo "No schedule found.";
 }
@@ -180,22 +183,22 @@ $email = $_SESSION['name']; // Modify this according to your authentication syst
 
 // Retrieve the employee's ID based on their email
 $query = "SELECT eid, tid FROM employee WHERE email = '$email'";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($result);
+$result = sqlsrv_query($conn, $query);
+$row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 $eid = $row['eid'];
 $tid = $row['tid'];
 
 // Retrieve the therapist's schedule from the sessions table
-$query = "SELECT sid, dayy, Time1 , status FROM sessions WHERE tid = '$tid' AND status='unbooked' ";
-$result = mysqli_query($conn, $query);
+$query = "SELECT sid, dayy, Time1, status FROM sessions WHERE tid = '$tid' AND status='unbooked'";
+$result = sqlsrv_query($conn, $query);
 
 // Display the schedule in a table format
-if (mysqli_num_rows($result) > 0) {
+if (sqlsrv_has_rows($result)) {
     echo '<form method="POST" action="">';
     echo '<table>';
     echo '<tr><th>Day</th><th>Time 1</th><th></th></tr>';
-    
-    while ($row = mysqli_fetch_assoc($result)) {
+
+    while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
         echo '<tr>';
         echo '<td>' . $row['dayy'] . '</td>';
         echo '<td>' . $row['Time1'] . '</td>';
@@ -206,30 +209,31 @@ if (mysqli_num_rows($result) > 0) {
         }
         echo '</tr>';
     }
-    
+
     echo '</table>';
     echo '</form>';
 } else {
     echo 'No schedule found.';
 }
 
+
 // Handle the form submission when booking a session
 if (isset($_POST['book'])) {
     $selectedSid = $_POST['book'];
-    
+
     // Check if the selected session is available (not already booked)
     $checkQuery = "SELECT status FROM sessions WHERE sid = '$selectedSid' AND status = 'unbooked'";
-    $checkResult = mysqli_query($conn, $checkQuery);
-    
-    if (mysqli_num_rows($checkResult) > 0) {
+    $checkResult = sqlsrv_query($conn, $checkQuery);
+
+    if (sqlsrv_has_rows($checkResult)) {
         // Update the sessions table to mark the selected session as booked
         $updateQuery = "UPDATE sessions SET status = 'booked' WHERE sid = '$selectedSid'";
-        mysqli_query($conn, $updateQuery);
-        
+        sqlsrv_query($conn, $updateQuery);
+
         // Insert the booking into the booking table
-        $insertQuery = "INSERT INTO booking (eid, sid ,attendancestatus) VALUES ('$eid', '$selectedSid','pending')";
-        mysqli_query($conn, $insertQuery);
-        
+        $insertQuery = "INSERT INTO booking (eid, sid, attendancestatus) VALUES ('$eid', '$selectedSid', 'pending')";
+        sqlsrv_query($conn, $insertQuery);
+
         echo 'Session booked successfully!';
     } else {
         echo 'Session already booked or unavailable.';

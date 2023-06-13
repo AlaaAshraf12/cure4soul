@@ -4,19 +4,19 @@ if(! isset($_session)){
   session_start();
 }
 if(isset($_POST['sub'])){
-                 $name=mysqli_real_escape_string($conn,$_POST['name']);
-                 $emai=mysqli_real_escape_string($conn,$_POST['email']);
-                 $passwordd=mysqli_real_escape_string($conn,$_POST['pass']);
-                 $conpassword=mysqli_real_escape_string($conn,$_POST['conpass']);
-                 $phon=mysqli_real_escape_string($conn,$_POST['phone']);
-                 $qua=mysqli_real_escape_string($conn,$_POST['qua']);
-                 $ni=mysqli_real_escape_string($conn,$_POST['nid']);
-                 $cvv=mysqli_real_escape_string($conn,$_POST['cv']);
+                 $name=sqlsrv_escape_string($conn,$_POST['name']);
+                 $emai=sqlsrv_escape_string($conn,$_POST['email']);
+                 $passwordd=sqlsrv_escape_string($conn,$_POST['pass']);
+                 $conpassword=sqlsrv_escape_string($conn,$_POST['conpass']);
+                 $phon=sqlsrv_escape_string($conn,$_POST['phone']);
+                 $qua=sqlsrv_escape_string($conn,$_POST['qua']);
+                 $ni=sqlsrv_escape_string($conn,$_POST['nid']);
+                 $cvv=sqlsrv_escape_string($conn,$_POST['cv']);
                     if($passwordd != $conpassword){
                            echo "password doesnot match"; }
                     else{
                           $sq="INSERT INTO therapist(name,email,password,phone,qualif,nid,cv) Values('$name','$emai','$passwordd','$phon','$qua','$ni','$cvv')";
-                          mysqli_query($conn,$sq); 
+                          sqlsrv_query($conn,$sq); 
                      }
                 } 
 
