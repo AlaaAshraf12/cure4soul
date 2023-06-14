@@ -29,7 +29,6 @@
 
             <button type="submit" name="login" class="submit1">Login</button><br><br>
 
-            <a href="forgot.html">forgot your password?</a>
         </form> 
     </div>
  
