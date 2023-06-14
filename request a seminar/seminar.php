@@ -31,27 +31,49 @@ if(isset($_POST['Submit'])){
   <script src="js/popper.min.js"></script>
   <style>
 /* navbar */
-  .nav-buttons{margin-right: 40px; padding-bottom: 10px;margin-top:15px}
-.btn1 button {
-    background-color: orange;
-    width: 150px;
-    height: 40px;
-    border-radius: 8px;
-    border-style: none;
-    margin-left: 10px;
-
-
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
 
-.btn1 button:hover{background-color: #fad263;}
-.btn1 button a{text-decoration: none;
-color: white;}
-.navbar{padding:10px}
-.navbar-nav{margin-left: 70px;}
-.nav-link{color:white;font-size:18px;margin-left: 20px;margin-top:15px}
- .nav-item .nav-link{color:white;}
- .nav-item .nav-link:hover{color:rgb(185, 185, 185)}
- footer/
+.navbar ul {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    padding: 10px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    font-weight: 600;
+    margin: 5px;
+    color: white;
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+    }
+
+    .navbar ul li {
+        padding: 5px;
+    }
+}
+
+
 .footer{margin-top:70px}
 .footer-text{padding-right: 5px;}
 .footer-text h3{
@@ -81,7 +103,35 @@ color:white}
 </style>  
   </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-dark
+              
+       <!--navbar--> 
+    <section class="nav" >
+        <div class="navbar"style="background-color:#1e6091;">
+            <h2 style="color: white; font-weight: bold; padding-left: 40px;">cure4soul<span class="dot" style="color: #00c3da;">.</span></h2>
+    
+            <ul>
+                <li><a href="#home" style="color:white ">HOME</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#service">Service</a></li>
+                <li><a href="#client">Works</a></li>
+                <li><a href="#prices">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+                
+            </ul>
+    
+            <div class="nav-buttons" style="display: flex; justify-content: flex-end;">
+                <div class="btn1" style="padding-right: 10px;"><button><a href="login.php">Member Login</a></button></div>
+                <div class="btn1"><button><a href="">Request a Seminar</a></button></div>
+            <div>
+    
+              
+    
+            
+        </div>
+    </section>
+    
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark
 "style="background-color:#1e6091;">
     <div class="container-fluid">
       <h2><a href="" class="logo" style="color: white; font-weight:
@@ -118,8 +168,8 @@ Demo</a></button></div>
 <div>
       </div>
     </div>
-  </nav>    
-        <div class="parent">
+  </nav>     -->
+        <!-- <div class="parent">
             <div class="container">
                 <div class=" row py-5 g-3 "></div>
                 <div class="col-md-6 child py-4">
@@ -177,8 +227,59 @@ Demo</a></button></div>
             <div class="crl"></div>
         
         </div>
+ -->
+
+        <div class="request"style="background-color: #f0f7f8">
+          <div class="container">
+            <div class="row" style="background-color: #f0f7f8">
+              <div class="col-xl-6 col-lg-6 col-sm-12" >
+                <div class="img"><img src="images/request.jpeg" style="width:100%;padding-top:150px;padding-right:50px;"></div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-sm-12">
+              <form method='post' style="padding-top:60px;">
+                        <div class="form-group">
+                            <label for="company">Company name :</label>
+                            <input type="text" class="form-control" id="company" name="company" required>
+                          </div>
+                        <div class="form-group">
+                          <label for="email">Email</label>
+                          <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="phone">Phone</label>
+                          <input type="text" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="duration">Duration</label>
+                          <input type="text" class="form-control" id="duration" name="duration" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="datetime">Date time:</label>
+                            <input type="datetime-local" class="form-control" id="datetimne" name="dt" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="topic">Topic:</label>
+                            <input type="text" class="form-control" id="topic" name="topic" required>
+                              
+                          </div>
+                          <div class="form-group">
+                            <label for="numparticipant">Number of Participant:</label>
+                            <input type="text" class="form-control" id="numofpart" name="numofpart" required>
+                          </div>
+
+                        
+                        <div class="checkbox">
+                          <label><input type="checkbox"> Remember me</label>
+                        </div>
+                        <button name="Submit" type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+              </div>
+            </div>
+          </div>
+        </div>
        <!--footer-->
-  <section class="footer" style="width:100% ;height:100%;padding-top:
+  <section class="footer" style="width:100% ;height:50%;padding-top:
   70px;background-color:#fda95f;">
       <div class="container-fluid" style="background-color: #fda95f;">
         <div class="row g-0" style="width:90%;margin-left: 40px;">

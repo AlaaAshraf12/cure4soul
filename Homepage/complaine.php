@@ -1,9 +1,10 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require_once "connection.php";
 require_once "logformemp.php";
 
-?>
-<?php
 $conn = OpenConnection();
 
 // Check if the form is submitted
@@ -15,7 +16,7 @@ if (isset($_POST['submit'])) {
         // Retrieve the employee's ID based on their email
         $email = $_SESSION['name']; // Modify this according to your authentication system
         $query = "SELECT eid, tid FROM employee WHERE email = '$email'";
-        $result =  sqlsrv_query($conn, $query);
+        $result = sqlsrv_query($conn, $query);
         if ($result && sqlsrv_has_rows($result) > 0) {
             $row = sqlsrv_fetch_array($result);
             $emid = $row['eid'];
@@ -44,12 +45,9 @@ if (isset($_POST['submit'])) {
                         continue; // Skip this iteration and move to the next problem
                     }
                 }
-            }
-            
-
-                $co = "INSERT INTO complain (problem, details, eid, tid) VALUES ('$problem', '$b', '$emid', '$thid')";
-                $result1 =  sqlsrv_query($conn, $co);
                 
+                $co = "INSERT INTO complain (problem, details, eid, tid) VALUES ('$problem', '$b', '$emid', '$thid')";
+                $result1 = sqlsrv_query($conn, $co);
             }
 
             echo '<p>Complaint submitted successfully!</p>';
@@ -59,7 +57,7 @@ if (isset($_POST['submit'])) {
     } else {
         echo '<p>Error: No problems selected.</p>';
     }
-    
+}
 ?>
 
 <!DOCTYPE html>
@@ -74,8 +72,8 @@ if (isset($_POST['submit'])) {
     </style>
 </head>
 <body>
-    <form method="POST">    
-        <h2>Complain Form</h2>
+    <form method="POST" >    
+        <h2 style="color:red">Complain Form</h2>
         <label>
             <input type="checkbox" name="problems[]" value="Therapist">
             Therapist
@@ -96,4 +94,3 @@ if (isset($_POST['submit'])) {
     </form>
 </body>
 </html>
-
