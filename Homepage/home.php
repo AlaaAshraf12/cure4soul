@@ -1,4 +1,4 @@
-<?php include('connection.php');?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -66,7 +66,7 @@
             </ul>
     
             <div class="nav-buttons" style="display: flex; justify-content: flex-end;">
-                <div class="btn1" style="padding-right: 10px;"><button><a href="">Member Login</a></button></div>
+                <div class="btn1" style="padding-right: 10px;"><button><a href="login.php">Member Login</a></button></div>
                 <div class="btn1"><button><a href="">Request a Seminar</a></button></div>
             <div>
     

@@ -35,7 +35,7 @@ if(isset($_POST['submit'])){
         <script src="js/bootstrap.min.js"></script>
         <script src="js/popper.min.js"></script>
      <style>
-       /navbar/
+       /*navbar*/
   .nav-buttons{margin-right: 40px; padding-bottom: 10px;margin-top:15px}
 .btn1 button {
     background-color: orange;
@@ -56,7 +56,7 @@ color: white;}
 .nav-link{color:white;font-size:18px;margin-left: 20px;margin-top:15px}
  .nav-item .nav-link{color:white;}
  .nav-item .nav-link:hover{color:rgb(185, 185, 185)}
- footer/
+/*footer*/
 .footer{margin-top:70px}
 .footer-text{padding-right: 5px;}
 .footer-text h3{
@@ -88,24 +88,14 @@ color:white}
    
 
      
+</style>
+</head>
 
 
-
-
- 
-    <div class="copyright" style="text-align: center;">
-        © Copyright Cure4soul. All Rights Reserved<br>
-        Designed by <span style="color:#1e6091">Cure4soul Team</span>
-    </div>
-        </div>
-      </div>
-    </div>
-
-    </section>
 
 
     <body>
-   
+<!--    
     
     <nav class="navbar navbar-expand-lg navbar-dark
 "style="background-color:#1e6091;">
@@ -144,44 +134,9 @@ Demo</a></button></div>
 <div>
       </div>
     </div>
-  </nav>
+  </nav> -->
      
-        <!--form method='post'>
-            
-          <div class="container">
-            <h2>  Request A Demo</h2>
-            <form action="/action_page.php" class="form-control w-50 mx-auto my-4">
-             
-              <div class="form-group">
-                <label for="company">company:</label>
-                <input type="text" class="form-control" id="company" placeholder="Enter company" name="company">
-              </div>
-              <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-              </div>
-              <div class="form-group">
-                <label for="Mobile">Mobile:</label>
-                <input type="number" class="form-control" id="Mobile" placeholder="Enter Mobile" name="mobile">
-              </div>
-              
-              <div class="form-group">
-                <label for="Industry">Industry:</label>
-                <input type="Industry" class="form-control" id="Industry" placeholder="Enter Industry" name="industry">
-              </div>
-              <div class="form-group">
-                <label for="employees">No. of employees:</label>
-                <input type="employees" class="form-control" id="employees" placeholder="Enter employees" name="employees">
-              </div>
-              <div class="form-group">
-                <label for="Website">N0 of sessions</label>
-                <input type="Website" class="form-control" id="Website" placeholder="Enter Website" name="sessions">
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox" name="remember"> Remember me</label>
-              </div>
-              <button type="submit" name="submit"  class="btn btn-primary">Submit</button>
-            </form-->
+
             
             <div class="formbold-main-wrapper">
               <!-- Author: FormBold Team -->
@@ -221,45 +176,51 @@ Demo</a></button></div>
                       />
                     </div>
                   </div>
+                  <div class="formbold-input-flex">
                     <div>
-                      <label for="phone" class="formbold-form-label"> Phone number </label>
+                      <label for="firstname" class="formbold-form-label">
+                        Phone
+                      </label>
                       <input
-                        type="text"
+                      type="text"
                         name="mobile"
                         id="phone"
                         class="formbold-form-input"
                       />
                     </div>
                     <div>
-                      <label for="industry" class="formbold-form-label"> industry </label>
+                      <label for="email" class="formbold-form-label"> Industry </label>
                       <input
-                        type="text"
+                      type="text"
                         name="industry"
                         id="industry"
                         class="formbold-form-input"
                       />
                     </div>
+                  </div>
+                  <div class="formbold-input-flex">
                     <div>
-                      <label for="post" class="formbold-form-label"> No.of employees </label>
+                      <label for="firstname" class="formbold-form-label">
+                        Number of Employees
+                      </label>
                       <input
-                        type="text"
+                      type="text"
                         name="employees"
                         id="No.of employees"
                         class="formbold-form-input"
                       />
                     </div>
-                  <div class="formbold-input-flex">
                     <div>
-                      <label for="company" class="formbold-form-label"> No of sessions</label>
+                      <label for="email" class="formbold-form-label"> Number of Sessions </label>
                       <input
-                        type="number"
+                      type="number"
                         name="sessions"
                         id="company"
                         class="formbold-form-input"
                       />
                     </div>
-                    <div class="formbold-input-flex">
                   </div>
+                  
             
                   <div class="formbold-checkbox-wrapper">
                     <label for="supportCheckbox" class="formbold-checkbox-label">
@@ -286,8 +247,8 @@ Demo</a></button></div>
                           </span>
                         </div>
                       </div>
-                      I agree 
-                      <a href="#">By submitting this form, you are agreeing Privacy Policy and Terms of Use.</a>
+                      <p style="margin-left:-5px">i agree </p>
+                      <a href="#" style="">By submitting this form, you are agreeing Privacy Policy and Terms of Use.</a>
                     </label>
                   </div>
             
@@ -300,7 +261,7 @@ Demo</a></button></div>
                   </div>
                   <!--footer-->
   
-                  <section class="footer" style="width:100% ;height:100%;padding-top:
+                  <section class="footer" style="width:100% ;height:50%;padding-top:
   70px;background-color:#fda95f;">
       <div class="container-fluid" style="background-color: #fda95f;">
         <div class="row g-0" style="width:90%;margin-left: 40px;">
@@ -343,7 +304,7 @@ Demo</a></button></div>
           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
             <div class="footer-2">
               <h3>Want to join as a Doctor?</h3>
-              <button class="btn-footer">Sign In</button>
+ 
               <button class="btn-footer">Sign Up</button>
   
   
