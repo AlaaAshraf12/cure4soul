@@ -43,8 +43,8 @@ if (isset($_POST['bookingId']) && isset($_POST['action'])) {
     } elseif ($action === 'cancelBooking') {
         // Update the attendance status to "cancelled" in the booking table
         $updateQuery = "UPDATE booking SET attendancestatus = 'cancelled' WHERE bid = '$bookingId' AND attendancestatus = 'pending'";
-        $updatesessiontable = "UPDATE sessions SET status='unbooked' WHERE bid = '$bookingId' AND attendancestatus = 'pending'";
-        $updateResult = sqlsrv_query($conn, $updatesessiontable);
+        $updatesessiontable = "UPDATE sessions SET status='unbooked' WHERE sid=(select sid from booking where bid = '$bookingId') AND attendstatus = 'pending'";
+        $update = sqlsrv_query($conn, $updatesessiontable);
     } else {
         echo "Error: Invalid action.";
         exit();
@@ -52,19 +52,6 @@ if (isset($_POST['bookingId']) && isset($_POST['action'])) {
 
     $updateResult = sqlsrv_query($conn, $updateQuery);
 
-    if ($updateResult) {
-        // Attendance status updated successfully
-        if ($action === 'markAttendance') {
-            echo "Attendance marked as attended.";
-        } elseif ($action === 'cancelBooking') {
-            echo "Booking cancelled.";
-        }
-        exit();
-    } else {
-        // Failed to update attendance status
-        echo "Error: Failed to update attendance or cancel booking.";
-        exit();
-    }
 }
 
 ?>
