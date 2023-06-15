@@ -1,7 +1,8 @@
 <?php require_once "connection.php";
+$conn = OpenConnection();
 ?>
 <?php
-$conn = OpenConnection();
+
 
 if (!isset($_SESSION)) {
     session_start();

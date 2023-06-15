@@ -56,8 +56,8 @@
     
             <ul>
                 <li><a href="#home" style="color:white ">HOME</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#team">Team</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="requesttherapist.php">Team</a></li>
                 <li><a href="#service">Service</a></li>
                 <li><a href="#client">Works</a></li>
                 <li><a href="#prices">Pricing</a></li>
