@@ -1,17 +1,17 @@
-<?php include('connection.php');?>
+<?php require_once "connection.php"; $conn = OpenConnection();?>
 <?PHP 
 if(! isset($_session)){
   session_start();
 }
 if(isset($_POST['sub'])){
-                 $name=sqlsrv_escape_string($conn,$_POST['name']);
-                 $emai=sqlsrv_escape_string($conn,$_POST['email']);
-                 $passwordd=sqlsrv_escape_string($conn,$_POST['pass']);
-                 $conpassword=sqlsrv_escape_string($conn,$_POST['conpass']);
-                 $phon=sqlsrv_escape_string($conn,$_POST['phone']);
-                 $qua=sqlsrv_escape_string($conn,$_POST['qua']);
-                 $ni=sqlsrv_escape_string($conn,$_POST['nid']);
-                 $cvv=sqlsrv_escape_string($conn,$_POST['cv']);
+                 $name=$_POST['name'];
+                 $emai=$_POST['email'];
+                 $passwordd=$_POST['pass'];
+                 $conpassword=$_POST['conpass'];
+                 $phon=$_POST['phone'];
+                 $qua=$_POST['qua'];
+                 $ni=$_POST['nid'];
+                 $cvv=$_POST['cv'];
                     if($passwordd != $conpassword){
                            echo "password doesnot match"; }
                     else{

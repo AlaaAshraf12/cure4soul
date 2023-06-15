@@ -15,42 +15,28 @@ if (isset($_POST['submit'])) {
         
         // Retrieve the employee's ID based on their email
         $email = $_SESSION['name']; // Modify this according to your authentication system
-        $query = "SELECT eid, tid FROM employee WHERE email = '$email'";
+        $query = "SELECT eid FROM employee WHERE email = '$email'";
         $result = sqlsrv_query($conn, $query);
+        
         if ($result && sqlsrv_has_rows($result) > 0) {
             $row = sqlsrv_fetch_array($result);
             $emid = $row['eid'];
-            $thid = $row['tid'];
-
+           
             // Retrieve the details from the form
             $b = $_POST['details'];
+            
+            // Convert the array of selected problems into a string
+            $problemsString = implode(", ", $selectedProblems);
 
             // Insert the selected problems into the complain table
-            foreach ($selectedProblems as $problem) {
-                if ($problem == "Therapist") {
-                    // Retrieve the therapist ID from the therapist table
-                    $query = "SELECT tid FROM therapist";
-                    $result = sqlsrv_query($conn, $query);
+            $co = "INSERT INTO complain (problem, details, eid) VALUES ('$problemsString', '$b', '$emid')";
+            $result1 = sqlsrv_query($conn, $co);
             
-                    if ($result !== false) {
-                        if (sqlsrv_has_rows($result)) {
-                            $therapistRow = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-                            $thid = $therapistRow['tid'];
-                        } else {
-                            echo '<p>Error: Therapist ID not found.</p>';
-                            continue; // Skip this iteration and move to the next problem
-                        }
-                    } else {
-                        echo '<p>Error executing query: ' . sqlsrv_errors()[0]['message'] . '</p>';
-                        continue; // Skip this iteration and move to the next problem
-                    }
-                }
-                
-                $co = "INSERT INTO complain (problem, details, eid, tid) VALUES ('$problem', '$b', '$emid', '$thid')";
-                $result1 = sqlsrv_query($conn, $co);
+            if ($result1 !== false) {
+                echo '<p>Complaint submitted successfully!</p>';
+            } else {
+                echo '<p>Error executing query: ' . sqlsrv_errors()[0]['message'] . '</p>';
             }
-
-            echo '<p>Complaint submitted successfully!</p>';
         } else {
             echo '<p>Error: Employee ID not found.</p>';
         }

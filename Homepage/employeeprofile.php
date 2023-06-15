@@ -175,6 +175,7 @@ if (sqlsrv_has_rows($resul)) {
 			</html>
 		
 <?php
+$conn = OpenConnection();
 // Assuming you have a MySQL database connection established
 
 // Start the session and retrieve the logged-in employee's email from the session
@@ -222,22 +223,28 @@ if (isset($_POST['book'])) {
     $selectedSid = $_POST['book'];
 
     // Check if the selected session is available (not already booked)
-    $checkQuery = "SELECT status FROM sessions WHERE sid = '$selectedSid' AND status = 'unbooked'";
-    $checkResult = sqlsrv_query($conn, $checkQuery);
+    $checkQuery = "SELECT status FROM sessions WHERE sid = ? AND status = 'unbooked'";
+    $params = array($selectedSid);
+    $checkResult = sqlsrv_query($conn, $checkQuery, $params);
 
     if (sqlsrv_has_rows($checkResult)) {
         // Update the sessions table to mark the selected session as booked
-        $updateQuery = "UPDATE sessions SET status = 'booked' WHERE sid = '$selectedSid'";
-        sqlsrv_query($conn, $updateQuery);
+        $updateQuery = "UPDATE sessions SET status = 'booked' WHERE sid = ?";
+        $params = array($selectedSid);
+        $query=sqlsrv_query($conn, $updateQuery, $params);
 
         // Insert the booking into the booking table
-        $insertQuery = "INSERT INTO booking (eid, sid, attendancestatus) VALUES ('$eid', '$selectedSid', 'pending')";
-        sqlsrv_query($conn, $insertQuery);
+        $insertQuery = "INSERT INTO booking (eid, sid, attendancestatus) VALUES (?, ?, 'pending')";
+        $params = array($eid, $selectedSid);
+        $queryResult =sqlsrv_query($conn, $insertQuery, $params);
+           if ($queryResult === false) {
+                  die(print_r(sqlsrv_errors(), true));
 
         echo 'Session booked successfully!';
     } else {
         echo 'Session already booked or unavailable.';
     }
+}
 }
 ?>
 

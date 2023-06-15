@@ -1,5 +1,6 @@
 
-<?php require_once "connection.php" ?>
+<?php require_once "connection.php";
+$conn = OpenConnection(); ?>
 <?PHP 
 if(! isset($_session)){
   session_start();
@@ -8,14 +9,53 @@ if(isset($_POST['Submit'])){
     $comp=$_POST['company'];
     $emai=$_POST['email'];
     $pho= $_POST['phone'];
-    $du=$_POST['duration'];
+    $industry=$_POST['industry'];
+    $numofp=$_POST['numofpart'];
     $dt=$_POST['dt'];
     $top=$_POST['topic'];
-    $numofp=$_POST['numofpart'];
-
-    $a="INSERT INTO reqseminar(compname,email,phone,duration,dt,topic,numofpart) Values('$comp','$emai','$pho','$du','$dt','$top','$numofp')";
-    sqlsrv_query($conn,$a);
+    $du=$_POST['duration'];
+    
+    
+    
+    $sql = "INSERT INTO company(name, email, phone, industry) VALUES ('$comp', '$emai', '$pho', '$industry')";
+    $a="INSERT INTO seminar(numofemp,datetime,topic,duration,cid) Values('$numofp','$dt','$top','$du',SCOPE_IDENTITY())";
+    
+    
+    
+    // Begin the transaction
+    sqlsrv_begin_transaction($conn);
+    
+    // Insert into the company table
+    $result1 = sqlsrv_query($conn, $sql);
+    
+    if ($result1 !== false) {
+        // Retrieve the generated cid from the inserted company
+        $cid = sqlsrv_query($conn, 'SELECT SCOPE_IDENTITY() AS cid');
+        $row = sqlsrv_fetch_array($cid);
+        $generatedCid = $row['cid'];
+    
+        // Set the generated cid in the demo query
+        $a = str_replace("SCOPE_IDENTITY()", $generatedCid, $a);
+    
+        // Insert into the demo table
+        $result2 = sqlsrv_query($conn, $a);
+    
+        if ($result2 !== false) {
+            // Commit the transaction if both queries succeed
+            sqlsrv_commit($conn);
+            echo 'Data inserted successfully.';
+        } else {
+            // Rollback the transaction if the second query fails
+            sqlsrv_rollback($conn);
+            echo 'Error inserting data into demo table: ' . sqlsrv_errors()[0]['message'];
+        }
+    } else {
+        // Rollback the transaction if the first query fails
+        sqlsrv_rollback($conn);
+        echo 'Error inserting data into company table: ' . sqlsrv_errors()[0]['message'];
     }
+  }    
+    
 
 ?>
 
@@ -249,6 +289,10 @@ Demo</a></button></div>
                         <div class="form-group">
                           <label for="phone">Phone</label>
                           <input type="text" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="duration">Industry</label>
+                          <input type="text" class="form-control" id="duration" name="industry" required>
                         </div>
                         <div class="form-group">
                           <label for="duration">Duration</label>

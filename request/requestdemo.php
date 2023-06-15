@@ -12,12 +12,42 @@ if(isset($_POST['submit'])){
     $numofemp=$_POST['employees'];
     $numofsession=$_POST['sessions'];
   
-    $sql="INSERT INTO company(name,email,phone,industry) Values('$n','$e','$phone','$industry')";
-    $d="INSERT INTO demo(numofemp,numofses,status,cid) Values('$numofemp','$numofsession','NULL',1)";
-     sqlsrv_query($conn,$sql);
-     sqlsrv_query($conn,$d);
+    $sql = "INSERT INTO company(name, email, phone, industry) VALUES ('$n', '$e', '$phone', '$industry')";
+    $d = "INSERT INTO demo(numofemp, numofses, status, cid) VALUES ('$numofemp', '$numofsession', 'NULL', SCOPE_IDENTITY())";
+    
+    // Begin the transaction
+    sqlsrv_begin_transaction($conn);
+    
+    // Insert into the company table
+    $result1 = sqlsrv_query($conn, $sql);
+    
+    if ($result1 !== false) {
+        // Retrieve the generated cid from the inserted company
+        $cid = sqlsrv_query($conn, 'SELECT SCOPE_IDENTITY() AS cid');
+        $row = sqlsrv_fetch_array($cid);
+        $generatedCid = $row['cid'];
+    
+        // Set the generated cid in the demo query
+        $d = str_replace("SCOPE_IDENTITY()", $generatedCid, $d);
+    
+        // Insert into the demo table
+        $result2 = sqlsrv_query($conn, $d);
+    
+        if ($result2 !== false) {
+            // Commit the transaction if both queries succeed
+            sqlsrv_commit($conn);
+            echo 'Data inserted successfully.';
+        } else {
+            // Rollback the transaction if the second query fails
+            sqlsrv_rollback($conn);
+            echo 'Error inserting data into demo table: ' . sqlsrv_errors()[0]['message'];
+        }
+    } else {
+        // Rollback the transaction if the first query fails
+        sqlsrv_rollback($conn);
+        echo 'Error inserting data into company table: ' . sqlsrv_errors()[0]['message'];
     }
-
+  }    
 ?>
 
 <html>
