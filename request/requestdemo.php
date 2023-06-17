@@ -56,7 +56,7 @@ if ($insertDemoResult !== false && sqlsrv_has_rows($insertDemoResult)) {
     echo 'Error inserting data into demo table: ' . sqlsrv_errors()[0]['message'];
 }
 } 
-   // Check if the company name already exists
+   /*// Check if the company name already exists
 $checkCompanyQuery = "SELECT cid FROM company WHERE name = ?";
 $params = array($n);
 $checkCompanyResult = sqlsrv_query($conn, $checkCompanyQuery, $params);
@@ -95,7 +95,7 @@ if ($checkCompanyResult !== false && sqlsrv_has_rows($checkCompanyResult)) {
         sqlsrv_rollback($conn);
         echo 'Error inserting data into demo table: ' . sqlsrv_errors()[0]['message'];
     }
-} 
+} */
 else {
   // Insert into the company table and retrieve the generated cid
 $insertCompanyQuery = "INSERT INTO company (name, email, phone, industry) OUTPUT INSERTED.cid VALUES (?, ?, ?, ?)";
