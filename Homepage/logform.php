@@ -62,7 +62,7 @@ CREATE TABLE employee (
   numofsessions VARCHAR(30) NOT NULL,
   accountstatus VARCHAR(30) NOT NULL,
   cid INT NOT NULL,
-  tid INT NOT NULL,
+  did INT NOT NULL,
   FOREIGN KEY (cid) REFERENCES company (cid),
-  FOREIGN KEY (tid) REFERENCES therapist (tid)
+  FOREIGN KEY (did) REFERENCES demo (did)
 ) 

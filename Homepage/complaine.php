@@ -58,8 +58,8 @@ if (isset($_POST['submit'])) {
     </style>
 </head>
 <body>
-    <form method="POST" >    
-        <h2 style="color:red">Complain Form</h2>
+    <form method="POST" style="text-align:center;" >    
+        <h2 style="color:orange">Complain Form</h2>
         <label>
             <input type="checkbox" name="problems[]" value="Therapist">
             Therapist

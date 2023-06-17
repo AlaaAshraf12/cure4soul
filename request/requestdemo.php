@@ -1,53 +1,146 @@
-<?php require_once "connection.php";
-$conn = OpenConnection();?>
-<?PHP 
-if(! isset($_session)){
-  session_start();
+<?php
+require_once "connection.php";
+$conn = OpenConnection();
+
+if (!isset($_SESSION)) {
+    session_start();
 }
-if(isset($_POST['submit'])){
-    $n=$_POST['company'];
-    $e=$_POST['email'];
-    $phone=$_POST['mobile'];
-    $industry=$_POST['industry'];
-    $numofemp=$_POST['employees'];
-    $numofsession=$_POST['sessions'];
-  
-    $sql = "INSERT INTO company(name, email, phone, industry) VALUES ('$n', '$e', '$phone', '$industry')";
-    $d = "INSERT INTO demo(numofemp, numofses, status, cid) VALUES ('$numofemp', '$numofsession', 'NULL', SCOPE_IDENTITY())";
-    
+
+if (isset($_POST['submit'])) {
+    $n = $_POST['company'];
+    $e = $_POST['email'];
+    $phone = $_POST['mobile'];
+    $industry = $_POST['industry'];
+    $numofemp = $_POST['employees'];
+    $numofsession = $_POST['sessions'];
+
     // Begin the transaction
     sqlsrv_begin_transaction($conn);
-    
-    // Insert into the company table
-    $result1 = sqlsrv_query($conn, $sql);
-    
-    if ($result1 !== false) {
-        // Retrieve the generated cid from the inserted company
-        $cid = sqlsrv_query($conn, 'SELECT SCOPE_IDENTITY() AS cid');
-        $row = sqlsrv_fetch_array($cid);
-        $generatedCid = $row['cid'];
-    
-        // Set the generated cid in the demo query
-        $d = str_replace("SCOPE_IDENTITY()", $generatedCid, $d);
-    
-        // Insert into the demo table
-        $result2 = sqlsrv_query($conn, $d);
-    
-        if ($result2 !== false) {
-            // Commit the transaction if both queries succeed
+
+    // Check if the company name already exists in the company table
+    $checkQuery = "SELECT cid FROM company WHERE name = ?";
+    $params = array($n);
+    $checkResult = sqlsrv_query($conn, $checkQuery, $params);
+
+    if ($checkResult !== false && sqlsrv_has_rows($checkResult)) {
+        // Name already exists, retrieve the cid
+        $row = sqlsrv_fetch_array($checkResult);
+        $cid = $row['cid'];
+
+        // Insert into the demo table and retrieve the generated did
+$insertDemoQuery = "INSERT INTO demo (numofemp, numofses, status) OUTPUT INSERTED.did VALUES (?, ?, 'NULL')";
+$params = array($numofemp, $numofsession);
+$insertDemoResult = sqlsrv_query($conn, $insertDemoQuery, $params);
+
+if ($insertDemoResult !== false && sqlsrv_has_rows($insertDemoResult)) {
+    $row = sqlsrv_fetch_array($insertDemoResult);
+    $generatedDid = $row['did'];
+
+    // Insert into the democomp table
+    $insertDemcompQuery = "INSERT INTO democomp (cid, did, reqdate) VALUES (?, ?, GETDATE())";
+    $params = array($cid, $generatedDid);
+    $insertDemcompResult = sqlsrv_query($conn, $insertDemcompQuery, $params);
+
+    if ($insertDemcompResult !== false) {
+        // Commit the transaction if all queries succeed
+        sqlsrv_commit($conn);
+        echo 'Data inserted successfully.';
+    } else {
+        // Rollback the transaction if the insertion into democomp fails
+        sqlsrv_rollback($conn);
+        echo 'Error inserting data into democomp table: ' . sqlsrv_errors()[0]['message'];
+    }
+} else {
+    // Rollback the transaction if the insertion into demo fails
+    sqlsrv_rollback($conn);
+    echo 'Error inserting data into demo table: ' . sqlsrv_errors()[0]['message'];
+}
+} 
+   // Check if the company name already exists
+$checkCompanyQuery = "SELECT cid FROM company WHERE name = ?";
+$params = array($n);
+$checkCompanyResult = sqlsrv_query($conn, $checkCompanyQuery, $params);
+
+if ($checkCompanyResult !== false && sqlsrv_has_rows($checkCompanyResult)) {
+    // Company name already exists, retrieve the existing cid
+    $row = sqlsrv_fetch_array($checkCompanyResult);
+    $generatedCid = $row['cid'];
+
+    // Insert into the demo table
+    $insertDemoQuery = "INSERT INTO demo (numofemp, numofses, status) VALUES (?, ?, 'NULL')";
+    $params = array($numofemp, $numofsession);
+    $insertDemoResult = sqlsrv_query($conn, $insertDemoQuery, $params);
+
+    if ($insertDemoResult !== false && sqlsrv_has_rows($insertDemoResult)) {
+        // Retrieve the generated did from the inserted demo
+        $row = sqlsrv_fetch_array($insertDemoResult);
+        $generatedDid = $row['did'];
+
+        // Insert into the democomp table
+        $insertDemcompQuery = "INSERT INTO democomp (cid, did, reqdate) VALUES (?, ?, GETDATE())";
+        $params = array($generatedCid, $generatedDid);
+        $insertDemcompResult = sqlsrv_query($conn, $insertDemcompQuery, $params);
+
+        if ($insertDemcompResult !== false) {
+            // Commit the transaction if all queries succeed
             sqlsrv_commit($conn);
             echo 'Data inserted successfully.';
         } else {
-            // Rollback the transaction if the second query fails
+            // Rollback the transaction if the insertion into democomp fails
             sqlsrv_rollback($conn);
-            echo 'Error inserting data into demo table: ' . sqlsrv_errors()[0]['message'];
+            echo 'Error inserting data into democomp table: ' . sqlsrv_errors()[0]['message'];
         }
     } else {
-        // Rollback the transaction if the first query fails
+        // Rollback the transaction if the insertion into demo fails
         sqlsrv_rollback($conn);
-        echo 'Error inserting data into company table: ' . sqlsrv_errors()[0]['message'];
+        echo 'Error inserting data into demo table: ' . sqlsrv_errors()[0]['message'];
     }
-  }    
+} 
+else {
+  // Insert into the company table and retrieve the generated cid
+$insertCompanyQuery = "INSERT INTO company (name, email, phone, industry) OUTPUT INSERTED.cid VALUES (?, ?, ?, ?)";
+$params = array($n, $e, $phone, $industry);
+$insertCompanyResult = sqlsrv_query($conn, $insertCompanyQuery, $params);
+
+if ($insertCompanyResult !== false && sqlsrv_has_rows($insertCompanyResult)) {
+    $row = sqlsrv_fetch_array($insertCompanyResult, SQLSRV_FETCH_ASSOC);
+    $generatedCid = $row['cid'];
+
+    // Insert into the demo table and retrieve the generated did
+    $insertDemoQuery = "INSERT INTO demo (numofemp, numofses, status) OUTPUT INSERTED.did VALUES (?, ?, 'NULL')";
+    $params = array($numofemp, $numofsession);
+    $insertDemoResult = sqlsrv_query($conn, $insertDemoQuery, $params);
+
+    if ($insertDemoResult !== false && sqlsrv_has_rows($insertDemoResult)) {
+        $row = sqlsrv_fetch_array($insertDemoResult, SQLSRV_FETCH_ASSOC);
+        $generatedDid = $row['did'];
+
+        // Insert into the democomp table
+        $insertDemcompQuery = "INSERT INTO democomp (cid, did, reqdate) VALUES (?, ?, GETDATE())";
+        $params = array($generatedCid, $generatedDid);
+        $insertDemcompResult = sqlsrv_query($conn, $insertDemcompQuery, $params);
+
+        if ($insertDemcompResult !== false) {
+            // Commit the transaction if all queries succeed
+            sqlsrv_commit($conn);
+            echo 'Data inserted successfully.';
+        } else {
+            // Rollback the transaction if the insertion into democomp fails
+            sqlsrv_rollback($conn);
+            echo 'Error inserting data into democomp table: ' . sqlsrv_errors()[0]['message'];
+        }
+    } else {
+        // Rollback the transaction if the insertion into demo fails or no generated did is retrieved
+        sqlsrv_rollback($conn);
+        echo 'Error inserting data into demo table or retrieving generated did: ' . sqlsrv_errors()[0]['message'];
+    }
+} else {
+    // Rollback the transaction if the insertion into company fails or no generated cid is retrieved
+    sqlsrv_rollback($conn);
+    echo 'Error inserting data into company table or retrieving generated cid: ' . sqlsrv_errors()[0]['message'];
+}
+    }
+  }
 ?>
 
 <html>

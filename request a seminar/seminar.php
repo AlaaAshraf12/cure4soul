@@ -1,63 +1,85 @@
 
-<?php require_once "connection.php";
-$conn = OpenConnection(); ?>
-<?PHP 
-if(! isset($_session)){
-  session_start();
+<?php
+require_once "connection.php";
+$conn = OpenConnection();
+
+if (!isset($_SESSION)) {
+    session_start();
 }
-if(isset($_POST['Submit'])){
-    $comp=$_POST['company'];
-    $emai=$_POST['email'];
-    $pho= $_POST['phone'];
-    $industry=$_POST['industry'];
-    $numofp=$_POST['numofpart'];
-    $dt=$_POST['dt'];
-    $top=$_POST['topic'];
-    $du=$_POST['duration'];
-    
-    
-    
-    $sql = "INSERT INTO company(name, email, phone, industry) VALUES ('$comp', '$emai', '$pho', '$industry')";
-    $a="INSERT INTO seminar(numofemp,datetime,topic,duration,cid) Values('$numofp','$dt','$top','$du',SCOPE_IDENTITY())";
-    
-    
-    
+
+if (isset($_POST['submit'])) {
+    $comp = $_POST['company'];
+    $emai = $_POST['email'];
+    $pho = $_POST['phone'];
+    $industry = $_POST['industry'];
+    $numofp = $_POST['numofpart'];
+    $dt = $_POST['dt'];
+    $top = $_POST['topic'];
+    $du = $_POST['duration'];
+
     // Begin the transaction
     sqlsrv_begin_transaction($conn);
-    
-    // Insert into the company table
-    $result1 = sqlsrv_query($conn, $sql);
-    
-    if ($result1 !== false) {
-        // Retrieve the generated cid from the inserted company
-        $cid = sqlsrv_query($conn, 'SELECT SCOPE_IDENTITY() AS cid');
-        $row = sqlsrv_fetch_array($cid);
-        $generatedCid = $row['cid'];
-    
-        // Set the generated cid in the demo query
-        $a = str_replace("SCOPE_IDENTITY()", $generatedCid, $a);
-    
-        // Insert into the demo table
-        $result2 = sqlsrv_query($conn, $a);
-    
-        if ($result2 !== false) {
-            // Commit the transaction if both queries succeed
-            sqlsrv_commit($conn);
-            echo 'Data inserted successfully.';
-        } else {
-            // Rollback the transaction if the second query fails
-            sqlsrv_rollback($conn);
-            echo 'Error inserting data into demo table: ' . sqlsrv_errors()[0]['message'];
-        }
+
+    // Check if the company name already exists in the company table
+    $checkQuery = "SELECT cid FROM company WHERE name = ?";
+    $params = array($comp);
+    $checkResult = sqlsrv_query($conn, $checkQuery, $params);
+
+    if ($checkResult !== false && sqlsrv_has_rows($checkResult)) {
+        // Name already exists, retrieve the cid
+        $row = sqlsrv_fetch_array($checkResult);
+        $cid = $row['cid'];
     } else {
-        // Rollback the transaction if the first query fails
-        sqlsrv_rollback($conn);
-        echo 'Error inserting data into company table: ' . sqlsrv_errors()[0]['message'];
+        // Insert into the company table and retrieve the generated cid
+        $insertCompanyQuery = "INSERT INTO company (name, email, phone, industry) OUTPUT INSERTED.cid VALUES (?, ?, ?, ?)";
+        $params = array($comp, $emai, $pho, $industry);
+        $insertCompanyResult = sqlsrv_query($conn, $insertCompanyQuery, $params);
+
+        if ($insertCompanyResult !== false && sqlsrv_has_rows($insertCompanyResult)) {
+            $row = sqlsrv_fetch_array($insertCompanyResult);
+            $cid = $row['cid'];
+        } else {
+            // Rollback the transaction if the insertion into company fails or no generated cid is retrieved
+            sqlsrv_rollback($conn);
+            echo 'Error inserting data into company table or retrieving generated cid: ' . sqlsrv_errors()[0]['message'];
+            exit;
+        }
     }
-  }    
-    
+
+    // Insert into the seminar table and retrieve the generated sid
+    $insertSeminarQuery = "INSERT INTO seminar (numofemp, datetime, topic, duration) OUTPUT INSERTED.sid VALUES (?, ?, ?, ?)";
+    $params = array($numofp, $dt, $top, $du);
+    $insertSeminarResult = sqlsrv_query($conn, $insertSeminarQuery, $params);
+
+    if ($insertSeminarResult !== false && sqlsrv_has_rows($insertSeminarResult)) {
+        $row = sqlsrv_fetch_array($insertSeminarResult);
+        $generatedSid = $row['sid'];
+    } else {
+        // Rollback the transaction if the insertion into seminar fails or no generated sid is retrieved
+        sqlsrv_rollback($conn);
+        echo 'Error inserting data into seminar table or retrieving generated sid: ' . sqlsrv_errors()[0]['message'];
+        exit;
+    }
+
+    // Insert into the semcomp table
+    $insertSemcompQuery = "INSERT INTO semcomp (cid, sid, Reqdate) VALUES (?, ?, GETDATE())";
+    $params = array($cid, $generatedSid);
+    $insertSemcompResult = sqlsrv_query($conn, $insertSemcompQuery, $params);
+
+    if ($insertSemcompResult !== false) {
+        // Commit the transaction if all queries succeed
+        sqlsrv_commit($conn);
+        echo 'Data inserted successfully.';
+    } else {
+        // Rollback the transaction if the insertion into semcomp fails
+        sqlsrv_rollback($conn);
+        echo 'Error inserting data into semcomp table: ' . sqlsrv_errors()[0]['message'];
+    }
+}
 
 ?>
+
+
 
 <html>
     <head>
