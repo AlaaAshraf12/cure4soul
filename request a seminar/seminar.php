@@ -32,13 +32,13 @@ if (isset($_POST['Submit'])) {
        $row = sqlsrv_fetch_array($checkResult);
        $cid = $row['cid'];
         // Insert into the seminar table and retrieve the generated sid
-        $insertsemoQuery = "INSERT INTO seminar (numofemp, datetime, topic, duration) OUTPUT INSERTED.sid VALUES (?, ?, ?, ?)";
+        $insertsemoQuery = "INSERT INTO seminar (numofemp, datetime, topic, duration) OUTPUT INSERTED.seid VALUES (?, ?, ?, ?)";
         $params = array($numofp, $dt, $top, $du);
         $insertsemoResult = sqlsrv_query($conn, $insertsemoQuery, $params);
 
         if ($insertsemoResult !== false && sqlsrv_has_rows($insertsemoResult)) {
             $row = sqlsrv_fetch_array($insertsemoResult);
-            $generatedsid = $row['sid'];
+            $generatedsid = $row['seid'];
 
             // Insert into the semcomp table
             $insertsemcompQuery = "INSERT INTO semcomp (cid, sid, Reqdate) VALUES (?, ?, GETDATE())";
@@ -73,13 +73,13 @@ if (isset($_POST['Submit'])) {
             $cid = $row['cid'];
 
             // Insert into the seminar table and retrieve the generated sid
-            $insertsemoQuery = "INSERT INTO seminar (numofemp, datetime, topic, duration) OUTPUT INSERTED.sid VALUES (?, ?, ?, ?)";
+            $insertsemoQuery = "INSERT INTO seminar (numofemp, datetime, topic, duration) OUTPUT INSERTED.seid VALUES (?, ?, ?, ?)";
             $params = array($numofp, $dt, $top, $du);
             $insertsemoResult = sqlsrv_query($conn, $insertsemoQuery, $params);
 
             if ($insertsemoResult !== false && sqlsrv_has_rows($insertsemoResult)) {
                 $row = sqlsrv_fetch_array($insertsemoResult);
-                $generatesid = $row['sid'];
+                $generatesid = $row['seid'];
 
                 // Insert into the semcomp table
                 $insertsemcompQuery = "INSERT INTO semcomp (cid, sid, Reqdate) VALUES (?, ?, GETDATE())";
