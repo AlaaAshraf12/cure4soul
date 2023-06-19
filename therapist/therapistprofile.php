@@ -17,12 +17,13 @@
             .navbar{
     display: flex;
     justify-content: space-between;
-    
+    height:10%;
     align-items: center;
     position: fixed;
     left:0px;
     right: 0px;
     }
+    .nav-item{background-color: red;}
 .navbar ul{display: flex;
     list-style: none;
 justify-content: flex-end;
@@ -53,28 +54,25 @@ color: white;}
         </style>
     </head>
     <body>
-           
+     
       <section class="nav" >
-        <div class="navbar"style="background-color:green;">
+        <div class="navbar"style="background-color:#1e6091;">
             <h2 style="color: white; font-weight: bold; padding-left: 40px;">cure4soul<span class="dot" style="color: #00c3da;">.</span></h2>
     
             <ul>
-                <li><a href="#home" style="color:white ">HOME</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#service">Service</a></li>
-                <li><a href="#client">Works</a></li>
+                <li><a href="#home" style="color:white ">How We Work</a></li>
+                <li><a href="#about">Wellness</a></li>
+                <li><a href="#team">Resources</a></li>
+                <li><a href="#service">Who Are We</a></li>
                 <li><a href="therapistsession.php">My Sessions</a></li>
                 <li><a href="#contact">Contact</a></li>
                 
             </ul>
-            <div>
-<a href="logintherapist.php? logout='1'">log out </a>
-</div>
+            
     
             <div class="nav-buttons" style="display: flex; justify-content: flex-end;">
                 <div class="btn1" style="padding-right: 10px;"><button><a href="">Member Login</a></button></div>
-                <div class="btn1"><button><a href="">Request a Seminar</a></button></div>
+                <div class="btn1"><button><a href="logintherapist.php? logout='1'">log out </a></button></div>
             <div>
     
               
@@ -84,12 +82,13 @@ color: white;}
     </section> 
      
 
+    
     <section class="profile">
         <div class="container-fluid">
             <div class="Profile-content" style="display: flex;justify-content: center;">
-               <div class="profile-left" style="width: 30%;height:700px;background-color:#dedede;padding-top: 100px;">
+               <div class="profile-left" style="width:40%;height:700px;background-color:#f8f6f4;padding-top: 100px;">
                 <div class="section-img">
-                    <img src="doccc.jpg" style="border-radius: 50%; width: 60%;margin-left: 60px;margin-top: 20px;">
+                    <img src="doccc.jpg" style="border-radius: 50%; width: 40%;margin-left: 40px;margin-top: 20px;">
                     <?php
                     $conn = OpenConnection();
 // Assuming you have a MySQL database connection established
@@ -124,7 +123,7 @@ if (sqlsrv_has_rows($result) > 0) {
 ?>
                 </div>
             </div>
-               <div class="profile-right" style="width: 80%;height:720px;padding-top: 80px;padding-left:140px;background-color:#f4faff">
+               <div class="profile-right" style="width:100%;height:720px;padding-top: 80px;padding-left:140px;background-color:#f4faff">
 
                    
    <?php
@@ -217,7 +216,8 @@ color:white}
 }
 
 h2{
-  padding:10px
+  padding:10px;
+  font-size:18px;margin-left:20px
 }
 /* Add more CSS styles as needed */
 </style>

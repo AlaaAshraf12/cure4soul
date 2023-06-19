@@ -14,41 +14,28 @@ $conn = OpenConnection();
         <script src="js/bootstrap.min.js"></script>
         <script src="js/popper.min.js"></script>
         <title>Employee Schedule</title>
-        <style>  .navbar{
-            display: flex;
-            justify-content: space-between;
-
-            align-items: center;
-            position: fixed;
-            left:0px;
-            right: 0px;
-            }
-        .navbar ul{display: flex;
-            list-style: none;
-        justify-content: flex-end;
-        }
-        .navbar ul li{padding: 20px;
-        }
-        .navbar ul li a{text-decoration:none;
-        font-weight: 600;
-        margin:5px;
-        color: white;
-
-    }
-    .navbar ul li a:hover{color: gray;}
-    .nav-buttons{margin-right: 40px; padding-bottom: 10px;}
-    .btn1 button {
-        background-color: orange;
-        width: 150px;
-        height: 40px;
-        border-radius: 8px;
-        border-style: none;
+        <style>  /*navbar*/
+  .nav-buttons{margin-right: 40px; padding-bottom: 10px;margin-top:15px}
+.btn1 button {
+    background-color: orange;
+    width: 150px;
+    height: 40px;
+    border-radius: 8px;
+    border-style: none;
+    margin-left: 10px;
 
 
-    }
-    .btn1 button:hover{background-color: #fad263;}
-    .btn1 button a{text-decoration: none;
-    color: white;}
+}
+
+.btn1 button:hover{background-color: #fad263;}
+.btn1 button a{text-decoration: none;
+color: white;}
+.navbar{padding:10px}
+.navbar-nav{margin-left: 70px;}
+.nav-link{color:white;font-size:18px;margin-left: 20px;margin-top:15px}
+ .nav-item .nav-link{color:white;}
+ .nav-item .nav-link:hover{color:rgb(185, 185, 185)}
+
 
     /*testimonial*/
 
@@ -93,42 +80,65 @@ $conn = OpenConnection();
 	</style>
 </head>
 <body>
-	<!--navbar--> 
-    <section class="nav" >
-        <div class="navbar"style="background-color:#1e6091;">
-            <h2 style="color: white; font-weight: bold; padding-left: 40px;">cure4soul<span class="dot" style="color: #00c3da;">.</span></h2>
     
-            <ul>
-                <li><a href="#home" style="color:white ">HOME</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#service">Service</a></li>
-                <li><a href="employeesessions.php">My sessions</a></li>
-                <li><a href="complaine.php">Add Complain</a></li>
-                <li><a href="#contact">Contact</a></li>
-                
-            </ul>
-            <div>
-             <a href="login.php? logout='1'">log out </a>
-             </div>
-            <div class="nav-buttons" style="display: flex; justify-content: flex-end;">
-                <div class="btn1" style="padding-right: 10px;"><button><a href="">Member Login</a></button></div>
-                <div class="btn1"><button><a href="">Request a Seminar</a></button></div>
-            <div>
-    
-              
-    
-            
-        </div>
-    </section>
-	<!--testimonial-->
+         <!--navbar-->
+
+         <nav class="navbar navbar-expand-lg navbar-dark
+"style="background-color:#1e6091;">
+    <div class="container-fluid">
+      <h2><a href="" class="logo" style="color: white; font-weight:
+bold; padding-left: 40px;text-decoration: none;">cure4soul<span
+class="dot" style="color: #00c3da;">.</span></a></h2>
+      <button class="navbar-toggler" type="button"
+data-bs-toggle="collapse" data-bs-target="#navbarText"
+aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
+navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page"
+href="#">How We Work</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Wellness</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Resources</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Who Are We</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="employeesessions.php">My sessions</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="complaine.php">Add Complain</a>
+          </li>
+        
+        <div class="nav-buttons" style="display: flex;
+justify-content: flex-end;">
+          <div class="btn1" style="padding-right: 10px;"><button><a
+href="#login.php">Member Login</a></button></div>
+          <div class="btn1"><button><a href="seminar.php">Request a
+Demo</a></button></div>
+          <div class="btn1"><button style="width:75px;height:40px;background-color:#dddd"> <a href="seminar.php"> <a href="home.html">Log Out </a></button></div>
+      <div>
+      </div>
+    </div>
+  </nav>
+
+	
 <section class="test" style="margin-top: 10px;">
     <div class="container">
         <div class="test-details" style="display: flex;justify-content:center;">
-            <div class="test-left">
+            <div class="test-left" style="background-color:#f8f6f4">
                 <img src="docc.jpg">
             </div>
-            <div class="test-right">
+            <div class="test-right" style="background-color:#f8f6f4">
             <?php
 // Assuming you have a MySQL database connection established
 
@@ -171,8 +181,6 @@ if (sqlsrv_has_rows($resul)) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
-            </body>
-			</html>
 		
 <?php
 $conn = OpenConnection();
@@ -248,6 +256,75 @@ if (isset($_POST['book'])) {
 }
 ?>
 
+
+
+<!--footer-->
+<section class="footer" style="width:100% ;padding-top:
+70px;background-color:#fda95f;margin-top:50px">
+  <div class="container-fluid" style="background-color: #fda95f;">
+    <div class="row g-0" style="width:100%;margin-left: 40px;">
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="footer-2">
+          <h3 style=" color:rgb(37, 37, 37);font-size: 28px;">CURE4SOUL</h3>
+              <h5>253 Degla Maadi, Egypt</h5>
+              <h5>Phone: +1 5589 55488 55
+              </h5>
+              <h5>Email: cure4soul@gmail.com</h5>
+
+
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="footer-2">
+
+           <h3>Company</h3>
+            <h5><a href="">Home</a></h5>
+            <h5><a href="">About us</a></h5>
+            <h5><a href="">Services</a></h5>
+            <h5><a href="">Terms & policices</a></h5>
+            <h5><a href="">Privacy policy</a></h5>
+
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="footer-2">
+
+           <h3>Partners</h3>
+           <h5><a href="">Employers/Corporate</a></h5>
+           <h5><a href="">Health Plans</a></h5>
+           <h5><a href="">Doctors/Providers</a></h5>
+           <h5><a href="">Therapists</a></h5>
+
+
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="footer-2">
+          <h3>Want to join as a Doctor?</h3>
+          
+          <button class="btn-footer">Sign Up</button>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="footer-1" style="margin: 10px;">
+        <div class="line" style="background-color:gainsboro; width:80%;height:1px;margin:auto;"></div>
+  <div class="copyright" style="text-align: center;">
+      © Copyright Cure4soul. All Rights Reserved<br>
+      Designed by <span style="color:#1e6091">Cure4soul Team</span>
+  </div>
+      </div>
+    </div>
+  </div>
+
+  </section>
+
 <style>
   *{margin:0;
   padding:0;}
@@ -302,5 +379,30 @@ margin:5px;
 height:40px;
 width:150px;
 color:white}
-/* Add more CSS styles as needed */
+/*footer*/
+.footer{width:100%}
+.footer-text{padding-right: 5px;}
+.footer-text h3{
+    font-size:28px;
+
+}
+
+.footer-2 h3{font-size: 24px;
+    color:rgb(37, 37, 37)
+
+}
+.footer-2{color:rgb(37, 37, 37);
+    text-decoration: none;
+    font-size: 16px;}
+.footer-2 h5 a{color:rgb(37, 37, 37);
+    text-decoration: none;
+    font-size: 16px;
+
+}
+.btn-footer{width:100px;height:40px;
+border-radius: 6px;
+border-style: none;
+background-color: #1e6091;
+color:white}
+.btn-footer:hover{background-color: #337ab1;}
 </style>

@@ -1,7 +1,5 @@
 <?php require_once "connection.php";
 $conn = OpenConnection();
-?>
-<?php
 
 
 if (!isset($_SESSION)) {
@@ -9,8 +7,8 @@ if (!isset($_SESSION)) {
 }
 
 if (isset($_POST['login'])) {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
     $query = "SELECT * FROM employee WHERE email = '$email' AND pass = '$password'";
     $result = sqlsrv_query($conn, $query);
 

@@ -55,23 +55,59 @@ if (isset($_POST['submit'])) {
             display: block;
             margin-bottom: 10px;
         }
+        form{
+            background-color:coral;
+            width: 500px;
+            height: 500px;
+            margin-left: 35%;
+            margin-top: 5%;
+            text-align: center;
+            justify-content: center;
+        }
+        body{
+            margin: 0;
+            
+        }
+
+        .labels{
+            background-color: red;
+position: relative;
+        }
+
+        .labels label input{
+            position: absolute;
+            left: 0;
+        }
+
+       .label2{
+        padding-right: 350px;
+       }
+
+       .label3{
+        padding-right: 400px;
+
+       }
+     
     </style>
 </head>
 <body>
     <form method="POST" style="text-align:center;" >    
         <h2 style="color:orange">Complain Form</h2>
-        <label>
+        <div class="labels">
+        <label class="label3">
             <input type="checkbox" name="problems[]" value="Therapist">
             Therapist
         </label>
-        <label>
+        <label class="label2">
             <input type="checkbox" name="problems[]" value="Web application">
             Web application
         </label>
-        <label>
+        <label class="label2">
             <input type="checkbox" name="problems[]" value="Session Duration">
             Session Duration
         </label>
+        </div>
+       
         <label>
             <textarea name="details"></textarea>
             Details
