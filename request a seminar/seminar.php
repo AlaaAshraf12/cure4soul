@@ -140,47 +140,109 @@ if (isset($_POST['Submit'])) {
   <script src="js/popper.min.js"></script>
   <style>
 /* navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-}
-
-.navbar ul {
-    display: flex;
-    list-style: none;
-    justify-content: flex-end;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar ul li {
-    padding: 10px;
-}
-
-.navbar ul li a {
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0px;
+    font-family: 'segoe ui';
+  }
+  
+  .nav {
+    height: 50px;
+    width: 100%;
+    background-color: #4d4d4d;
+    position: relative;
+  }
+  
+  .nav > .nav-header {
+    display: inline;
+  }
+  
+  .nav > .nav-header > .nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: #fff;
+    padding: 10px 10px 10px 10px;
+  }
+  
+  .nav > .nav-btn {
+    display: none;
+    
+  }
+  
+  .nav > .nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+  }
+  
+  .nav > .nav-links > a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
     text-decoration: none;
-    font-weight: 600;
-    margin: 5px;
-    color: white;
-}
-
-/* Media query for screens smaller than 768px */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+    color: #efefef;
+  }
+  
+  .nav > .nav-links > a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav > #nav-check {
+    display: none;
+  }
+  
+  @media (max-width:600px) {
+    .nav > .nav-btn {
+      display: inline-block;
+      position: absolute;
+      right: 0px;
+      top: 0px;
     }
+    
 
-    .navbar ul {
-        flex-direction: column;
+    .nav > .nav-btn > label {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      padding: 13px;
     }
-
-    .navbar ul li {
-        padding: 5px;
+    .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+      background-color: rgba(0, 0, 0, 0.3);
     }
-}
+    .nav > .nav-btn > label > span {
+      display: block;
+      width: 25px;
+      height: 10px;
+      border-top: 2px solid #eee;
+    }
+    .nav > .nav-links {
+      position: absolute;
+      display: block;
+      width: 100%;
+      background-color: #333;
+      height: 0px;
+      transition: all 0.3s ease-in;
+      overflow-y: hidden;
+      top: 50px;
+      left: 0px;
+    }
+    .nav > .nav-links > a {
+      display: block;
+      width: 100%;
+    }
+    .nav > #nav-check:not(:checked) ~ .nav-links {
+      height: 0px;
+    }
+    .nav > #nav-check:checked ~ .nav-links {
+      height: calc(100vh - 50px);
+      overflow-y: auto;
+    }
+  }
+  .nav-title{margin-left: 100px;}
+  .btn{margin-left: 100px;}
+  .nav-links{padding-left:20px;margin-left: 20px;}
 
 
 .footer{margin-top:70px}
@@ -214,31 +276,36 @@ color:white}
     <body>
               
        <!--navbar--> 
-    <section class="nav" >
-        <div class="navbar"style="background-color:#1e6091;">
-            <h2 style="color: white; font-weight: bold; padding-left: 40px;">cure4soul<span class="dot" style="color: #00c3da;">.</span></h2>
-    
-            <ul>
-                <li><a href="#home" style="color:white ">HOME</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#service">Service</a></li>
-                <li><a href="#client">Works</a></li>
-                <li><a href="#prices">Pricing</a></li>
-                <li><a href="#contact">Contact</a></li>
-                
-            </ul>
-    
-            <div class="nav-buttons" style="display: flex; justify-content: flex-end;">
-                <div class="btn1" style="padding-right: 10px;"><button><a href="login.php">Member Login</a></button></div>
-                <div class="btn1"><button><a href="">Request a Seminar</a></button></div>
-            <div>
-    
-              
-    
+       <div class="nav" style="height:60px">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+          <div class="nav-title">
             
+            <h2><a href="" class="logo" style="color: white; font-weight: bold; padding-left: 30px;text-decoration: none;">cure4soul<span class="dot" style="color: #00c3da;">.</span></a></h2>
+          </div>
         </div>
-    </section>
+        <div class="nav-btn">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+        
+        <div class="nav-links">
+          <a href="//github.io/jo_geek" target="_blank">Github</a>
+          <a href="http://stackoverflow.com/users/4084003/" target="_blank">Stackoverflow</a>
+          <a href="https://in.linkedin.com/in/jonesvinothjoseph" target="_blank">LinkedIn</a>
+          <a href="https://codepen.io/jo_Geek/" target="_blank">Codepen</a>
+          <a href="https://jsfiddle.net/user/jo_Geek/" target="_blank">JsFiddle</a>
+        
+          <div class="btn">
+            <button>member login</button>
+          <button>member login</button>
+          </div>
+        </div>
+        
+      </div>
     
     <!-- <nav class="navbar navbar-expand-lg navbar-dark
 "style="background-color:#1e6091;">
