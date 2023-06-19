@@ -8,8 +8,8 @@ if(isset($_POST['login'])){
 	
 	$n=$_POST['email'];
 	$p=$_POST['password'];
-	
-    $t=" SELECT * FROM therapist WHERE email='$n' AND password='$p' ";
+	$s='accepted';
+    $t=" SELECT * FROM therapist WHERE email='$n' AND password='$p' And status='$s'";
 
 	 $r=sqlsrv_query($conn,$t);
 	
@@ -20,7 +20,7 @@ if(isset($_POST['login'])){
 		header('location:therapistprofile.php');
 }
     else{
-		echo "wrong data!!!";
+		echo "Username is not found";
 }
 
 }

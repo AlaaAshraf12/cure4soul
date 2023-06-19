@@ -435,7 +435,7 @@ Demo</a></button></div>
           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
             <div class="footer-2">
               <h3>Want to join as a Doctor?</h3>
-              <button class="btn-footer">Sign In</button>
+            
               <button class="btn-footer">Sign Up</button>
   
   

@@ -158,8 +158,8 @@ if ($insertCompanyResult !== false && sqlsrv_has_rows($insertCompanyResult)) {
         <script src="js/bootstrap.min.js"></script>
         <script src="js/popper.min.js"></script>
      <style>
-       /*navbar*/
-  .nav-buttons{margin-right: 40px; padding-bottom: 10px;margin-top:15px}
+      
+  .nav-buttons{margin-right: 40px; padding-bottom: 10px;margin-top:15px} 
 .btn1 button {
     background-color: orange;
     width: 150px;
@@ -167,8 +167,8 @@ if ($insertCompanyResult !== false && sqlsrv_has_rows($insertCompanyResult)) {
     border-radius: 8px;
     border-style: none;
     margin-left: 10px;
-
-
+   
+    
 }
 
 .btn1 button:hover{background-color: #fad263;}
@@ -217,26 +217,17 @@ color:white}
 
 
 
-    <body>
-<!--    
-    
-    <nav class="navbar navbar-expand-lg navbar-dark
-"style="background-color:#1e6091;">
+    <body style="background-color:#f0f7f8" >
+    <nav class="navbar navbar-expand-lg navbar-dark "style="background-color:#1e6091;">
     <div class="container-fluid">
-      <h2><a href="" class="logo" style="color: white; font-weight:
-bold; padding-left: 40px;text-decoration: none;">cure4soul<span
-class="dot" style="color: #00c3da;">.</span></a></h2>
-      <button class="navbar-toggler" type="button"
-data-bs-toggle="collapse" data-bs-target="#navbarText"
-aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
-navigation">
+      <h2><a href="" class="logo" style="color: white; font-weight: bold; padding-left: 40px;text-decoration: none;">cure4soul<span class="dot" style="color: #00c3da;">.</span></a></h2>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page"
-href="#">How We Work</a>
+            <a class="nav-link active" aria-current="page" href="#">How We Work</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Wellness</a>
@@ -248,16 +239,14 @@ href="#">How We Work</a>
             <a class="nav-link" href="#">Who Are We</a>
           </li>
         </ul>
-        <div class="nav-buttons" style="display: flex;
-justify-content: flex-end;">
-          <div class="btn1" style="padding-right: 10px;"><button><a
-href="#login.php">Member Login</a></button></div>
-          <div class="btn1"><button><a href="seminar.php">Request a
-Demo</a></button></div>
-<div>
+        <div class="nav-buttons" style="display: flex; justify-content: flex-end;">
+          <div class="btn1" style="padding-right: 10px;"><button><a href="#login.php">Member Login</a></button></div>
+          <div class="btn1"><button><a href="seminar.php">Request a Demo</a></button></div>
+      <div>
       </div>
     </div>
-  </nav> -->
+  </nav>
+
      
 
             
@@ -271,10 +260,7 @@ Demo</a></button></div>
                 <form method="POST">
                   <div class="formbold-form-title">
                     <h2 class="">Request a demo</h2>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                      eiusmod tempor incididunt.
-                    </p>
+                    
                   </div>
             
                   <div class="formbold-input-flex">
@@ -370,12 +356,12 @@ Demo</a></button></div>
                           </span>
                         </div>
                       </div>
-                      <p style="margin-left:-5px">i agree </p>
-                      <a href="#" style="">By submitting this form, you are agreeing Privacy Policy and Terms of Use.</a>
+                      
+                      <a href="#" style="color:gray">By submitting this form, you are agreeing Privacy Policy and Terms of Use.</a>
                     </label>
                   </div>
             
-                  <button name="submit" class="formbold-btn">Submit</button>
+                  <button name="submit" class="formbold-btn" style="background-color:orange">Submit</button>
                 </form>
               </div>
             </div>
@@ -428,7 +414,7 @@ Demo</a></button></div>
             <div class="footer-2">
               <h3>Want to join as a Doctor?</h3>
  
-              <button class="btn-footer">Sign Up</button>
+              <button class="btn-footer"><a href="requesttherapist.php">Sign Up</a></button>
   
   
             </div>
