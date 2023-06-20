@@ -10,13 +10,19 @@ if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $company = $_POST['company'];
-    $query = "SELECT * FROM employee INNER JOIN company ON employee.cid = company.cid WHERE employee.email = '$email' AND employee.pass = '$password' AND company.name = '$company')";
+    $query = "SELECT * FROM employee INNER JOIN company ON employee.cid = company.cid WHERE employee.email = '$email' AND employee.pass = '$password' AND company.name = '$company'";
     $result = sqlsrv_query($conn, $query);
 
-    if (sqlsrv_has_rows($result) > 0) {
-        $row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC);
-        $employeeID = $row['eid'];
+    if ($result === false) {
+        echo "Query Error: " . print_r(sqlsrv_errors(), true);
+        exit();
+    }
 
+    if (sqlsrv_has_rows($result) > 0) {
+        $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+        $employeeID = $row['eid'];
+        
+    
         // Check if the employee's account should be marked as inactive
         $sessionQuery = "SELECT COUNT(*) AS numSessions FROM booking WHERE eid = '$employeeID' AND attendancestatus = 'attended'";
         $sessionResult =sqlsrv_query($conn, $sessionQuery);
