@@ -14,27 +14,121 @@ $conn = OpenConnection();
         <script src="js/bootstrap.min.js"></script>
         <script src="js/popper.min.js"></script>
         <title>Employee Schedule</title>
-        <style>  /*navbar*/
-  .nav-buttons{margin-right: 40px; padding-bottom: 10px;margin-top:15px}
-.btn1 button {
-    background-color: orange;
-    width: 150px;
-    height: 40px;
-    border-radius: 8px;
-    border-style: none;
-    margin-left: 10px;
+        <style>          
+  /* navbar */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0px;
+    font-family: 'segoe ui';
+  }
+  
+  .nav {
+    height: 50px;
+    width: 100%;
+    background-color: #4d4d4d;
+    position: relative;
+  }
+  
+  .nav > .nav-header {
+    display: inline;
+  }
+  
+  .nav > .nav-header > .nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: #fff;
+    padding: 10px 10px 10px 10px;
+  }
+  
+  .nav > .nav-btn {
+    display: none;
+    
+  }
+  
+  .nav > .nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+  }
+  
+  .nav > .nav-links > a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: #efefef;
+  }
+  
+  .nav > .nav-links > a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav > #nav-check {
+    display: none;
+  }
+  
+  @media (max-width:600px) {
+    .nav > .nav-btn {
+      display: inline-block;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+    }
+    
 
-
-}
-
-.btn1 button:hover{background-color: #fad263;}
-.btn1 button a{text-decoration: none;
-color: white;}
-.navbar{padding:10px}
-.navbar-nav{margin-left: 70px;}
-.nav-link{color:white;font-size:18px;margin-left: 20px;margin-top:15px}
- .nav-item .nav-link{color:white;}
- .nav-item .nav-link:hover{color:rgb(185, 185, 185)}
+    .nav > .nav-btn > label {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      padding: 13px;
+    }
+    .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .nav > .nav-btn > label > span {
+      display: block;
+      width: 25px;
+      height: 10px;
+      border-top: 2px solid #eee;
+    }
+    .nav > .nav-links {
+      position: absolute;
+      display: block;
+      width: 100%;
+      background-color:#164277;
+      height: 0px;
+      transition: all 0.3s ease-in;
+      overflow-y: hidden;
+      top: 50px;
+      left: 0px;
+      margin-left:-5px;
+    }
+    .nav > .nav-links > a {
+      display: block;
+      width: 100%;
+    }
+    .nav > #nav-check:not(:checked) ~ .nav-links {
+      height: 0px;
+    }
+    .nav > #nav-check:checked ~ .nav-links {
+      height: calc(100vh - 50px);
+      overflow-y: auto;
+    }
+  }
+  .nav-title{margin-left: 80px;}
+  .btn{margin-left: 20px;}
+  .nav-links{padding-left:20px;margin-left: 20px;}
+  .btn1{background-color: orange;
+  width: 150px;
+  height: 40px;
+  border-radius: 8px;
+  border-style: none;
+  margin-left: 12px;
+  color:white;
+  font-size:15px}
+.btn1:hover{background-color: #fad263;}
 
 
     /*testimonial*/
@@ -82,55 +176,37 @@ color: white;}
 <body>
     
          <!--navbar-->
-
-         <nav class="navbar navbar-expand-lg navbar-dark
-"style="background-color:#1e6091;">
-    <div class="container-fluid">
-      <h2><a href="" class="logo" style="color: white; font-weight:
-bold; padding-left: 40px;text-decoration: none;">cure4soul<span
-class="dot" style="color: #00c3da;">.</span></a></h2>
-      <button class="navbar-toggler" type="button"
-data-bs-toggle="collapse" data-bs-target="#navbarText"
-aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
-navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page"
-href="#">How We Work</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Wellness</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Resources</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Who Are We</a>
-          </li>
+<!--navbar--> 
+<div class="nav" style="height:60px;background-color:#164277;">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+          <div class="nav-title">
+          <h2><a href="" class="logo" style="color: white;font-size:30px; font-weight: bold; padding-left: 20px;text-decoration: none;">cure4soul<span class="dot" style="color: #00c3da;">.</span></a></h2>
+          </div>
+        </div>
+        <div class="nav-btn">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
         
-          <li class="nav-item">
-            <a class="nav-link" href="employeesessions.php">My sessions</a>
-          </li>
+        <div class="nav-links">
+          <a href="" target="_blank">How We Work</a>
+          <a href="" target="_blank">Wellness</a>
+          <a href="" target="_blank">Resources</a>
+          <a href="complaine.php" >Add Complain</a>
         
-          <li class="nav-item">
-            <a class="nav-link" href="complaine.php">Add Complain</a>
-          </li>
+          <div class="btn" style="margin-right:20px;">
+            <button class="btn1" ><a href="login.php" style="text-decoration:none;color:white">Member Login</a></button>
+          <button  class="btn1"><a href="requestdemo.php" style="text-decoration:none;color:white">Request Demo</a></button>
+          <button  style="width:70px;height:40px;background-color:#dddd"><a href="seminar.php"> <a href="home.html" style="color:white;text-decoration:none">Log Out </a></button>
+          </div>
+        </div>
         
-        <div class="nav-buttons" style="display: flex;
-justify-content: flex-end;">
-          <div class="btn1" style="padding-right: 10px;"><button><a
-href="#login.php">Member Login</a></button></div>
-          <div class="btn1"><button><a href="seminar.php">Request a
-Demo</a></button></div>
-          <div class="btn1"><button style="width:75px;height:40px;background-color:#dddd"> <a href="seminar.php"> <a href="home.html">Log Out </a></button></div>
-      <div>
       </div>
-    </div>
-  </nav>
-
+     
 	
 <section class="test" style="margin-top: 10px;">
     <div class="container">
@@ -303,7 +379,7 @@ if (isset($_POST['book'])) {
         <div class="footer-2">
           <h3>Want to join as a Doctor?</h3>
           
-          <button class="btn-footer">Sign Up</button>
+          <button class="btn-footer"><a href="requesttherapist.php" style="color:white;text-decoration: none;">sign up</a></button>
 
 
         </div>
