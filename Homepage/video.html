@@ -9,11 +9,13 @@
             margin: 0;
             padding: 20px;
             text-align: center;
-            background-color: #f0f7f8;
+            background-color: #bfdce5;
           }
           
-          h1 {
-            color: #333;
+          .fon {
+            color: #1e6091;
+            font-size: 30px;
+            
           }
           
           #videoContainer {
@@ -52,10 +54,32 @@
           button:hover {
             background-color: #555;
           }
+          #hangupButton{
+  background-color: red;
+}
+
+          video{
+            border-color:teal;
+            background-color: white;
+            
+          }
+          #remoteVideo{
+            margin-left: 20px;
+            height: 450px;
+            width: 500px;
+          }
+          #localVideo{
+            height: 450px;
+            width: 500px;
+          }
+          #startButton{
+            background-color:green;
+          }
+          
         </style>
       </head>
       <body>
-        <h2 style="color:red">Meeng</h2>
+        <h2 class="fon">Video Conference</h2>
         
         <div id="videoContainer">
           <video id="localVideo" autoplay muted></video>

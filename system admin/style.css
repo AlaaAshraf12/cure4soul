@@ -206,6 +206,7 @@ h6:hover{
     margin-left: 200px;
     background-color:transparent;
     margin-top: 50px;
+    padding-top: 50px;
 }
 .about2{
     margin-top: 80px;
@@ -416,3 +417,5 @@ p{
 .up h2{
     padding-top: 10px;
 }
+
+

@@ -9,6 +9,7 @@
             margin: 0;
             padding: 20px;
             text-align: center;
+            background-color: #bfdce5;
           }
           
           h1 {
@@ -51,21 +52,52 @@
           button:hover {
             background-color: #555;
           }
+#hangupButton{
+  background-color: red;
+}
+
+          video{
+            border-color:teal;
+            background-color: white;
+            
+          }
+          #remoteVideo{
+            margin-left: 20px;
+            height: 450px;
+            width: 500px;
+          }
+          #localVideo{
+            height: 450px;
+            width: 500px;
+          }
+          #startButton{
+            background-color:green;
+          }
+          .fon{
+            color: #1e6091;
+            
+          }
+          
         </style>
+
       </head>
       <body>
-        <h1>Video Conference</h1>
+        <div class="videomain">
+          <h1 class="fon">Video Conference</h1>
         
-        <div id="videoContainer">
-          <video id="localVideo" autoplay muted></video>
-          <video id="remoteVideo" autoplay></video>
+          <div id="videoContainer">
+            <video id="localVideo" autoplay muted></video>
+            <video id="remoteVideo" autoplay></video>
+          </div>
+ 
+          <div id="controls">
+            <button id="startButton">Start</button>
+            <button id="callButton" disabled>audio</button>
+            <button id="hangupButton" disabled>End</button>
+          </div>
         </div>
-        
-        <div id="controls">
-          <button id="startButton">Start</button>
-          <button id="callButton" disabled>Call</button>
-          <button id="hangupButton" disabled>Hang Up</button>
-        </div>
+      
+       
         
 <body>
   <script>
