@@ -136,9 +136,8 @@ Demo</a></button></div>
     <div class="container">
         <div class="test-details" style="display: flex;justify-content:center;">
             <div class="test-left" style="background-color:#f8f6f4">
-                <img src="docc.jpg">
-            </div>
-            <div class="test-right" style="background-color:#f8f6f4">
+                
+           
             <?php
 // Assuming you have a MySQL database connection established
 
@@ -154,24 +153,25 @@ $emid = $row['eid'];
 $thid = $row['tid'];
 
 // Retrieve the therapist's schedule from the sessions table
-$quer = "SELECT name, email, qualif FROM therapist WHERE tid = '$thid'";
+$quer = "SELECT name, email, qualif,image FROM therapist WHERE tid = '$thid'";
 $resul = sqlsrv_query($conn, $quer);
 
 // Display the schedule in a table format
 if (sqlsrv_has_rows($resul)) {
     while ($row = sqlsrv_fetch_array($resul, SQLSRV_FETCH_ASSOC)) {
-        echo "<h3>" . $row['name'] . "</h3><br>";
+        echo '<img src="' .$row['image'] . '">';
+
+?> </div>
+<div class="test-right" style="background-color:#f8f6f4">
+            </div>
+         <?php   echo "<h3>" . $row['name'] . "</h3><br>";
         echo "<p>" . $row['email'] . "</p><br>"; 
         echo "<p>" . $row['qualif'] . "</p><br>";
     }
 
 } else {
     echo "No schedule found.";
-}
-
-?>
-            </div>
-
+}?>
         </div>
     </div>
 </section>

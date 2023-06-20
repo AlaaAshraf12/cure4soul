@@ -88,7 +88,7 @@ color: white;}
             <div class="Profile-content" style="display: flex;justify-content: center;">
                <div class="profile-left" style="width:40%;height:700px;background-color:#f8f6f4;padding-top: 100px;">
                 <div class="section-img">
-                    <img src="doccc.jpg" style="border-radius: 50%; width: 40%;margin-left: 40px;margin-top: 20px;">
+                   
                     <?php
                     $conn = OpenConnection();
 // Assuming you have a MySQL database connection established
@@ -98,11 +98,12 @@ color: white;}
 $therapistEmail = $_SESSION['name']; // Modify this according to your authentication system
 
 // Retrieve the therapist's ID based on their email
-$query = "SELECT tid FROM therapist WHERE email = '$therapistEmail'";
+$query = "SELECT tid , image FROM therapist WHERE email = '$therapistEmail'";
 $result = sqlsrv_query($conn, $query);
 $row =sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC);
 $therapistId = $row['tid'];
-
+$Image=$row['image'];
+echo '<img src="' . $Image . '" style="border-radius: 50%; width: 40%; margin-left: 40px; margin-top: 20px;">';
 // Retrieve the therapist's schedule from the sessions table
 $query = "SELECT name,email,phone,qualif FROM therapist WHERE tid = $therapistId";
 $result = sqlsrv_query($conn, $query);
