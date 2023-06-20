@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
             $problemsString = implode(", ", $selectedProblems);
 
             // Insert the selected problems into the complain table
-            $co = "INSERT INTO complain (problem, details, eid) VALUES ('$problemsString', '$b', '$emid')";
+            $co = "INSERT INTO complain (problem, details, eid,  datecom) VALUES ('$problemsString', '$b', '$emid', GETDATE())";
             $result1 = sqlsrv_query($conn, $co);
             
             if ($result1 !== false) {
