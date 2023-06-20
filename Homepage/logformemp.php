@@ -9,7 +9,8 @@ if (!isset($_SESSION)) {
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $query = "SELECT * FROM employee WHERE email = '$email' AND pass = '$password'";
+    $company = $_POST['company'];
+    $query = "SELECT * FROM employee INNER JOIN company ON employee.cid = company.cid WHERE employee.email = '$email' AND employee.pass = '$password' AND company.name = '$company')";
     $result = sqlsrv_query($conn, $query);
 
     if (sqlsrv_has_rows($result) > 0) {

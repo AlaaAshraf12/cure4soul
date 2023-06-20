@@ -30,8 +30,8 @@
 							
 							<form method="POST" action="logformemp.php" class="signin-form">
                             <div class="form-group mt-3">
-			      			<input type="text" class="form-control" required>
-			      			<label class="form-control-placeholder" for="name" id="company" name="company" required>Company Name</label>
+                            <input type="text" class="form-control" id="company" name="company" required>
+			      			<label class="form-control-placeholder" for="Email">Company Name</label>
 			      		</div>
 			      		<div class="form-group mt-3">
 			      			<input type="email" class="form-control" id="email" name="email" required>
