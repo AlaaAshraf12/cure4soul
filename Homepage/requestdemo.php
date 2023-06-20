@@ -158,8 +158,9 @@ if ($insertCompanyResult !== false && sqlsrv_has_rows($insertCompanyResult)) {
         <script src="js/bootstrap.min.js"></script>
         <script src="js/popper.min.js"></script>
      <style>
-      
-      * {
+          
+  /* navbar */
+* {
     box-sizing: border-box;
   }
   
@@ -240,12 +241,13 @@ if ($insertCompanyResult !== false && sqlsrv_has_rows($insertCompanyResult)) {
       position: absolute;
       display: block;
       width: 100%;
-      background-color: #333;
+      background-color:#164277;
       height: 0px;
       transition: all 0.3s ease-in;
       overflow-y: hidden;
       top: 50px;
       left: 0px;
+      margin-left:-5px;
     }
     .nav > .nav-links > a {
       display: block;
@@ -259,9 +261,20 @@ if ($insertCompanyResult !== false && sqlsrv_has_rows($insertCompanyResult)) {
       overflow-y: auto;
     }
   }
-  .nav-title{margin-left: 100px;}
-  .btn{margin-left: 100px;}
+  .nav-title{margin-left: 80px;}
+  .btn{margin-left: 60px;}
   .nav-links{padding-left:20px;margin-left: 20px;}
+  .btn1{background-color: orange;
+  width: 150px;
+  height: 40px;
+  border-radius: 8px;
+  border-style: none;
+  margin-left: 12px;
+  color:white;
+  font-size:15px}
+.btn1:hover{background-color: #fad263;}
+
+
 /*footer*/
 .footer{margin-top:70px}
 .footer-text{padding-right: 5px;}
@@ -301,36 +314,39 @@ color:white}
 
 
     <body style="background-color:#f0f7f8" >
-    <nav class="navbar navbar-expand-lg navbar-dark "style="background-color:#1e6091;">
-    <div class="container-fluid">
-      <h2><a href="" class="logo" style="color: white; font-weight: bold; padding-left: 40px;text-decoration: none;">cure4soul<span class="dot" style="color: #00c3da;">.</span></a></h2>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">How We Work</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Wellness</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Resources</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Who Are We</a>
-          </li>
-        </ul>
-        <div class="nav-buttons" style="display: flex; justify-content: flex-end;">
-          <div class="btn1" style="padding-right: 10px;"><button><a href="#login.php">Member Login</a></button></div>
-          <div class="btn1"><button><a href="seminar.php">Request a Demo</a></button></div>
-      <div>
+      <!--navbar--> 
+      <div class="nav" style="height:60px;background-color:#164277">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+          <div class="nav-title">
+            
+            <h2><a href="" class="logo" style="color: white;font-size:30px; font-weight: bold; padding-left: 20px;text-decoration: none;">cure4soul<span class="dot" style="color: #00c3da;">.</span></a></h2>
+          </div>
+        </div>
+        <div class="nav-btn">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+        
+        <div class="nav-links">
+          <a href="" target="_blank">How We Work</a>
+          <a href="" target="_blank">Wellness</a>
+          <a href="" target="_blank">Resources</a>
+          <a href="" target="_blank">Who Are We</a>
+          <a href="" target="_blank">Support</a>
+        
+          <div class="btn" style="margin-right:20px;">
+            <button class="btn1" ><a href="login.php" style="text-decoration:none;color:white">Member Login</a></button>
+          <button  class="btn1"><a href="requestdemo.php" style="text-decoration:none;color:white">Request Demo</a></button>
+          </div>
+        </div>
+        
       </div>
-    </div>
-  </nav>
-
      
+
 
             
             <div class="formbold-main-wrapper">
@@ -342,7 +358,7 @@ color:white}
             
                 <form method="POST">
                   <div class="formbold-form-title">
-                    <h2 class="">Request a demo</h2>
+                    <h2 class="" style="text-align:center">Request a demo</h2>
                     
                   </div>
             
@@ -497,7 +513,7 @@ color:white}
             <div class="footer-2">
               <h3>Want to join as a Doctor?</h3>
  
-              <button class="btn-footer"><a href="requesttherapist.php">Sign Up</a></button>
+              <button class="btn-footer"><a href="requesttherapist.php" style="text-decoration:none;color:white">Sign Up</a></button>
   
   
             </div>
@@ -510,7 +526,7 @@ color:white}
           <div class="footer-1" style="margin: 10px;">
             <div class="line" style="background-color:gainsboro; width:
   1000px;height:1px;margin:auto;"></div>
-  <div class="copyright" style="text-align: center;">
+  <div class="copyright" style="text-align: center;font-size:13px">
         © Copyright Cure4soul. All Rights Reserved<br>
         Designed by <span style="color:#1e6091">Cure4soul Team</span>
     </div>

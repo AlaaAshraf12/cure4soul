@@ -1,0 +1,206 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="request.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="nav.css">
+        <link rel="styleshteet" href="css/all.min.css">
+        <link rel="stylesheet" href="css/fontawesome.min.css">
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/popper.min.js"></script>
+     <style>
+          
+  /* navbar */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0px;
+    font-family: 'segoe ui';
+  }
+  
+  .nav {
+    height: 50px;
+    width: 100%;
+    background-color: #4d4d4d;
+    position: relative;
+  }
+  
+  .nav > .nav-header {
+    display: inline;
+  }
+  
+  .nav > .nav-header > .nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: #fff;
+    padding: 10px 10px 10px 10px;
+  }
+  
+  .nav > .nav-btn {
+    display: none;
+    
+  }
+  
+  .nav > .nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+  }
+  
+  .nav > .nav-links > a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: #efefef;
+  }
+  
+  .nav > .nav-links > a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav > #nav-check {
+    display: none;
+  }
+  
+  @media (max-width:600px) {
+    .nav > .nav-btn {
+      display: inline-block;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+    }
+    
+
+    .nav > .nav-btn > label {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      padding: 13px;
+    }
+    .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .nav > .nav-btn > label > span {
+      display: block;
+      width: 25px;
+      height: 10px;
+      border-top: 2px solid #eee;
+    }
+    .nav > .nav-links {
+      position: absolute;
+      display: block;
+      width: 100%;
+      background-color:#164277;
+      height: 0px;
+      transition: all 0.3s ease-in;
+      overflow-y: hidden;
+      top: 50px;
+      left: 0px;
+      margin-left:-5px;
+    }
+    .nav > .nav-links > a {
+      display: block;
+      width: 100%;
+    }
+    .nav > #nav-check:not(:checked) ~ .nav-links {
+      height: 0px;
+    }
+    .nav > #nav-check:checked ~ .nav-links {
+      height: calc(100vh - 50px);
+      overflow-y: auto;
+    }
+  }
+  .nav-title{margin-left: 80px;}
+  .btn{margin-left: 60px;}
+  .nav-links{padding-left:20px;margin-left: 20px;}
+  .btn1{background-color: orange;
+  width: 150px;
+  height: 40px;
+  border-radius: 8px;
+  border-style: none;
+  margin-left: 12px;
+  color:white;
+  font-size:15px}
+.btn1:hover{background-color: #fad263;}
+
+
+/*footer*/
+.footer{margin-top:70px}
+.footer-text{padding-right: 5px;}
+.footer-text h3{
+    font-size:28px;
+
+}
+
+.footer-2 h3{font-size: 24px;
+    color:rgb(37, 37, 37)
+
+}
+.footer-2{color:rgb(37, 37, 37);
+    text-decoration: none;
+    font-size: 16px;}
+.footer-2 h5 a{color:rgb(37, 37, 37);
+    text-decoration: none;
+    font-size: 16px;
+
+}
+.btn-footer{width:100px;height:40px;
+border-radius: 6px;
+border-style: none;
+background-color: #1e6091;
+color:white}
+.btn-footer:hover{background-color: #337ab1;}
+
+
+    
+   
+
+     
+</style>
+</head>
+
+
+
+
+    <body style="background-color:#f0f7f8" >
+      <!--navbar--> 
+      <div class="nav" style="height:60px;background-color:#164277">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+          <div class="nav-title">
+            
+            <h2><a href="" class="logo" style="color: white;font-size:30px; font-weight: bold; padding-left: 20px;text-decoration: none;">cure4soul<span class="dot" style="color: #00c3da;">.</span></a></h2>
+          </div>
+        </div>
+        <div class="nav-btn">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+        
+        <div class="nav-links">
+          <a href="" target="_blank">How We Work</a>
+          <a href="" target="_blank">Wellness</a>
+          <a href="" target="_blank">Resources</a>
+          <a href="" target="_blank">Who Are We</a>
+          <a href="" target="_blank">Support</a>
+        
+          <div class="btn" style="margin-right:20px;">
+            <button class="btn1" ><a href="login.php" style="text-decoration:none;color:white">Member Login</a></button>
+          <button  class="btn1"><a href="requestdemo.php" style="text-decoration:none;color:white">Request Demo</a></button>
+          </div>
+        </div>
+        
+      </div>
+     
+
+    </body>
+    </html>

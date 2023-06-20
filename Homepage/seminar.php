@@ -299,7 +299,7 @@ color:white}
           <a href="https://codepen.io/jo_Geek/" target="_blank">Codepen</a>
           <a href="https://jsfiddle.net/user/jo_Geek/" target="_blank">JsFiddle</a>
         
-          <div class="btn">
+          <div class="btn" style="margin-right:40px">
             <button>member login</button>
           <button>member login</button>
           </div>

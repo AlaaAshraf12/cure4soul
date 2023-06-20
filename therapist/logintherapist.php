@@ -25,7 +25,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-7 col-lg-5">
 					<div class="wrap">
-						<div class="img" style="background-image: url(images/)">
+						<div class="img" style="background-image: url(pexels-alex-green-5699431.jpg)">
                     </div>
 						<div class="login-wrap p-4 p-md-5">
 							
@@ -55,7 +55,7 @@
 									
 		            </div>
 		          </form>
-		          <p class="text-center" >Not a member? <a data-toggle="tab" href="#signup" style="color:#1e6091;">Sign Up</a></p>
+		          
 		        </div>
 		      </div>
 				</div>
