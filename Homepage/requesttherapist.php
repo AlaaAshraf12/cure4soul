@@ -43,11 +43,11 @@ if(isset($_POST['sub'])){
 					<img src="images/pexels-cottonbro-studio-4098167.jpg" alt="">
 				</div>
 				<form action="" method='post'>
-					<h3>Registration Form</h3>
+					<h3 style="color:#164277">Registration Form</h3>
 					
 					<div class="form-wrapper">
 						<input type="text" placeholder="Username" class="form-control" name="name" required>
-						<i class="zmdi zmdi-account"></i>
+						<i class="zmdi zmdi-account" ></i>
 					</div>
 					<div class="form-wrapper">
 						<input type="text" placeholder="Email Address" class="form-control" name="email" required>
@@ -75,12 +75,12 @@ if(isset($_POST['sub'])){
 						<i class="zmdi zmdi-account"></i>
 					</div>
 					<div class="form-wrapper">
-						<p>CV</p>
+						<p style="color:#164277">CV</p>
 						<input type="file" placeholder="CV" class="form-control" name="cv">
-						<i class="zmdi zmdi-account"></i>
+						<i class="zmdi zmdi-account" ></i>
 					</div>
 					<button name="sub" type="submit">Register
-						<i class="zmdi zmdi-arrow-right"></i>
+						<i class="zmdi zmdi-arrow-right" style="color:white"></i>
 					</button>
 				</form>
 			</div>
@@ -96,7 +96,7 @@ if(isset($_POST['sub'])){
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
-
+.zmdi{color:#164277}
 body {
   font-family: "Poppins-Regular";
   color: #333;
@@ -105,7 +105,7 @@ body {
 
 input, textarea, select, button {
   font-family: "Poppins-Regular";
-  color: #333;
+  color:#164277;
   font-size: 13px; }
 
 p, h1, h2, h3, h4, h5, h6, ul {
