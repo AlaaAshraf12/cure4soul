@@ -139,8 +139,8 @@ if (isset($_POST['Submit'])) {
   <script src="js/bootstrap.min.js"></script>
   <script src="js/popper.min.js"></script>
   <style>
-/* navbar */
-* {
+  /* navbar */
+  * {
     box-sizing: border-box;
   }
   
@@ -221,12 +221,13 @@ if (isset($_POST['Submit'])) {
       position: absolute;
       display: block;
       width: 100%;
-      background-color: #333;
+      background-color:#164277;
       height: 0px;
       transition: all 0.3s ease-in;
       overflow-y: hidden;
       top: 50px;
       left: 0px;
+      margin-left:-5px;
     }
     .nav > .nav-links > a {
       display: block;
@@ -240,9 +241,18 @@ if (isset($_POST['Submit'])) {
       overflow-y: auto;
     }
   }
-  .nav-title{margin-left: 100px;}
-  .btn{margin-left: 100px;}
+  .nav-title{margin-left: 80px;}
+  .btn{margin-left: 60px;}
   .nav-links{padding-left:20px;margin-left: 20px;}
+  .btn1{background-color: orange;
+  width: 150px;
+  height: 40px;
+  border-radius: 8px;
+  border-style: none;
+  margin-left: 12px;
+  color:white;
+  font-size:15px}
+.btn1:hover{background-color: #fad263;}
 
 
 .footer{margin-top:70px}
@@ -270,18 +280,18 @@ border-style: none;
 background-color: #1e6091;
 color:white}
 .btn-footer:hover{background-color: #337ab1;}
+label{font-size:15px;color:#1e6091}
 
 </style>  
   </head>
     <body>
-              
-       <!--navbar--> 
-       <div class="nav" style="height:60px">
+    <!--navbar--> 
+    <div class="nav" style="height:60px;background-color:#164277">
         <input type="checkbox" id="nav-check">
         <div class="nav-header">
           <div class="nav-title">
             
-            <h2><a href="" class="logo" style="color: white; font-weight: bold; padding-left: 30px;text-decoration: none;">cure4soul<span class="dot" style="color: #00c3da;">.</span></a></h2>
+            <h2><a href="home.html" class="logo" style="color: white;font-size:30px; font-weight: bold; padding-left: 20px;text-decoration: none;">cure4soul<span class="dot" style="color: #00c3da;">.</span></a></h2>
           </div>
         </div>
         <div class="nav-btn">
@@ -293,118 +303,22 @@ color:white}
         </div>
         
         <div class="nav-links">
-          <a href="//github.io/jo_geek" target="_blank">Github</a>
-          <a href="http://stackoverflow.com/users/4084003/" target="_blank">Stackoverflow</a>
-          <a href="https://in.linkedin.com/in/jonesvinothjoseph" target="_blank">LinkedIn</a>
-          <a href="https://codepen.io/jo_Geek/" target="_blank">Codepen</a>
-          <a href="https://jsfiddle.net/user/jo_Geek/" target="_blank">JsFiddle</a>
+          <a href="" target="_blank">How We Work</a>
+          <a href="" target="_blank">Wellness</a>
+          <a href="" target="_blank">Resources</a>
+          <a href="" target="_blank">Who Are We</a>
+          <a href="" target="_blank">Support</a>
         
-          <div class="btn" style="margin-right:40px">
-            <button>member login</button>
-          <button>member login</button>
+          <div class="btn" style="margin-right:20px;">
+            <button class="btn1" style=""><a href="login.php" style="text-decoration:none;color:white">Member Login</a></button>
+          <button  class="btn1"><a href="requestdemo.php" style="text-decoration:none;color:white">Request Demo</a></button>
           </div>
         </div>
         
       </div>
+     
+
     
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark
-"style="background-color:#1e6091;">
-    <div class="container-fluid">
-      <h2><a href="" class="logo" style="color: white; font-weight:
-bold; padding-left: 40px;text-decoration: none;">cure4soul<span
-class="dot" style="color: #00c3da;">.</span></a></h2>
-      <button class="navbar-toggler" type="button"
-data-bs-toggle="collapse" data-bs-target="#navbarText"
-aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
-navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page"
-href="#">How We Work</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Wellness</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Resources</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Who Are We</a>
-          </li>
-        </ul>
-        <div class="nav-buttons" style="display: flex;
-justify-content: flex-end;">
-          <div class="btn1" style="padding-right: 10px;"><button><a
-href="#login.php">Member Login</a></button></div>
-          <div class="btn1"><button><a href="seminar.php">Request a
-Demo</a></button></div>
-<div>
-      </div>
-    </div>
-  </nav>     -->
-        <!-- <div class="parent">
-            <div class="container">
-                <div class=" row py-5 g-3 "></div>
-                <div class="col-md-6 child py-4">
-                    <div class="inner">
-                <img src="images/pexels-photo-4065133.jpeg" alt="profile">
-           </div>
-                <div class="layer"></div>
-        
-               </div> 
-                
-            
-            
-                <div class="col-md-6 py-4 child">
-                    <form method='post'>
-                        <div class="form-group">
-                            <label for="company">Company name :</label>
-                            <input type="text" class="form-control" id="company" name="company" required>
-                          </div>
-                        <div class="form-group">
-                          <label for="email">Email</label>
-                          <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="phone">Phone</label>
-                          <input type="text" class="form-control" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                          <label for="duration">Duration</label>
-                          <input type="text" class="form-control" id="duration" name="duration" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="datetime">Date time:</label>
-                            <input type="datetime-local" class="form-control" id="datetimne" name="dt" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="topic">Topic:</label>
-                            <input type="text" class="form-control" id="topic" name="topic" required>
-                              
-                          </div>
-                          <div class="form-group">
-                            <label for="numparticipant">Number of Participant:</label>
-                            <input type="text" class="form-control" id="numofpart" name="numofpart" required>
-                          </div>
-
-                        
-                        <div class="checkbox">
-                          <label><input type="checkbox"> Remember me</label>
-                        </div>
-                        <button name="Submit" type="submit" class="btn btn-primary">Submit</button>
-                      </form>
-        
-            </div> 
-        </div>
-            <div class="crl"></div>
-        
-        </div>
- -->
-
         <div class="request"style="background-color: #f0f7f8">
           <div class="container">
             <div class="row" style="background-color: #f0f7f8">
@@ -449,17 +363,15 @@ Demo</a></button></div>
                           </div>
 
                         
-                        <div class="checkbox">
-                          <label><input type="checkbox"> Remember me</label>
-                        </div>
-                        <button name="Submit" type="submit" class="btn btn-primary">Submit</button>
+                        <div class="" style="padding-top:20px;padding-left:100px"><button name="Submit" type="submit" class="btn btn-primary" style="width:160px;height:40px;background-color:orange;border-color:orange;font-size:12px">Submit</button></div>
                       </form>
               </div>
             </div>
           </div>
         </div>
-       <!--footer-->
-  <section class="footer" style="width:100% ;height:50%;padding-top:
+           <!--footer-->
+  
+           <section class="footer" style="width:100% ;height:50%;padding-top:
   70px;background-color:#fda95f;">
       <div class="container-fluid" style="background-color: #fda95f;">
         <div class="row g-0" style="width:90%;margin-left: 40px;">
@@ -502,8 +414,8 @@ Demo</a></button></div>
           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
             <div class="footer-2">
               <h3>Want to join as a Doctor?</h3>
-            
-              <button class="btn-footer">Sign Up</button>
+ 
+              <button class="btn-footer"><a href="requesttherapist.php" style="text-decoration:none;color:white">Sign Up</a></button>
   
   
             </div>
@@ -516,7 +428,7 @@ Demo</a></button></div>
           <div class="footer-1" style="margin: 10px;">
             <div class="line" style="background-color:gainsboro; width:
   1000px;height:1px;margin:auto;"></div>
-  <div class="copyright" style="text-align: center;">
+  <div class="copyright" style="text-align: center;font-size:13px">
         © Copyright Cure4soul. All Rights Reserved<br>
         Designed by <span style="color:#1e6091">Cure4soul Team</span>
     </div>
@@ -525,5 +437,8 @@ Demo</a></button></div>
     </div>
 
     </section>
+
+
+         
     </body>
 </html>

@@ -320,7 +320,7 @@ color:white}
         <div class="nav-header">
           <div class="nav-title">
             
-            <h2><a href="" class="logo" style="color: white;font-size:30px; font-weight: bold; padding-left: 20px;text-decoration: none;">cure4soul<span class="dot" style="color: #00c3da;">.</span></a></h2>
+            <h2><a href="home.html" class="logo" style="color: white;font-size:30px; font-weight: bold; padding-left: 20px;text-decoration: none;">cure4soul<span class="dot" style="color: #00c3da;">.</span></a></h2>
           </div>
         </div>
         <div class="nav-btn">

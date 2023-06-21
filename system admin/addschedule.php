@@ -36,9 +36,9 @@ $conn = OpenConnection();
 </head>
 
 
-<body>
-  <h2>Add Weekly Schedule</h2>
-  <form method="POST">
+<body style="background-color: #f0f7f8;">
+  <h2 style="text-align:center;color:#164277">Add Weekly Schedule</h2>
+  <form method="POST" style="border-style:solid; width:500px; height:500px;border-color:gray">
     <label for="therapist">Therapist:</label>
     <select name="therapist" id="therapist">
       <?php

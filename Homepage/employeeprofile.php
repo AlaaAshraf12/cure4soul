@@ -175,7 +175,7 @@ $conn = OpenConnection();
 </head>
 <body>
     
-         <!--navbar-->
+       
 <!--navbar--> 
 <div class="nav" style="height:60px;background-color:#164277;">
         <input type="checkbox" id="nav-check">
