@@ -61,6 +61,7 @@ if (isset($_POST['bookingId']) && isset($_POST['action'])) {
 <head>
     <title>Booked Sessions</title>
     <style>
+        body{background-color:#f0f7f8}
         table {
             border-collapse: collapse;
             width: 100%;
@@ -90,7 +91,7 @@ if (isset($_POST['bookingId']) && isset($_POST['action'])) {
     </style>
 </head>
 <body>
-<h2>Booked Sessions</h2>
+<h2 style="text-align:center;color:#164277">Booked Sessions</h2>
     <table>
         <tr>
             <th>Day</th>

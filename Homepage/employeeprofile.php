@@ -180,8 +180,9 @@ $conn = OpenConnection();
 <div class="nav" style="height:60px;background-color:#164277;">
         <input type="checkbox" id="nav-check">
         <div class="nav-header">
-          <div class="nav-title">
-          <h2><a href="" class="logo" style="color: white;font-size:30px; font-weight: bold; padding-left: 20px;text-decoration: none;">cure4soul<span class="dot" style="color: #00c3da;">.</span></a></h2>
+          <div class="nav-title"style="margin-top:6px;">
+          <a href="home.html" target="_blank" style="text-decoration:none;color:white;font-weight:bold">Cure4soul<span class="dot" style="color:
+#00c3da;">.</a>
           </div>
         </div>
         <div class="nav-btn">
@@ -238,9 +239,7 @@ if (sqlsrv_has_rows($resul)) {
         echo '<img src="' .$row['image'] . '">';
 
 ?> </div>
-<div class="test-right" style="background-color:#f8f6f4">
-            </div>
-         <?php   echo "<h3>" . $row['name'] . "</h3><br>";
+<div class="test-right" style="background-color:#f8f6f4">  <?php   echo "<h3>" . $row['name'] . "</h3><br>";
         echo "<p>" . $row['email'] . "</p><br>"; 
         echo "<p>" . $row['qualif'] . "</p><br>";
     }
@@ -248,6 +247,8 @@ if (sqlsrv_has_rows($resul)) {
 } else {
     echo "No schedule found.";
 }?>
+            </div>
+       
         </div>
     </div>
 </section>
