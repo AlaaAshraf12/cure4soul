@@ -195,7 +195,7 @@ $conn = OpenConnection();
         <div class="nav-links">
           <a href="" target="_blank">How We Work</a>
           <a href="" target="_blank">Wellness</a>
-          <a href="" target="_blank">Resources</a>
+          <a href="employeesessions.php" target="_blank">My sessions</a>
           <a href="complaine.php" >Add Complain</a>
         
           <div class="btn" style="margin-right:20px;">
