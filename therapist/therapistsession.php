@@ -54,17 +54,18 @@
             $tid = $therapistRow['tid'];
 
             // Retrieve the booked sessions with pending attendstatus for the therapist
-            $sessionQuery = "SELECT sid, dayy, Time1 FROM sessions WHERE tid = '$tid' AND status = 'booked' AND attendstatus = 'pending'";
+            $sessionQuery = "SELECT sid,date, dayy, Time1 FROM sessions WHERE tid = '$tid' AND status = 'booked' AND attendstatus = 'pending'";
             $sessionResult = sqlsrv_query($conn, $sessionQuery);
 
             while ($sessionRow =sqlsrv_fetch_array($sessionResult,SQLSRV_FETCH_ASSOC)) {
-                $sid = $sessionRow['sid'];
+                $sid=$sessionRow['sid'];
+                $date = $sessionRow['date'];
                 $day = $sessionRow['dayy'];
                 $time = $sessionRow['Time1'];
 
                 echo "<tr>";
                 echo "<td>$day</td>";
-                echo "<td>$sid</td>";
+                echo "<td>$date</td>";
                 echo "<td>$time</td>";
                 echo "<td><button class='button' onclick='updateAttendStatus($sid, this)'>Go Live</button></td>";
                 echo "</tr>";
