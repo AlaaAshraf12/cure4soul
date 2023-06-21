@@ -25,7 +25,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-7 col-lg-5">
 					<div class="wrap">
-						<div class="img" style="background-image: url(images/pexels-alex-green-5699456.jpg)"></div>
+						<div class="img" style="background-image: url(pexels-alex-green-5699456.jpg)"></div>
 						<div class="login-wrap p-4 p-md-5">
 							
 							<form method="POST" action="logformemp.php" class="signin-form">

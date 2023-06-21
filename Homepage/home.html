@@ -2,79 +2,163 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap.min.css">
 
-        <link rel="styleshteet" href="css/all.min.css">
-        <link rel="stylesheet" href="css/fontawesome.min.css">
+        <link rel="styleshteet" href="all.min.css">
+        <link rel="stylesheet" href="fontawesome.min.css">
         <script src="js/bootstrap.min.js"></script>
         <script src="js/popper.min.js"></script>
         <title>cure4soul</title>
-        <style>     .nav-buttons{margin-right: 40px; padding-bottom: 10px;}
-            .btn1 button {
-                background-color: orange;
-                width: 150px;
-                height: 40px;
-                border-radius: 8px;
-                border-style: none;
-                margin-left: 12px;
-
-
+        <style>    /* navbar */
+          * {
+              box-sizing: border-box;
             }
-
-            .btn1 button:hover{background-color: #fad263;}
-            .btn1 button a{text-decoration: none;
-            color: white;}
-            .nav-item{margin-left: -5px;margin-right: -15px;}
-            .navbar-nav{margin-left: 70px;}
-            .nav-links{color:white;font-size:20px}
-             .nav-item .nav-links{color:white}
-             .nav-item .nav-links:hover{color:rgb(185, 185, 185)}
+            
+            body {
+              margin: 0px;
+              font-family: 'segoe ui';
+            }
+            
+            .nav {
+              height: 50px;
+              width: 100%;
+              background-color: #4d4d4d;
+              position: relative;
+            }
+            
+            .nav > .nav-header {
+              display: inline;
+            }
+            
+            .nav > .nav-header > .nav-title {
+              display: inline-block;
+              font-size: 22px;
+              color: #fff;
+              padding: 10px 10px 10px 10px;
+            }
+            
+            .nav > .nav-btn {
+              display: none;
+              
+            }
+            
+            .nav > .nav-links {
+              display: inline;
+              float: right;
+              font-size: 18px;
+            }
+            
+            .nav > .nav-links > a {
+              display: inline-block;
+              padding: 13px 10px 13px 10px;
+              text-decoration: none;
+              color: #efefef;
+            }
+            
+            .nav > .nav-links > a:hover {
+              background-color: rgba(0, 0, 0, 0.3);
+            }
+            
+            .nav > #nav-check {
+              display: none;
+            }
+            
+            @media (max-width:600px) {
+              .nav > .nav-btn {
+                display: inline-block;
+                position: absolute;
+                right: 0px;
+                top: 0px;
+              }
+              
+          
+              .nav > .nav-btn > label {
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                padding: 13px;
+              }
+              .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+                background-color: rgba(0, 0, 0, 0.3);
+              }
+              .nav > .nav-btn > label > span {
+                display: block;
+                width: 25px;
+                height: 10px;
+                border-top: 2px solid #eee;
+              }
+              .nav > .nav-links {
+                position: absolute;
+                display: block;
+                width: 100%;
+                background-color:#164277;
+                height: 0px;
+                transition: all 0.3s ease-in;
+                overflow-y: hidden;
+                top: 50px;
+                left: 0px;
+                margin-left:-5px;
+              }
+              .nav > .nav-links > a {
+                display: block;
+                width: 100%;
+              }
+              .nav > #nav-check:not(:checked) ~ .nav-links {
+                height: 0px;
+              }
+              .nav > #nav-check:checked ~ .nav-links {
+                height: calc(100vh - 50px);
+                overflow-y: auto;
+              }
+            }
+            .nav-title{margin-left: 80px;}
+            .btn{margin-left: 60px;}
+            .nav-links{padding-left:20px;margin-left: 20px;}
+            .btn1{background-color: orange;
+            width: 150px;
+            height: 40px;
+            border-radius: 8px;
+            border-style: none;
+            margin-left: 12px;
+            color:white;
+            font-size:15px}
+          .btn1:hover{background-color: #fad263;}
+          
              </style>
     </head>
     <body>
 
-       <!--navbar-->
-
-       <nav class="navbar navbar-expand-lg position-fixed"
-style="background-color:#1e6091;position: fixed;">
-        <div class="container-fluid">
-            <h2><a href="home.html" class="logo" style="color: white;
-font-weight: bold; padding-left: 40px;text-decoration:
-none;">cure4soul<span class="dot" style="color:
-#00c3da;">.</span></a></h2>
-          <button class="navbar-toggler" type="button"
-data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-aria-controls="navbarSupportedContent" aria-expanded="false"
-aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-links" href="#">How We Work</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-links" href="#">Wellness</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-links" href="#">Resources</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-links" href="#">Who Are We</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-                <div class="nav-buttons" style="display: flex;
-justify-content: flex-end;">
-                    <div class="btn1" style="padding-right:
-10px;"><button><a href="login.php">Member Login</a></button></div>
-                    <div class="btn1"><button><a href="requestdemo.php">Request a Demo</a></button></div>
-                <div>
-            </form>
-          </div>
+     <!--navbar--> 
+     <div class="nav" style="height:60px;background-color:#164277">
+      <input type="checkbox" id="nav-check">
+      <div class="nav-header">
+        <div class="nav-title">
+          
+          <h2><a href="home.html" class="logo" style="color: white;font-size:30px; font-weight: bold; padding-left: 20px;text-decoration: none;">cure4soul<span class="dot" style="color: #00c3da;">.</span></a></h2>
         </div>
-      </nav>
+      </div>
+      <div class="nav-btn">
+        <label for="nav-check">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
+      
+      <div class="nav-links">
+        <a href="" target="_blank">How We Work</a>
+        <a href="" target="_blank">Wellness</a>
+        <a href="" target="_blank">Resources</a>
+        <a href="" target="_blank">Who Are We</a>
+        <a href="" target="_blank">Support</a>
+      
+        <div class="btn" style="margin-right:20px;">
+          <button class="btn1" style=""><a href="login.php" style="text-decoration:none;color:white">Member Login</a></button>
+        <button  class="btn1"><a href="requestdemo.php" style="text-decoration:none;color:white">Request Demo</a></button>
+        </div>
+      </div>
+      
+    </div>
 
 
 
@@ -93,7 +177,7 @@ aria-label="Slide 2"></button>
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="col-md-12 header" style="background-image:
-url(images/pexels-alex-green-5699456.jpg);">
+url(pexels-alex-green-5699456.jpg);">
 
                 <div class="layer-home">
                    <div class="home-text">
@@ -107,7 +191,7 @@ need happy and healthy environment</h1>
           </div>
           <div class="carousel-item">
             <div class="col-md-12 header" style="background-image:
-url(images/photo_2023-06-20_11-34-11.jpg);">
+url(photo_2023-06-20_11-34-11.jpg);">
 
 
 <div class="layer-home">
@@ -147,7 +231,7 @@ data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
      <div class="row" >
        <div class="col-xl-6 col-lg-6 col-sm-12">
         <div class="demo-left">
-          <img src="images/therapy1.jpg" style="width: 100%;margin:
+          <img src="therapy1.jpg" style="width: 100%;margin:
 auto;padding-top: 45px;">
       </div>
 
@@ -185,7 +269,7 @@ demo</a></button></div>
       <div class="col-xl-4 col-lg-4 col-sm-12 ">
         <div class="div-space" style="padding: 15px;">
           <div class="service-info">
-              <div class="service-img"><img src="images/how1.png"></div>
+              <div class="service-img"><img src="how1.png"></div>
               <h2 style="margin-left: 20px;"> We listen</h2>
 
               <p>We do not tell you what the right choice is<br> for
@@ -197,7 +281,7 @@ demo</a></button></div>
       <div class="col-xl-4 col-lg-4 col-sm-12 ">
         <div class="div-space" style="padding: 15px;">
           <div class="service-info">
-              <div class="service-img"><img src="images/how1.png"></div>
+              <div class="service-img"><img src="how2.png"></div>
               <h2 style="margin-left: 20px;">We are honest</h2>
 
               <p>We peer check every recommendation,<br>
@@ -209,7 +293,7 @@ demo</a></button></div>
       <div class="col-xl-4 col-lg-4 col-sm-12 ">
         <div class="div-space" style="padding: 15px;">
           <div class="service-info">
-              <div class="service-img"><img src="images/how1.png"></div>
+              <div class="service-img"><img src="how3.png"></div>
               <h2 style="margin-left: 20px;"> We Support</h2>
               <p>We know how distressing claiming can be,<br>
                 ywe work with the insurser to support you.
@@ -263,7 +347,7 @@ aria-label="Slide 1" style="background-color:#164277;"></button>
 style="background-color: #fff;">
 
                                 <div class="imgg">
-                                    <img src="images/docc.jpg"
+                                    <img src="docc.jpg"
 style="width: 15%;border-radius: 10%;" ></div>
                                 <h3>Ahmed Kamal</h3>
                                 <p>psychologist</p>
@@ -275,7 +359,7 @@ style="width: 15%;border-radius: 10%;" ></div>
                             <div class="client-item mt-5 py-3 px-5"
 style="background-color: #fff;">
 
-                                <img src="images/doc55.jpg"
+                                <img src="doc55.jpg"
 style="width: 15%;border-radius: 10%;">
                                 <h3>Ali Sabry</h3>
                                 <p>psychologist</p>
@@ -288,7 +372,7 @@ style="width: 15%;border-radius: 10%;">
                             <div class="client-item mt-5 py-3 px-5"
 style="background-color: #fff;">
 
-                                <img src="images/doc33.jpg"
+                                <img src="doc33.jpg"
 style="width: 15%;border-radius: 10%;">
                                 <h3>Samer Fawzy</h3>
                                 <p>psychologist</p>
@@ -302,7 +386,7 @@ Department of psychological counseling</p>
                             <div class="client-item mt-5 py-3 px-5"
 style="background-color: #fff;">
 
-                                <img src="images/doc4.jpg"
+                                <img src="doc4.jpg"
 style="width: 15%;border-radius: 10%;">
                                 <h3>Mourad Ahmed</h3>
                                 <p>psychiatrist</p>
@@ -316,7 +400,7 @@ neuropsychiatry</p>
                             <div class="client-item mt-5 py-3 px-5"
 style="background-color: #fff;">
 
-                                <img src="images/doc1.jpg"
+                                <img src="doc1.jpg"
 style="width: 15%;border-radius: 10%;">
                                 <h3>Hesham Amgad</h3>
                                 <p>ceo & founder </p>
@@ -469,7 +553,7 @@ Seminar</a></button></div>
          </div>
          <div class="col-xl-6 col-lg-6 col-sm-12">
           <div class="seminar-right">
-            <img src="images/seminar.jpg" style="width: 100%;margin:
+            <img src="seminar.jpg" style="width: 100%;margin:
 auto;padding-top: 45px;">
         </div>
         </div>

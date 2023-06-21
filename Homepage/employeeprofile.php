@@ -52,6 +52,7 @@ $conn = OpenConnection();
     display: inline;
     float: right;
     font-size: 18px;
+    
   }
   
   .nav > .nav-links > a {
