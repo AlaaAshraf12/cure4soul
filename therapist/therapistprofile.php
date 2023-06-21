@@ -14,50 +14,152 @@
         <script src="js/popper.min.js"></script>
         <title>Therapist Profile</title>
         <style>
-            .navbar{
-    display: flex;
-    justify-content: space-between;
-    height:10%;
-    align-items: center;
-    position: fixed;
-    left:0px;
-    right: 0px;
+                /* navbar */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0px;
+    font-family: 'segoe ui';
+  }
+  
+  .nav {
+    height: 50px;
+    width: 100%;
+    background-color: #4d4d4d;
+    position: relative;
+  }
+  
+  .nav > .nav-header {
+    display: inline;
+  }
+  
+  .nav > .nav-header > .nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: #fff;
+    padding: 10px 10px 10px 10px;
+  }
+  
+  .nav > .nav-btn {
+    display: none;
+    
+  }
+  
+  .nav > .nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+    padding-right:70px
+  }
+  
+  .nav > .nav-links > a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: #efefef;
+  }
+  
+  .nav > .nav-links > a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav > #nav-check {
+    display: none;
+  }
+  
+  @media (max-width:600px) {
+    .nav > .nav-btn {
+      display: inline-block;
+      position: absolute;
+      right: 0px;
+      top: 0px;
     }
-    .nav-item{background-color: red;}
-.navbar ul{display: flex;
-    list-style: none;
-justify-content: flex-end;
-}
-.navbar ul li{padding: 20px;
-}
-.navbar ul li a{text-decoration:none;
-font-weight: 600;
-margin:5px;
-color: white;
+    
 
-}
-.navbar ul li a:hover{color: gray;}
-.nav-buttons{margin-right: 40px; padding-bottom: 10px;}
-.btn1 button {
-background-color: orange;
-width: 140px;
-height: 40px;
-border-radius: 8px;
-border-style: none;
-
-
-}
-.btn1 button:hover{background-color: #fad263;}
-.btn1 button a{text-decoration: none;
-color: white;}
+    .nav > .nav-btn > label {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      padding: 13px;
+    }
+    .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .nav > .nav-btn > label > span {
+      display: block;
+      width: 25px;
+      height: 10px;
+      border-top: 2px solid #eee;
+    }
+    .nav > .nav-links {
+      position: absolute;
+      display: block;
+      width: 100%;
+      background-color:#164277;
+      height: 0px;
+      transition: all 0.3s ease-in;
+      overflow-y: hidden;
+      top: 50px;
+      left: 0px;
+      margin-left:-5px;
+    }
+    .nav > .nav-links > a {
+      display: block;
+      width: 100%;
+    }
+    .nav > #nav-check:not(:checked) ~ .nav-links {
+      height: 0px;
+    }
+    .nav > #nav-check:checked ~ .nav-links {
+      height: calc(100vh - 50px);
+      overflow-y: auto;
+    }
+  }
+  .nav-title{margin-left: 80px;}
+  .btn{margin-left: 60px;}
+  .nav-links{padding-left:20px;margin-left: 20px;}
 
         </style>
     </head>
     <body>
-     
-      <section class="nav" >
+       <!--navbar--> 
+       <div class="nav" style="height:60px;background-color:#164277">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+          <div class="nav-title">
+          <a href="home.html" target="_blank" style="text-decoration:none;color:white;font-weight:bold">Cure4soul<span class="dot" style="color:
+#00c3da;">.</a>
+            
+          </div>
+        </div>
+        <div class="nav-btn">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+        
+        <div class="nav-links">
+          
+          <a href="" target="_blank">How We Work</a>
+          <a href="" target="_blank">Wellness</a>
+          <a href="" target="_blank">Resources</a>
+          <a href="" target="_blank">Who Are We</a>
+          <a href="" target="_blank">Support</a>
+          <a href="therapistsession.php">My Sessions</a>
+          
+          <button class="btn1" style="width:70px;height:40px;background-color:#dddd;border-color:#dddd;border-radius:8px;">
+          <a style="text-decoration:none;color:white;" href="logintherapist.php? logout='1'">log out </a></button>
+          
+        </div>
+        
+      </div>
+      <!-- <section class="nav" >
         <div class="navbar"style="background-color:#1e6091;">
-            <h2 style="color: white; font-weight: bold; padding-left: 40px;">cure4soul<span class="dot" style="color: #00c3da;">.</span></h2>
+            <h2 style="color: white; font-size:30px;font-weight: bold; padding-left: 40px;">cure4soul<span class="dot" style="color: #00c3da;">.</span></h2>
     
             <ul>
                 <li><a href="#home" style="color:white ">How We Work</a></li>
@@ -79,14 +181,14 @@ color: white;}
     
             
         </div>
-    </section> 
+    </section>  -->
      
 
     
     <section class="profile">
         <div class="container-fluid">
             <div class="Profile-content" style="display: flex;justify-content: center;">
-               <div class="profile-left" style="width:40%;height:700px;background-color:#f8f6f4;padding-top: 100px;">
+               <div class="profile-left" style="width:40%;height:720px;background-color:#f8f6f4;padding-top: 100px;">
                 <div class="section-img">
                    
                     <?php
@@ -103,7 +205,7 @@ $result = sqlsrv_query($conn, $query);
 $row =sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC);
 $therapistId = $row['tid'];
 $Image=$row['image'];
-echo '<img src="' . $Image . '" style="border-radius: 50%; width: 40%; margin-left: 40px; margin-top: 20px;">';
+echo '<img src="' . $Image . '" style="border-radius: 10%; width: 50%; margin-left: 40px; margin-top: 20px;">';
 // Retrieve the therapist's schedule from the sessions table
 $query = "SELECT name,email,phone,qualif FROM therapist WHERE tid = $therapistId";
 $result = sqlsrv_query($conn, $query);
@@ -124,7 +226,7 @@ if (sqlsrv_has_rows($result) > 0) {
 ?>
                 </div>
             </div>
-               <div class="profile-right" style="width:100%;height:720px;padding-top: 80px;padding-left:140px;background-color:#f4faff">
+               <div class="profile-right" style="width:100%;height:720px;padding-top: 50px;padding-left:140px;background-color:#f4faff">
 
                    
    <?php
@@ -167,12 +269,28 @@ if (sqlsrv_has_rows($result) > 0) {
             </div>
         </div>
     </section>
+<!--footer-->
+<section class="footer" style="width:100% ;background-color:#fda95f;padding-top:20px;padding-bottom:20px">
+  <div class="container-fluid" style="background-color: #fda95f;">
+    
 
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="footer-1" style="margin: 10px;">
+        <div class="line" style="background-color:gainsboro; width:
+1000px;height:1px;margin:auto;"></div>
+  <div class="copyright" style="text-align: center;"> © Copyright Cure4soul. All Rights Reserved<br>
+      Designed by <span style="color:#1e6091">Cure4soul Team</span>
+  </div>
+      </div>
+    </div>
+  </div>
+
+  </section>
 <style>
   *{margin:0;
   padding:0;}
-.data-one{background-color:#8fb8ca;
-  color:white;
+.data-one{
+  color:gray;
   
 }
 table{width:80%;

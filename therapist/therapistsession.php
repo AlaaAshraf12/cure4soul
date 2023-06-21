@@ -3,6 +3,7 @@
 <head>
     <title>Booked Sessions</title>
     <style>
+        body{background-color:#f0f7f8}
         table {
             border-collapse: collapse;
             width: 100%;
@@ -11,6 +12,7 @@
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            color:#164277
         }
         .button {
             background-color: #4CAF50;
@@ -28,7 +30,7 @@
     </style>
 </head>
 <body>
-    <h2>Booked Sessions</h2>
+    <h2 style="text-align:center;color:#164277">Booked Sessions</h2>
     <table>
         <tr>
             <th>Day</th>
@@ -106,5 +108,6 @@
             xhr.send('sid=' + sid);
         }
     </script>
+    
 </body>
 </html>
