@@ -12,10 +12,11 @@ if(isset($_POST['sub'])){
                  $qua=$_POST['qua'];
                  $ni=$_POST['nid'];
                  $cvv=$_POST['cv'];
+                 $image=$_POST['image'];
                     if($passwordd != $conpassword){
                            echo "password doesnot match"; }
                     else{
-                          $sq="INSERT INTO therapist(name,email,password,phone,qualif,nid,cv) Values('$name','$emai','$passwordd','$phon','$qua','$ni','$cvv')";
+                          $sq="INSERT INTO therapist(name,email,password,phone,qualif,nid,cv,image) Values('$name','$emai','$passwordd','$phon','$qua','$ni','$cvv''$image')";
                           sqlsrv_query($conn,$sq); 
                      }
                 } 
@@ -77,6 +78,11 @@ if(isset($_POST['sub'])){
 					<div class="form-wrapper">
 						<p style="color:#164277">CV</p>
 						<input type="file" placeholder="CV" class="form-control" name="cv">
+						<i class="zmdi zmdi-account" ></i>
+					</div>
+          <div class="form-wrapper">
+						<p style="color:#164277">Image</p>
+						<input type="file" placeholder="Image" class="form-control" name="image">
 						<i class="zmdi zmdi-account" ></i>
 					</div>
 					<button name="sub" type="submit">Register
