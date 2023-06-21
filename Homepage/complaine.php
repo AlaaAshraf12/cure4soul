@@ -88,6 +88,7 @@ if (isset($_POST['submit'])) {
     display: inline;
     float: right;
     font-size: 18px;
+    padding-right:20px
   }
   
   .nav > .nav-links > a {
@@ -167,42 +168,6 @@ if (isset($_POST['submit'])) {
 .btn1:hover{background-color: #fad263;}
 
 
-/*footer*/
-
-        
-        /*footer*/
-        .footer{margin-top:70px}
-        .footer-text{padding-right: 5px;}
-        .footer-text h3{
-            font-size:28px;
-        
-        }
-        
-        .footer-2 h3{font-size: 24px;
-            color:rgb(37, 37, 37)
-        
-        }
-        .footer-2{color:rgb(37, 37, 37);
-            text-decoration: none;
-            font-size: 16px;}
-        .footer-2 h5 a{color:rgb(37, 37, 37);
-            text-decoration: none;
-            font-size: 16px;
-        
-        }
-        .btn-footer{width:100px;height:40px;
-        border-radius: 6px;
-        border-style: none;
-        background-color: #1e6091;
-        color:white}
-        .btn-footer:hover{background-color: #337ab1;}
-        
-        
-            
-           
-        
-             
-        
     
         label {
             display: block;
@@ -234,21 +199,49 @@ padding-left:30px;
         }
 
        .label2{
-        padding-right: 300px;
+        float:left;
         color:#164277;
+        padding-right:300px
        }
+/*footer*/
+.footer{margin-top:70px}
+.footer-text{padding-right: 5px;}
+.footer-text h3{
+    font-size:28px;
+
+}
+
+.footer-2 h3{font-size: 24px;
+    color:rgb(37, 37, 37)
+
+}
+.footer-2{color:rgb(37, 37, 37);
+    text-decoration: none;
+    font-size: 16px;}
+.footer-2 h5 a{color:rgb(37, 37, 37);
+    text-decoration: none;
+    font-size: 16px;
+
+}
+.btn-footer{width:100px;height:40px;
+border-radius: 6px;
+border-style: none;
+background-color: #1e6091;
+color:white}
+.btn-footer:hover{background-color: #337ab1;}
 
       
      
     </style>
 </head>
-<body style="background-color:#f0f7f8">
+<body style="background-color:#f0f7f8;">
       <!--navbar--> 
       <div class="nav" style="height:60px;background-color:#164277">
         <input type="checkbox" id="nav-check">
         <div class="nav-header">
           <div class="nav-title">
-            
+          <a href="home.html" target="_blank" style="text-decoration:none;color:white;font-weight:bold">Cure4soul<span class="dot" style="color:
+#00c3da;">.</a>
             
           </div>
         </div>
@@ -261,11 +254,13 @@ padding-left:30px;
         </div>
         
         <div class="nav-links">
+          
           <a href="" target="_blank">How We Work</a>
           <a href="" target="_blank">Wellness</a>
           <a href="" target="_blank">Resources</a>
           <a href="" target="_blank">Who Are We</a>
           <a href="" target="_blank">Support</a>
+          <button  style="width:70px;height:40px;background-color:#dddd;border-color:#dddd;"><a href="seminar.php"> <a href="home.html" style="color:white;text-decoration:none">Log Out </a></button>
         
           
         </div>
@@ -280,15 +275,15 @@ padding-left:30px;
         <h2 style="color:#1e6091">Complain Form</h2>
         <div class="labels">
         <label class="label2">
-            <input type="checkbox" name="problems[]" value="Therapist">
+            <input type="checkbox" name="problems[]" value="Therapist"  >
             Therapist
-        </label>
+        </label><br>
         <label class="label2">
-            <input type="checkbox" name="problems[]" value="Web application">
+            <input type="checkbox" name="problems[]" value="Web application" >
             Web application
         </label>
         <label class="label2">
-            <input type="checkbox" name="problems[]" value="Session Duration">
+            <input type="checkbox" name="problems[]" value="Session Duration" >
             Session Duration
         </label>
         </div>
@@ -303,6 +298,23 @@ padding-left:30px;
         </div>
     </div>
 </div>
+
+<!--footer-->
+<section class="footer" style="width:100% ;background-color:#fda95f;padding-top:20px;padding-bottom:20px">
+  <div class="container-fluid" style="background-color: #fda95f;">
     
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="footer-1" style="margin: 10px;">
+        <div class="line" style="background-color:gainsboro; width:
+1000px;height:1px;margin:auto;"></div>
+  <div class="copyright" style="text-align: center;"> © Copyright Cure4soul. All Rights Reserved<br>
+      Designed by <span style="color:#1e6091">Cure4soul Team</span>
+  </div>
+      </div>
+    </div>
+  </div>
+
+  </section>
 </body>
 </html>
