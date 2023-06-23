@@ -50,7 +50,11 @@ if (isset($_POST['login'])) {
 
             $_SESSION['name'] = $email;
             $_SESSION['success'] = "Welcome dear";
+<<<<<<< HEAD
             header('Location: employeeprofile.php');
+=======
+            header('location:employeeprofile.php');
+>>>>>>> 451065e7e8c836089ac03112c049b3524426978e
             exit();
         } else {
             echo "Error: " . print_r(sqlsrv_errors(), true);
