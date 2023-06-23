@@ -45,7 +45,7 @@ if (isset($_POST['login'])) {
 
             $_SESSION['name'] = $email;
             $_SESSION['success'] = "Welcome dear";
-            header('location: employeeprofile.php');
+            header('location:employeeprofile.php');
             exit();
         } else {
             echo "Error: " . sqlsrv_errors($conn);
