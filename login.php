@@ -28,7 +28,7 @@
 						<div class="img" style="background-image: url(pexels-alex-green-5699456.jpg)"></div>
 						<div class="login-wrap p-4 p-md-5">
 							
-							<form method="POST" action="employeeprofile.php" class="signin-form">
+							<form method="POST" action="logformemp.php" class="signin-form">
                             <div class="form-group mt-3">
                             <input type="text" class="form-control" id="company" name="company" required>
 			      			<label class="form-control-placeholder" for="Email">Company Name</label>
@@ -47,71 +47,6 @@
 						<?php if(isset($error)) {?>
             <p><?php echo $error ;?></p>
              <?php } ?>
-             <?php require_once "connection.php";
-$conn = OpenConnection();
-
-
-if (!isset($_SESSION)) {
-    session_start();
-}
-
-if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $company = $_POST['company'];
-    $query = "SELECT * FROM employee INNER JOIN company ON employee.cid = company.cid WHERE employee.email = '$email' AND employee.pass = '$password' AND company.name = '$company'";
-    $result = sqlsrv_query($conn, $query);
-
-    if ($result === false) {
-        echo "Query Error: " . print_r(sqlsrv_errors(), true);
-        exit();
-    }
-
-    if (sqlsrv_has_rows($result) > 0) {
-        $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-        $employeeID = $row['eid'];
-        
-    
-        // Check if the employee's account should be marked as inactive
-        $sessionQuery = "SELECT COUNT(*) AS numSessions FROM booking WHERE eid = '$employeeID' AND attendancestatus = 'attended'";
-        $sessionResult =sqlsrv_query($conn, $sessionQuery);
-
-        if ($sessionResult) {
-            $sessionRow = sqlsrv_fetch_array($sessionResult,SQLSRV_FETCH_ASSOC);
-            $numSessions = $sessionRow['numSessions'];
-            $availableSessions = $row['numofsessions'];
-
-            if ($numSessions >= $availableSessions) {
-                // Mark the account as inactive
-                $updateQuery = "UPDATE employee SET accountstatus = 'inactive' WHERE eid = '$employeeID'";
-                sqlsrv_query($conn, $updateQuery);
-
-                // Redirect to an inactive account page
-                header('location: login.php');
-                
-                exit();
-            }
-
-            $_SESSION['name'] = $email;
-            $_SESSION['success'] = "Welcome dear";
-            header('location: employeeprofile.php');
-            exit();
-        } else {
-            echo "Error: " . sqlsrv_errors($conn);
-        }
-    } else {
-        echo "Wrong data!";
-    }
-}
-
-if (isset($_GET['logout'])) {
-    session_destroy();
-    unset($_SESSION['name']);
-    header('location: login.php');
-    exit();
-}
-?>
-
 		            </div>
 		            <div class="form-group d-md-flex">
 		            	<div class="w-50 text-left">
