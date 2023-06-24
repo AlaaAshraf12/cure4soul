@@ -203,7 +203,7 @@ $conn = OpenConnection();
           <div class="btn" style="margin-right:20px;">
             <button class="btn1" ><a href="login.php" style="text-decoration:none;color:white">Member Login</a></button>
           <button  class="btn1"><a href="requestdemo.php" style="text-decoration:none;color:white">Request Demo</a></button>
-          <button  style="width:70px;height:40px;background-color:#dddd"><a href="seminar.php"> <a href="home.html" style="color:white;text-decoration:none">Log Out </a></button>
+          <button  style="width:70px;height:40px;background-color:#dddd"><a href="seminar.php"> <a href="index.html" style="color:white;text-decoration:none">Log Out </a></button>
           </div>
         </div>
         
