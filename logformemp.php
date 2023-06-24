@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
     $result = sqlsrv_query($conn, $query);
 
     if ($result === false) {
-        echo "Query Error: " . print_r(sqlsrv_errors(), true);
+        header('location: login.php');
         exit();
     }
 
@@ -48,10 +48,12 @@ if (isset($_POST['login'])) {
             header('location: employeeprofile.php');
             exit();
         } else {
-            echo "Error: " . sqlsrv_errors($conn);
+            header('location: login.php');
+            exit();
         }
     } else {
-        echo "Wrong data!";
+        header('location: login.php');
+        exit();
     }
 }
 
