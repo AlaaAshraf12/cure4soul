@@ -1,7 +1,9 @@
 <?php require_once "connection.php";
+echo'hi'
 require_once "logformemp.php";
- $conn = OpenConnection();?>
-<!doctype html>
+ $conn = OpenConnection();
+ echo'bye';?>
+<!Doctype html>
 <html lang="en">
   <head>
   	<title>Login Employee</title>
