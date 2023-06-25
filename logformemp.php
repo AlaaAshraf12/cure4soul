@@ -1,10 +1,8 @@
-<?php require_once "connection.php";
-$conn = OpenConnection();
-
-
+<?php 
 if (!isset($_SESSION)) {
-    session_start();
-}
+session_start();
+require_once "connection.php";
+$conn = OpenConnection();}
 
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
