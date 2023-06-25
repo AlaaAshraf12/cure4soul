@@ -1,8 +1,8 @@
 <?php require_once "connection.php";
-echo'hi';
+
 require_once "logformemp.php";
  $conn = OpenConnection();
- echo'bye';?>
+ ?>
 <!Doctype html>
 <html lang="en">
   <head>

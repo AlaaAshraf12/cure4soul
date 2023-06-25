@@ -1,8 +1,9 @@
 <?php
 require_once "connection.php";?>
 <?php
+echo'hi';
 require_once "logformemp.php";
-
+echo'bye';
 ?>
 
 <!DOCTYPE html>
