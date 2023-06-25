@@ -1,6 +1,6 @@
 <?php
 require_once "connection.php";
-require_once "login.php";
+require_once "logformemp.php";
 $conn = OpenConnection();
 
 ?>
@@ -218,6 +218,7 @@ $conn = OpenConnection();
                 
            
             <?php
+          
             $conn = OpenConnection();
 // Assuming you have a MySQL database connection established
 
