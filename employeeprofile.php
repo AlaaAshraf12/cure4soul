@@ -1,7 +1,8 @@
 <?php
-require_once "connection.php";
+require_once "connection.php";?>
+<?php
 require_once "logformemp.php";
-$conn = OpenConnection();
+
 ?>
 
 <!DOCTYPE html>
@@ -182,7 +183,7 @@ $conn = OpenConnection();
         <input type="checkbox" id="nav-check">
         <div class="nav-header">
           <div class="nav-title"style="margin-top:6px;">
-          <a href="home.html" target="_blank" style="text-decoration:none;color:white;font-weight:bold">Cure4soul<span class="dot" style="color:
+          <a href="index.html" target="_blank" style="text-decoration:none;color:white;font-weight:bold">Cure4soul<span class="dot" style="color:
 #00c3da;">.</a>
           </div>
         </div>
@@ -217,6 +218,7 @@ $conn = OpenConnection();
                 
            
             <?php
+            $conn = OpenConnection();
 // Assuming you have a MySQL database connection established
 
 // Start the session and retrieve the logged-in therapist's email from the session
