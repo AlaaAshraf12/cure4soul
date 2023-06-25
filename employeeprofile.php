@@ -214,7 +214,7 @@
                 
            
             <?php
-          
+          require_once "logformemp.php";
             $conn = OpenConnection();
 // Assuming you have a MySQL database connection established
 
