@@ -1,4 +1,5 @@
 <?php require_once "connection.php";
+require_once "logformemp.php";
  $conn = OpenConnection();?>
 <!doctype html>
 <html lang="en">
@@ -29,7 +30,7 @@
 						<div class="img" style="background-image: url(pexels-alex-green-5699456.jpg)"></div>
 						<div class="login-wrap p-4 p-md-5">
 							
-							<form method="POST" action="logformemp.php" class="signin-form">
+							<form method="POST" action="employeeprofile.php" class="signin-form">
                             <div class="form-group mt-3">
                             <input type="text" class="form-control" id="company" name="company" required>
 			      			<label class="form-control-placeholder" for="Email">Company Name</label>
