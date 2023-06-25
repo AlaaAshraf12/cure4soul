@@ -1,4 +1,5 @@
-<?php include('connection.php');?>
+<?php require_once "connection.php";
+require_once "logformenp.php"; $conn = OpenConnection();?>
 <!doctype html>
 <html lang="en">
   <head>
