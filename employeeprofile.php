@@ -1,6 +1,7 @@
 <?php
 require_once "connection.php";
 require_once "login.php";
+$conn = OpenConnection();
 
 ?>
 
