@@ -219,6 +219,9 @@
 // Assuming you have a MySQL database connection established
 
 // Start the session and retrieve the logged-in therapist's email from the session
+if (!isset($_SESSION)) {
+  session_start();
+}
 
 $email = $_SESSION['name']; // Modify this according to your authentication system
 
