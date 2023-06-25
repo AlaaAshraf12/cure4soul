@@ -1,7 +1,7 @@
 <?php
 require_once "connection.php";
-require_once "logformemp.php";
-echo'bye';
+require_once "login.php";
+
 ?>
 
 <!DOCTYPE html>
