@@ -1,6 +1,5 @@
-<?php
-require_once "connection.php";?>
-<?php require_once "logformemp.php";?>
+<?php require_once "connection.php";?>
+
 
 <!DOCTYPE html>
 <html>
