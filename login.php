@@ -1,5 +1,5 @@
 <?php require_once "connection.php";
-echo'hi'
+echo'hi';
 require_once "logformemp.php";
  $conn = OpenConnection();
  echo'bye';?>
